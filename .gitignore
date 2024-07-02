@@ -2,6 +2,9 @@
 node_modules
 /.pnp
 .pnp.js
+.env
+.DS_Store
+Thumbs.db
 
 # testing
 /coverage
