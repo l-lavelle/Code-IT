@@ -5,6 +5,8 @@ node_modules
 .env
 .DS_Store
 Thumbs.db
+todo.txt
+idea.txt
 
 # testing
 /coverage
