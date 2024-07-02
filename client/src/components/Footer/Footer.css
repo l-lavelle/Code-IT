@@ -1,0 +1,35 @@
+.footer-container {
+  height: 125px;
+  background-color: var(--dark-blue);
+  border-top: 4px black solid;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#rights {
+  font-family: var(--outfit);
+  font-size: 1.1em;
+  color: var(--white);
+  display: block;
+}
+.footer-link {
+  font-family: var(--outfit);
+  font-size: 1.1em;
+  color: var(--white);
+  text-decoration: none;
+}
+.footer-link:hover {
+  color: var(--gold);
+  cursor: pointer;
+}
+.footer-links a {
+  display: block;
+}
+
+@media screen and (max-width: 767px) {
+  .footer-container {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}

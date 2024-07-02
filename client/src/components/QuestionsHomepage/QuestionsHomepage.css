@@ -1,0 +1,39 @@
+.qh-body {
+  min-height: calc(100vh - 200px);
+}
+.ol-qh-questions {
+  list-style-type: decimal;
+  list-style-position: inside;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.qh-questions {
+  background-color: var(--white);
+  text-align: left;
+}
+.qh-questions-correct {
+  opacity: 0.7;
+  background-color: var(--white);
+  text-align: left;
+}
+.qh-questions-correct img {
+  display: inline;
+  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg)
+    brightness(118%) contrast(119%);
+  height: 25px;
+}
+.qh-main-content {
+  background-color: var(--dark-blue);
+}
+
+@media screen and (max-width: 767px) {
+  .qh-btnGroup button {
+    display: none;
+  }
+}
+@media screen and (min-width: 767px) {
+  .qh-difficulty-dd {
+    display: none;
+  }
+}

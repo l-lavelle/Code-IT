@@ -1,0 +1,139 @@
+h1 {
+  font-size: 3em;
+  font-family: var(--outfit);
+  font-weight: 400;
+  font-style: normal;
+}
+h2 {
+  font-family: var(--outfit);
+  font-size: 2em;
+}
+h4 {
+  font-family: var(--roboto);
+  font-weight: 400;
+  font-style: normal;
+}
+p {
+  font-family: var(--roboto);
+}
+
+#canvas-container {
+  position: relative;
+}
+#above-img {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 40%;
+  left: 50%;
+  width: 75%;
+}
+
+.home-info-container {
+  background-color: var(--medium-blue);
+}
+
+.tech-border {
+  --s: 100px; /* the size on the corner */
+  --t: 5px; /* the thickness of the border */
+  --g: 20px; /* the gap between the border and image */
+
+  padding: calc(var(--g) + var(--t));
+  outline: var(--t) solid var(--gold); /* the color here */
+  outline-offset: calc(-1 * var(--t));
+  mask: conic-gradient(at var(--s) var(--s), #0000 75%, #000 0) 0 0 /
+      calc(100% - var(--s)) calc(100% - var(--s)),
+    linear-gradient(#000 0 0) content-box;
+  transition: 0.4s;
+}
+.tech-border:hover {
+  outline-offset: calc(var(--g) / -1);
+}
+.tech-img {
+  min-width: 100px;
+  max-height: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.tech-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  position: relative;
+  text-align: center;
+}
+.overlay-tech-lang {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: var(--gold);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.overlay-tech-lang:hover {
+  opacity: 1;
+}
+
+.home-language-container {
+  background-color: var(--light-blue);
+  border-radius: 25px;
+}
+.language-list-container,
+.skills-list-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-skills-container {
+  background-color: var(--light-blue);
+  border-radius: 25px;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+@media screen and (max-width: 380px) {
+  .overlay-tech-lang p {
+    font-size: 15px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .language-reverse {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+@media screen and (min-width: 576px) and (max-width: 745px) {
+  .overlay-tech-lang p {
+    font-size: 15px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  #above-img {
+    width: 737px;
+  }
+  h2 {
+    font-size: 2.1em;
+  }
+  .tech-img {
+    min-width: 100px;
+    max-height: 175px;
+  }
+}
+@media screen and (min-width: 1396px) {
+  .tech-img {
+    max-width: 300px;
+  }
+}

@@ -1,0 +1,70 @@
+.SL-wrapper {
+  background-color: var(--light-blue);
+  min-height: calc(100vh - 200px);
+}
+.visible {
+  animation: fadeIn 5s;
+}
+.hidden {
+  display: none;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.signup-login-text {
+  font-family: var(--roboto);
+  font-size: 20px;
+}
+.signup-login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+.login-container,
+.signup-container {
+  width: 75%;
+}
+.login-switch-container,
+.signup-switch-container {
+  margin-top: 20px;
+}
+.SL-switch-text {
+  font-weight: bold;
+}
+.SL-switch-text:hover {
+  color: var(--gold);
+  cursor: pointer;
+}
+@media screen and (min-width: 767px) {
+  .signup-login-container {
+    display: flex;
+    flex-direction: row;
+    max-width: 90%;
+    align-items: null;
+    margin: auto;
+    border: 1px red solid;
+  }
+  .login-container,
+  .signup-container {
+    width: 50%;
+  }
+  .login-switch-container,
+  .signup-switch-container {
+    width: 50%;
+    text: center;
+    border: 1px red solid;
+  }
+  .login-switch-container p,
+  .signup-switch-container p {
+    font-size: 25px;
+  }
+  h2 {
+    font-size: 45px;
+  }
+}
