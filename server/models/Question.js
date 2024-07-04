@@ -28,6 +28,20 @@ Question.init(
     solution: {
       type: DataTypes.STRING,
     },
+    difficulty_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "difficulties",
+        key: "id",
+      },
+    },
+    language_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "languages",
+        key: "id",
+      },
+    },
   },
   {
     sequelize,

@@ -14,13 +14,13 @@ Language.init(
     language_type: {
       type: DataTypes.STRING,
     },
-    question_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "questions",
-        key: "id",
-      },
-    },
+    // question_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: "questions",
+    //     key: "id",
+    //   },
+    // },
   },
   {
     sequelize,

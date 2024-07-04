@@ -6,25 +6,25 @@ const User_Answer = require("./User_Answer");
 
 // Question have one difficulty
 Question.belongsTo(Difficulty, {
-  foreignKey: "question_id",
+  foreignKey: "difficulty_id",
 });
 
 // Difficulty belongs to many Questions
-Difficulty.hasMany(Question, {
-  foreignKey: "question_id",
-  onDelete: "CASCADE",
-});
+// Difficulty.hasMany(Question, {
+//   foreignKey: "difficulty_id",
+//   onDelete: "CASCADE",
+// });
 
 // Question have one Language
 Question.belongsTo(Language, {
-  foreignKey: "question_id",
+  foreignKey: "language_id",
 });
 
 // Languages belongs to many Questions
-Language.hasMany(Question, {
-  foreignKey: "question_id",
-  onDelete: "CASCADE",
-});
+// Language.hasMany(Question, {
+//   foreignKey: "language_id",
+//   onDelete: "CASCADE",
+// });
 
 // Answers belong to one user
 User_Answer.belongsTo(User, {
