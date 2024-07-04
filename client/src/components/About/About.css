@@ -15,6 +15,7 @@
 #lo-pic {
   margin-bottom: 10px;
   border-radius: 50px;
+  max-width: 75%;
 }
 .lo-info {
   background-color: var(--white);
