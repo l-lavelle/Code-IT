@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const { User } = require("../models");
+const { generateAccessToken } = require("../utils/auth");
 
 router.post("/", async (req, res) => {
-  console.log("hitting login endpoint");
   try {
     const dbUserData = await User.findOne({
       where: {
@@ -21,13 +21,10 @@ router.post("/", async (req, res) => {
       return;
     }
 
-    // req.session.save(() => {
-    //   req.session.loggedIn = true;
-    //   req.session.userId = dbUserData.id;
+    const token = generateAccessToken({ username: req.body.username });
     res
       .status(200)
-      .json({ user: dbUserData, message: "You are now logged in!" });
-    // });
+      .json({ user: dbUserData, token, message: "You are now logged in!" });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

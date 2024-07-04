@@ -9,12 +9,7 @@ router.post("/", async (req, res) => {
       username: req.body.username,
       password: req.body.password,
     });
-    console.log(dbUserData);
-    let username = req.body.username;
-    console.log(username);
     const token = generateAccessToken({ username: req.body.username });
-    console.log(token);
-    // res.json(token);
     res.status(200).json({ dbUserData, token });
   } catch (err) {
     console.log(err);
@@ -22,7 +17,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Testing Route
+// Testing Route- can delete later
 router.get("/", async (req, res) => {
   try {
     const locationData = await User.findAll();
