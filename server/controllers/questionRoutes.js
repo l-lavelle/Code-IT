@@ -1,8 +1,10 @@
+// TODO: finish routes with auth
 const router = require("express").Router();
 const { Question, Language, Difficulty } = require("../models");
 
 // Get Question by Language and Difficulty
 router.get("/:language_id/:difficulty_id", async (req, res) => {
+  // with auth token added for reference if right or wrong/completed already
   try {
     const questionData = await Question.findAll({
       include: [
@@ -15,4 +17,44 @@ router.get("/:language_id/:difficulty_id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// Get single question - populate page with info
+router.get("/:question_id", async (req, res) => {
+  // if authincated grab saved answer
+  try {
+    const questionData = await Question.findOne({
+      where: {
+        id: req.params.question_id,
+      },
+    });
+    res.status(200).json(questionData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Try to see if question is correct and update user answer if authenciated
+router.post("/:question_id", async (req, res) => {
+  // if authincated change boolean for solved
+  try {
+    const questionData = await Question.findOne({
+      where: {
+        id: req.params.question_id,
+      },
+    });
+    if (!questionData) {
+      res.status(400).json({ message: "Question does not exist" });
+      return;
+    }
+    if (questionData.dataValues.answer === req.body.answer) {
+      res.status(200).json(questionData);
+    } else {
+      res.status(200).json({ message: "Your Answer is Incorrect" });
+    }
+    // console.log(questionData.dataValues.answer);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
