@@ -25,7 +25,7 @@ const Login = () => {
       url.port = '3001';  
       url2 = `${url}login/`;
       if (process.env.NODE_ENV === "production") {
-         url2 = `${domain}login/`;
+         url2 = `${domain}/login/`;
       }
       
       const response = await fetch(url2, {

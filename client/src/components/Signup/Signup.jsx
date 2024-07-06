@@ -42,7 +42,7 @@ const Signup = () => {
       url.port = '3001';  
       url2 = `${url}signup/`;
       if (process.env.NODE_ENV === "production") {
-        url2 = `${domain}login/`;
+        url2 = `${domain}/signup/`;
      }
       const response = await fetch(url2, {
         method: 'POST',
