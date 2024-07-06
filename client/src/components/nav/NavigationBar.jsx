@@ -3,6 +3,7 @@ import React from "react";
 import {Container, Navbar, Nav, NavDropdown} from 'react-bootstrap';
 import '../../Variables.css'
 import './NavigationBar.css'
+import AuthService from '../../utils/auth';
 
 const NavigationBar = () => {
   return (
@@ -13,7 +14,7 @@ const NavigationBar = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" className="bg-white"/>
             <Navbar.Collapse id="basic-navbar-nav" >
               <Nav className="ml-auto">
-                <Nav.Link href="/Login">Login</Nav.Link>
+                {AuthService.loggedIn()?(<Nav.Link onClick={AuthService.logout}>Logout</Nav.Link>):(<Nav.Link href="/Login">Login</Nav.Link>)}
                 <Nav.Link href="/QuestionsHomepage">Signup</Nav.Link>
                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

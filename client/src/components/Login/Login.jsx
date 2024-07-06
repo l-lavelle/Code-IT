@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import '../../Variables.css'
 import './Login.css'
 import Form from 'react-bootstrap/Form';
-
+import AuthService from '../../utils/auth';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ username: '', password: '' , confirmPassword:''});
@@ -30,7 +30,7 @@ const Login = () => {
        });
        if (response.ok) {
            const data = await response.json();
-           console.log(data);
+           AuthService.login(data.token);
        } else {
            alert('Failed to edit the quantity');
        }
