@@ -1,6 +1,7 @@
 // TODO: finish routes with auth
 const router = require("express").Router();
 const { Question, Language, Difficulty } = require("../models");
+const { authMiddleware } = require("../utils/auth");
 
 // Get Question by Language and Difficulty
 router.get("/:language_id/:difficulty_id", async (req, res) => {
