@@ -1,14 +1,14 @@
 //Sapce for error message
 //Input validation
 import React, { useState } from "react";
-import '../../Variables.css'
-import './Login.css'
+import '../../Variables.css';
+import './Login.css';
 import Form from 'react-bootstrap/Form';
 import AuthService from '../../utils/auth';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ username: '', password: '' , confirmPassword:''});
-  const [errorMessage, setErrorMessage] = useState('');
+  const [message, setMessage]=useState({message:'', status:''});
 
   const updateLogin= async (event)=>{
     const { name, value } = event.target;
@@ -31,12 +31,12 @@ const Login = () => {
        if (response.ok) {
            const data = await response.json();
            AuthService.login(data.token);
-       } else {
-           alert('Failed to edit the quantity');
+       }else{
+        setMessage({message:'Username or password incorrect', status:'error'});
        }
 
     } catch (error) {
-      // setMesage({message:'Username or password incorrect', status:'error'})
+      setMessage({message:'Username or password incorrect', status:'error'});
       console.log(error);
     }
   };
@@ -51,6 +51,7 @@ const Login = () => {
       name="username"
       value={loginData.username}
       onChange={updateLogin}
+      className={message.status==='error'?"input-error":null}
       />
     </Form.Group>
 
@@ -60,11 +61,14 @@ const Login = () => {
        type="password" 
        name="password"
        value={loginData.password}
-       onChange={updateLogin}/>
+       onChange={updateLogin}
+       className={message.status==='error'?"input-error":null}
+       />
     </Form.Group>
    <button className="button-ct" variant="primary" type="submit">
         Submit
    </button>
+   {message.status==='error'?<p className='text-center mt-3' style={{color:"red"}}>{message.message}</p>:null}
   </Form>
   </>
   );

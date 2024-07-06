@@ -41,6 +41,9 @@
   color: var(--gold);
   cursor: pointer;
 }
+.input-error {
+  box-shadow: 0 0 5px #cc0000;
+}
 @media screen and (min-width: 767px) {
   .signup-login-container {
     display: flex;
