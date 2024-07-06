@@ -21,10 +21,10 @@ const Signup = () => {
       let domain = window.location.origin;
       var url = new URL(domain);
       url.port = '3001';  
-      let url2 = `${url}login/`;
+      let url2 = `${url}signup/`;
       const response = await fetch(url2, {
         method: 'POST',
-        // body: JSON.stringify({ username: loginData.username,password:loginData.password }),
+        body: JSON.stringify({ username: signupData.username,password:signupData.password }),
         headers: { "Content-Type": "application/json" },
        });
        if (response.ok) {
@@ -42,20 +42,35 @@ const Signup = () => {
    
   return (
     <>
-      <Form>
+      <Form onSubmit={handleSignup}>
           <Form.Group className="mb-3 text-left signup-login-text" >
             <Form.Label>Username</Form.Label>
-            <Form.Control type="text" />
+            <Form.Control 
+            type="text"
+            name="username"
+            value={signupData.username}
+            onChange={updateSignup} 
+            />
           </Form.Group>
 
           <Form.Group className="mb-3 text-left signup-login-text">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" />
+            <Form.Control 
+            type="password" 
+            name="password"
+            value={signupData.password}
+            onChange={updateSignup} 
+            />
           </Form.Group>
 
           <Form.Group className="mb-3 text-left signup-login-text" >
               <Form.Label>Confirm Password</Form.Label>
-              <Form.Control type="password" />
+              <Form.Control 
+              type="password" 
+              name="confirmPassword"
+              value={signupData.confirmPassword}
+              onChange={updateSignup} 
+              />
           </Form.Group>
         <button className="button-ct" variant="primary" type="submit">
         Submit
