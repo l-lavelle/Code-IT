@@ -19,10 +19,15 @@ const Login = () => {
       setMessage({message:'Must enter username and password', status:'error'});
     } else {
     try {
+      let url2
       let domain = window.location.origin;
       var url = new URL(domain);
       url.port = '3001';  
-      let url2 = `${url}login/`;
+      url2 = `${url}login/`;
+      if (process.env.NODE_ENV === "production") {
+         url2 = `${domain}login/`;
+      }
+      
       const response = await fetch(url2, {
         method: 'POST',
         body: JSON.stringify({ username: loginData.username,password:loginData.password }),
