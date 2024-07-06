@@ -1,5 +1,3 @@
-//Sapce for error message
-//Input validation
 import React, { useState } from "react";
 import '../../Variables.css';
 import './Login.css';
@@ -7,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import AuthService from '../../utils/auth';
 
 const Login = () => {
-  const [loginData, setLoginData] = useState({ username: '', password: '' , confirmPassword:''});
+  const [loginData, setLoginData] = useState({ username: '', password: '' });
   const [message, setMessage]=useState({message:'', status:''});
 
   const updateLogin= async (event)=>{
@@ -17,7 +15,9 @@ const Login = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-   
+    if (loginData.username ==="" || loginData.password === ""){
+      setMessage({message:'Must enter username and password', status:'error'});
+    } else {
     try {
       let domain = window.location.origin;
       var url = new URL(domain);
@@ -38,6 +38,7 @@ const Login = () => {
     } catch (error) {
       setMessage({message:'Username or password incorrect', status:'error'});
       console.log(error);
+    }
     }
   };
    
@@ -68,7 +69,7 @@ const Login = () => {
    <button className="button-ct" variant="primary" type="submit">
         Submit
    </button>
-   {message.status==='error'?<p className='text-center mt-3' style={{color:"red"}}>{message.message}</p>:null}
+   {message.status==='error'?<p className='text-center mt-3' style={{color:"red"}}>{message.message}</p>:<p></p>}
   </Form>
   </>
   );

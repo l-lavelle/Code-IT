@@ -21,11 +21,10 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-validate:{
-len: [5,40],  
-}
+      validate: {
+        len: [5, 40],
+      },
     },
-// On creation needs to be at least 5 characters, capital, lower, number and special- in database will be stored as bycrypted 
     password: {
       type: DataTypes.STRING,
       allowNull: false,

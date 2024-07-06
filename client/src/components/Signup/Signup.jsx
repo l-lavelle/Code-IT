@@ -2,21 +2,39 @@ import React, { useState } from "react";
 import '../../Variables.css'
 import '../Login/Login.css'
 import Form from 'react-bootstrap/Form';
-
+import AuthService from '../../utils/auth';
 
 const Signup = () => {
   const [signupData, setSignupData] = useState({ username: '', password: '' , confirmPassword:''});
-  const [errorMessage, setErrorMessage] = useState('');
+  const [message, setMessage]=useState({message:'', status:'', type:''});
 
   const updateSignup= async (event)=>{
     const { name, value } = event.target;
     setSignupData({ ...signupData, [name]: value });
   };
 
+  function isAllCharPresent(str) {
+    let pattern = new RegExp(
+        "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$"
+    );
+    if (pattern.test(str))
+        return true;
+    else
+        return false;
+}
 
   const handleSignup = async (event) => {
     event.preventDefault();
-//    Update to signup
+    if (signupData.username===""|| signupData.password===""|| signupData.confirmPassword===""){
+        setMessage({message:'Fill out all fields to create an account', status:'error', type:"all"});
+    }
+    else if(signupData.username.length<5 || signupData.username.length>40){
+        setMessage({message:'Username must be between 5-40 characters', status:'error',type:'username'});
+    } else if((isAllCharPresent(signupData.password)===false)){
+        setMessage({message:'Password needs lowercase, uppercase, number and special character', status:'error',type:'password'});
+    } else if(signupData.password!==signupData.confirmPassword){
+        setMessage({message:'Passwords do not match', status:'error',type:'password'});
+    } else{
     try {
       let domain = window.location.origin;
       var url = new URL(domain);
@@ -26,18 +44,21 @@ const Signup = () => {
         method: 'POST',
         body: JSON.stringify({ username: signupData.username,password:signupData.password }),
         headers: { "Content-Type": "application/json" },
-       });
+       });       
        if (response.ok) {
            const data = await response.json();
-           console.log(data);
-       } else {
-           alert('Failed to edit the quantity');
-       }
-
-    } catch (error) {
-      // setMesage({message:'Username or password incorrect', status:'error'})
+           AuthService.login(data.token);
+       };
+       if (!response.ok) {
+        const data = await response.json();
+        if(data.name==="SequelizeUniqueConstraintError"){
+            setMessage({message:'Username already exists', status:'error', type:'username'})
+        }
+      }
+    } catch (error) {    
       console.log(error);
     }
+   }
   };
    
   return (
@@ -50,6 +71,7 @@ const Signup = () => {
             name="username"
             value={signupData.username}
             onChange={updateSignup} 
+            className={message.type==='username'|| message.type ==='all'?"input-error":null}
             />
           </Form.Group>
 
@@ -60,6 +82,7 @@ const Signup = () => {
             name="password"
             value={signupData.password}
             onChange={updateSignup} 
+            className={message.type==='password'|| message.type ==='all'?"input-error":null}
             />
           </Form.Group>
 
@@ -70,11 +93,13 @@ const Signup = () => {
               name="confirmPassword"
               value={signupData.confirmPassword}
               onChange={updateSignup} 
+              className={message.type==='password'|| message.type ==='all'?"input-error":null}
               />
           </Form.Group>
         <button className="button-ct" variant="primary" type="submit">
         Submit
         </button>
+        {message.status==='error'?<p className='text-center mt-3' style={{color:"red"}}>{message.message}</p>:<p></p>}
         </Form>
         </>
   );
