@@ -36,10 +36,14 @@ const Signup = () => {
         setMessage({message:'Passwords do not match', status:'error',type:'password'});
     } else{
     try {
+      let url2
       let domain = window.location.origin;
       var url = new URL(domain);
       url.port = '3001';  
-      let url2 = `${url}signup/`;
+      url2 = `${url}signup/`;
+      if (process.env.NODE_ENV === "production") {
+        url2 = `${domain}login/`;
+     }
       const response = await fetch(url2, {
         method: 'POST',
         body: JSON.stringify({ username: signupData.username,password:signupData.password }),
