@@ -3,7 +3,7 @@
 // import Form from 'react-bootstrap/Form';
 // import InputGroup from 'react-bootstrap/InputGroup';
 import {InputGroup, Form, DropdownButton, Dropdown} from 'react-bootstrap';
-function QHDropdown() {
+function QHDropdown({data}) {
   return (
     <>
       <InputGroup className="mb-3">
