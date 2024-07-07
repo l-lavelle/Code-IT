@@ -9,7 +9,8 @@ import {InputGroup, Form, DropdownButton, Dropdown} from 'react-bootstrap';
 
 const QuestionsHomepage = () => {
   const [questions, setQuestions] = useState();
-  const[difficultyId, setDifficultyId]=useState("1");
+  // const[difficultyId, setDifficultyId]=useState("1");
+  const [difficultyInfo,setDifficultyInfo]=useState({"difficultyType":"Beginner", "difficultyId":"1"})
   const[languageInfo,setLanguageInfo]=useState({"languageType":"Java", "languageId":"1"});
   const [languages, setLanguages] = useState();
   const [difficulty, setDifficulty] = useState();
@@ -19,7 +20,7 @@ const QuestionsHomepage = () => {
     let domain = window.location.origin;
     var url = new URL(domain);
     url.port = '3001';  
-    url2 = `${url}question/${languageInfo.languageId}/${difficultyId}`;
+    url2 = `${url}question/${languageInfo.languageId}/${difficultyInfo.difficultyId}`;
     if (process.env.NODE_ENV === "production") {
         url2 = `${domain}/question/1/2`;
     }
@@ -33,7 +34,7 @@ const QuestionsHomepage = () => {
       .then((data) => {
         setQuestions(data);
       });
-  }, [difficultyId, languageInfo.languageId]);
+  }, [difficultyInfo.difficultyId, languageInfo.languageId]);
 
   useEffect(() => {
     let url2
@@ -115,15 +116,41 @@ const QuestionsHomepage = () => {
     </div>
 
     <div className=" ms-3 me-3 qh-difficulty-dd">
-       <QHDropdown />
+    <InputGroup className="mb-3">
+        <DropdownButton
+          variant="outline-secondary"
+          title="Difficulty"
+          id="input-group-dropdown-1"
+          className="highlight-lang"
+        >
+          {
+        difficulty.map((diff) => (
+          <>
+              <Dropdown.Item 
+                className={parseInt(difficultyInfo.difficultyId)===diff.id?"highlight-lang":null}
+                onClick={()=>setDifficultyInfo({difficultyId:diff.id, difficultyType:diff.difficulty_type})}>
+                {diff.difficulty_type}
+                </Dropdown.Item>
+              <Dropdown.Divider />
+          </>
+          ))
+        }
+        </DropdownButton>
+        <Form.Control 
+        readOnly
+        aria-label="Text input with dropdown button" 
+        value={difficultyInfo.difficultyType}
+        />
+      </InputGroup>
+       {/* <QHDropdown /> */}
     </div>
 
 
     <div className="d-flex ms-3 flex-nowrap qh-btnGroup">
     {
       difficulty.map((diff) => (
-      <button key={diff.id} className={parseInt(difficultyId)===diff.id ? "newidea button-ct": "button-ct"}
-      variant="primary" type="submit" name="Beginner" onClick={()=>setDifficultyId(diff.id)}>
+      <button key={diff.id} className={parseInt(difficultyInfo.difficultyId)===diff.id ? "newidea button-ct": "button-ct"}
+      variant="primary" type="submit" name="Beginner" onClick={()=>setDifficultyInfo({"difficultyType":diff.difficulty_type, "difficultyId":diff.id})}>
          {diff.difficulty_type}
       </button>
         ))
