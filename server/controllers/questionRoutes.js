@@ -19,6 +19,16 @@ router.get("/:language_id/:difficulty_id", async (req, res) => {
   }
 });
 
+// Get all Languages
+router.get("/languages", async (req, res) => {
+  try {
+    const languageData = await Language.findAll();
+    res.status(200).json(languageData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // Get single question - populate page with info
 router.get("/:question_id", async (req, res) => {
   // if authincated grab saved answer
