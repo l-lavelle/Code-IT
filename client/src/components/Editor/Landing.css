@@ -1,0 +1,44 @@
+.drop-styles {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Output Window Styles */
+.output-box {
+  width: 100%;
+  background-color: #000000;
+  color: #00ff00;
+  border-radius: 25px;
+  min-height: 125px;
+  text-align: left;
+  padding: 5px;
+  font-size: 1.2rem;
+  border: 2px solid red;
+}
+
+/* Editor Window */
+/* .editor-window {
+  max-width: 100%;
+  border: 2px solid yellow;
+}
+
+.editor-output {
+  border: 2px solid blue;
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (min-width: 1024px) {
+  .output-box {
+    width: 30%;
+  }
+  .editor-window {
+    min-width: 55%;
+    max-width: 60%;
+  }
+
+  .editor-output {
+    border: 2px solid blue;
+    display: flex;
+    flex-direction: row;
+  }
+} */

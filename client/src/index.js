@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import Landing from "./components/Editor/Landing";
+import Landing from "./components/Editor/Landing";
 import Homepage from "./components/Homepage/Homepage";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
@@ -21,10 +21,10 @@ const router = createBrowserRouter([
         index: true,
         element: <Homepage />,
       },
-      // {
-      //   path: "/Landing",
-      //   element: <Landing />,
-      // },
+      {
+        path: "/challange/:question_Id",
+        element: <Landing />,
+      },
       {
         path: "/About",
         element: <About />,

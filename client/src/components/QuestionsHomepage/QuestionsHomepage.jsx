@@ -1,3 +1,4 @@
+// Condense code??
 import React from "react";
 import '../../Variables.css'
 import './QuestionsHomepage.css'
@@ -9,7 +10,6 @@ import {InputGroup, Form, DropdownButton, Dropdown} from 'react-bootstrap';
 
 const QuestionsHomepage = () => {
   const [questions, setQuestions] = useState();
-  // const[difficultyId, setDifficultyId]=useState("1");
   const [difficultyInfo,setDifficultyInfo]=useState({"difficultyType":"Beginner", "difficultyId":"1"})
   const[languageInfo,setLanguageInfo]=useState({"languageType":"Java", "languageId":"1"});
   const [languages, setLanguages] = useState();
@@ -149,7 +149,7 @@ const QuestionsHomepage = () => {
     <div className="d-flex ms-3 flex-nowrap qh-btnGroup">
     {
       difficulty.map((diff) => (
-      <button key={diff.id} className={parseInt(difficultyInfo.difficultyId)===diff.id ? "newidea button-ct": "button-ct"}
+      <button key={diff.id} className={parseInt(difficultyInfo.difficultyId)===diff.id ? "highlight-diff-default button-ct": "button-ct"}
       variant="primary" type="submit" name="Beginner" onClick={()=>setDifficultyInfo({"difficultyType":diff.difficulty_type, "difficultyId":diff.id})}>
          {diff.difficulty_type}
       </button>
