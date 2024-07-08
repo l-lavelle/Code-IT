@@ -173,7 +173,8 @@ const QuestionsHomepage = () => {
     <ol className="ol-qh-questions ps-3">
       {
         questions.map((question) => (
-        <li key={question.id} className="pt-2 pb-2 ps-2 m-2 qh-questions">
+        <li key={question.id} className="pt-2 pb-2 ps-2 m-2 qh-questions"
+        onClick={()=>window.location.assign(`/challenge/${question.id}`)}>
           {question.question}
         </li>
 

@@ -15,20 +15,21 @@ import OutputWindow from "./OutputWindow";
 import CustomInput from "./CustomInput";
 import OutputDetails from "./OutputDetails";
 import ThemeDropdown from "./ThemeDropdown";
-import LanguagesDropdown from "./LanguagesDropdown";
+// import LanguagesDropdown from "./LanguagesDropdown";
 import {Row, Col, Container} from 'react-bootstrap';
 
-const javascriptDefault = `// some comment`;
+let hardcodedLan = "python";
 
 const Landing = () => {
-  console.log("api key", process.env.REACT_APP_RAPID_API_KEY);
-  console.log("host", process.env.REACT_APP_RAPID_API_HOST)
-  const [code, setCode] = useState(javascriptDefault);
+  var index = languageOptions.map(function (img) { return img.value; }).indexOf(hardcodedLan);
+  console.log(index)
+  const [code, setCode] = useState();
   const [customInput, setCustomInput] = useState("");
   const [outputDetails, setOutputDetails] = useState(null);
   const [processing, setProcessing] = useState(null);
   const [theme, setTheme] = useState("cobalt");
-  const [language, setLanguage] = useState(languageOptions[0]);
+  const [language, setLanguage] = useState(languageOptions[index]);
+  console.log(language)
 
   const enterPress = useKeyPress("Enter");
   const ctrlPress = useKeyPress("Control");
@@ -195,7 +196,8 @@ const checkStatus = async (token) => {
       <p>What is the Question</p>
       <div>
         <div className="px-4 py-2">
-          <LanguagesDropdown onSelectChange={onSelectChange} />
+          <p>Language: {language.value}</p>
+          {/* <LanguagesDropdown onSelectChange={onSelectChange} index={language}/> */}
         </div>
         <div className="px-4 py-2">
           <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
@@ -206,7 +208,6 @@ const checkStatus = async (token) => {
         {/* <Container> */}
           <Row>
             <Col xs={12} lg={8}>
-        {/* Error with rednering component on resize */}
           <CodeEditorWindow
             code={code}
             onChange={onChange}

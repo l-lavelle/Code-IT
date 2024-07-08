@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         element: <Homepage />,
       },
       {
-        path: "/challange/:question_Id",
+        path: "/challenge/:question_Id",
         element: <Landing />,
       },
       {
