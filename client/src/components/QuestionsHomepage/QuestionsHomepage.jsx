@@ -1,4 +1,5 @@
 // Condense code??
+// On hover over question - needs to look like a link to click
 import React from "react";
 import '../../Variables.css'
 import './QuestionsHomepage.css'
@@ -22,7 +23,7 @@ const QuestionsHomepage = () => {
     url.port = '3001';  
     url2 = `${url}question/${languageInfo.languageId}/${difficultyInfo.difficultyId}`;
     if (process.env.NODE_ENV === "production") {
-        url2 = `${domain}/question/1/2`;
+        url2 = `${domain}/question/${languageInfo.languageId}/${difficultyInfo.difficultyId}`;
     }
     fetch(url2, {
       method: 'GET',

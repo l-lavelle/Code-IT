@@ -1,4 +1,3 @@
-// Dont need drop down for langague doesnt exist based off the question 
 import "./Landing.css"
 import React, { useEffect, useState } from "react";
 import CodeEditorWindow from "./CodeEditorWindow";
@@ -12,32 +11,67 @@ import "react-toastify/dist/ReactToastify.css";
 import { defineTheme } from "../../lib/defineTheme";
 import useKeyPress from "../../hooks/useKeyPress";
 import OutputWindow from "./OutputWindow";
-import CustomInput from "./CustomInput";
+// import CustomInput from "./CustomInput";
 import OutputDetails from "./OutputDetails";
 import ThemeDropdown from "./ThemeDropdown";
+import OffCanvas from "./OffCanvas";
 // import LanguagesDropdown from "./LanguagesDropdown";
 import {Row, Col, Container} from 'react-bootstrap';
 
-let hardcodedLan = "python";
+// let hardcodedLan = "python";
 
 const Landing = () => {
-  var index = languageOptions.map(function (img) { return img.value; }).indexOf(hardcodedLan);
-  console.log(index)
+  
+  // setLanguage(languageOptions[index])
+  // console.log(index)
   const [code, setCode] = useState();
   const [customInput, setCustomInput] = useState("");
   const [outputDetails, setOutputDetails] = useState(null);
   const [processing, setProcessing] = useState(null);
   const [theme, setTheme] = useState("cobalt");
-  const [language, setLanguage] = useState(languageOptions[index]);
-  console.log(language)
+  // var index = languageOptions.map(function (lang) { return lang.name; }).indexOf(hardcodedLan);
+  // const [language, setLanguage] = useState(languageOptions[index]);
+  const [language, setLanguage] = useState();
+  const [questionData, setQuestionData]=useState();
+  const [answerCorrect, setAnswerCorrect] = useState()
 
-  const enterPress = useKeyPress("Enter");
-  const ctrlPress = useKeyPress("Control");
+  useEffect(() => {
+    let url2
+    let domain = window.location.origin;
+    var url = new URL(domain);
+    url.port = '3001';  
+    let questionId= window.location.pathname.split('/')[2]
+    // Will this change on deployment??
+    // console.log("questionId",window.location.pathname.split('/')[2]);
+    url2 = `${url}question/${questionId}`;
+    if (process.env.NODE_ENV === "production") {
+        url2 = `${domain}/question/${questionId}`;
+    }
+    fetch(url2, {
+      method: 'GET',
+      headers: { "Content-Type": "application/json" },
+      })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setQuestionData(data);
+        // console.log("trials", data?.language?.language_type)
+        var index = languageOptions.map(function (lang) { return lang.name; }).indexOf(data?.language?.language_type);
+        setLanguage(languageOptions[index]);
+        // console.log("index",languageOptions[index])
+        // console.log("index",data?.language?.language_type)
+      })
+  }, []);
 
-  const onSelectChange = (sl) => {
-    console.log("selected Option...", sl);
-    setLanguage(sl);
-  };
+  // console.log("data",questionData)
+  // const enterPress = useKeyPress("Enter");
+  // const ctrlPress = useKeyPress("Control");
+
+  // const onSelectChange = (sl) => {
+  //   console.log("selected Option...", sl);
+  //   setLanguage(sl);
+  // };
 
 
 const handleCompile = () => {
@@ -67,7 +101,13 @@ const handleCompile = () => {
         console.log("res.data", response.data);
         const token = response.data.token;
         checkStatus(token);
+        // checkAnswer();
       })
+      .then(function () {
+ 
+        checkAnswer();
+      })
+      // .then(checkAnswer())
       .catch((err) => {
         let error = err.response ? err.response.data : err;
         // get error status
@@ -84,15 +124,46 @@ const handleCompile = () => {
         setProcessing(false);
         console.log("catch block...", error);
       });
+
+   
   };
 
- useEffect(() => {
-    if (enterPress && ctrlPress) {
-      console.log("enterPress", enterPress);
-      console.log("ctrlPress", ctrlPress);
-      handleCompile();
+  // Need to figure out how to check answer
+  const checkAnswer = async (data) => {
+  //  console.log("output details",outputDetails);
+  //  console.log("stdout",atob(outputDetails.stdout))
+    // this is the problem on first load eveery time new question
+    // let trial = (atob(outputDetails.stdout)).trim()
+    console.log("check answer",data)
+    let trial = (atob(data.stdout)).trim()
+
+
+  //   if (/\s/.test(atob(outputDetails.stdout))) {
+  //     console.log("space")
+  // }
+    // console.log(typeof atob(outputDetails.stdout))
+    // console.log("1",atob(outputDetails.stdout))
+    // console.log("2",5===atob(outputDetails.stdout))
+    // console.log("3","5"===trial)
+    // console.log("4",5===questionData.answer)
+    // console.log("5","5"===questionData.answer)
+    // console.log(typeof questionData.answer)
+    // console.log(typeof atob(outputDetails.stdout) === typeof questionData.answer)
+    // console.log("6",trial===questionData.answer)
+    if (trial===questionData.answer){
+      setAnswerCorrect("Correct Answer")
+    }else{
+      setAnswerCorrect("Incorrect Answer. Try Again")
     }
-  }, [ctrlPress, enterPress]);
+  };
+
+//  useEffect(() => {
+//     if (enterPress && ctrlPress) {
+//       console.log("enterPress", enterPress);
+//       console.log("ctrlPress", ctrlPress);
+//       handleCompile();
+//     }
+//   }, [ctrlPress, enterPress]);
   const onChange = (action, data) => {
     switch (action) {
       case "code": {
@@ -131,6 +202,7 @@ const checkStatus = async (token) => {
         setOutputDetails(response.data);
         showSuccessToast(`Compiled Successfully!`);
         console.log("response.data", response.data);
+        checkAnswer(response.data);
         return;
       }
     } catch (err) {
@@ -179,8 +251,17 @@ const checkStatus = async (token) => {
     });
   };
 
+  
+  if (questionData===undefined) {
+    return <>Still loading...</>;
+  }
   return (
-    <>
+    <div className="m-2">
+    <OffCanvas 
+    solution={questionData.solution}
+    hint={questionData.hint}
+    theme={theme}
+    />
       {/* <ToastContainer
         position="top-right"
         autoClose={2000}
@@ -192,11 +273,11 @@ const checkStatus = async (token) => {
         draggable
         pauseOnHover
       /> */}
-      <h3 className="mt-3">Add Question Name</h3>
-      <p>What is the Question</p>
+      <h3 className="mt-3">{questionData.name}</h3>
+      <p>{questionData.question}</p>
       <div>
         <div className="px-4 py-2">
-          <p>Language: {language.value}</p>
+          <p>Language: {language.name}</p>
           {/* <LanguagesDropdown onSelectChange={onSelectChange} index={language}/> */}
         </div>
         <div className="px-4 py-2">
@@ -235,13 +316,15 @@ const checkStatus = async (token) => {
               {processing ? "Processing..." : "Compile and Execute"}
             </button>
           </div>
+          {/* see if can put correct vs. incorrect in this file- if working correcly cut and change */}
           {outputDetails && <OutputDetails outputDetails={outputDetails} />}
+          {answerCorrect===undefined?null:<p>{answerCorrect}</p>}
         </div>
         </Col>
         </Row>
         {/* </Container> */}
       </div>
-    </>
+    </div>
   );
 };
 export default Landing;

@@ -29,7 +29,7 @@ router.get("/languages", async (req, res) => {
   }
 });
 
-// Get all Difficulty
+// Get all Difficulties
 router.get("/difficulty", async (req, res) => {
   try {
     const difficultyData = await Difficulty.findAll();
@@ -47,6 +47,7 @@ router.get("/:question_id", async (req, res) => {
       where: {
         id: req.params.question_id,
       },
+      include: [{ model: Language }],
     });
     res.status(200).json(questionData);
   } catch (err) {

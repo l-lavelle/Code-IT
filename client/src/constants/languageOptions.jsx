@@ -14,7 +14,7 @@ export const languageOptions = [
   
     {
       id: 62,
-      name: "Java (OpenJDK 13.0.1)",
+      name: "Java",
       label: "Java (OpenJDK 13.0.1)",
       value: "java",
     },
@@ -26,7 +26,7 @@ export const languageOptions = [
     },
     {
       id: 71,
-      name: "Python (3.8.1)",
+      name: "Python",
       label: "Python (3.8.1)",
       value: "python",
     },

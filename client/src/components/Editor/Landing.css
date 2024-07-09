@@ -13,7 +13,6 @@
   text-align: left;
   padding: 5px;
   font-size: 1.2rem;
-  border: 2px solid red;
 }
 
 /* Editor Window */
@@ -27,8 +26,14 @@
   display: flex;
   flex-direction: column;
 }
+  */
+
 @media screen and (min-width: 1024px) {
   .output-box {
+    min-height: 300px;
+  }
+
+  /* .output-box {
     width: 30%;
   }
   .editor-window {
@@ -40,5 +45,5 @@
     border: 2px solid blue;
     display: flex;
     flex-direction: row;
-  }
-} */
+  } */
+}
