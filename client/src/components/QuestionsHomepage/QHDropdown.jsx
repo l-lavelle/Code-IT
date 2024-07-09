@@ -1,26 +1,19 @@
-// import Dropdown from 'react-bootstrap/Dropdown';
-// import DropdownButton from 'react-bootstrap/DropdownButton';
-// import Form from 'react-bootstrap/Form';
-// import InputGroup from 'react-bootstrap/InputGroup';
-import {InputGroup, Form, DropdownButton, Dropdown} from 'react-bootstrap';
-function QHDropdown({data}) {
+import {InputGroup, Form, DropdownButton} from 'react-bootstrap';
+function QHDropdown({title, input, value}) {
   return (
     <>
       <InputGroup className="mb-3">
         <DropdownButton
           variant="outline-secondary"
-          title="Dropdown"
+          title={title}
           id="input-group-dropdown-1"
         >
-          <Dropdown.Item href="#">Action</Dropdown.Item>
-          <Dropdown.Item href="#">Another action</Dropdown.Item>
-          <Dropdown.Item href="#">Something else here</Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item href="#">Separated link</Dropdown.Item>
+          {input}
         </DropdownButton>
-        <Form.Control aria-label="Text input with dropdown button" />
+        <Form.Control aria-label="Text input with dropdown button" 
+        value={value}
+        readonly/>
       </InputGroup>
-
     </>
   );
 }

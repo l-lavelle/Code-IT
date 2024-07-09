@@ -1,5 +1,5 @@
-// Condense code??
-// On hover over question - needs to look like a link to click
+// Condense code??: url code snippet repeat
+// On select dropdown quick change to blue
 import React from "react";
 import '../../Variables.css'
 import './QuestionsHomepage.css'
@@ -87,8 +87,28 @@ const QuestionsHomepage = () => {
   return (
     <div className="qh-body">
     <h2 className="pt-3">Coding Challenges</h2>
+    <p className="m-2">Ready to test your skills? Choose the lanuage you want to use and the difficulty level for the challenge questions. Click on the question in order to start the challenge.</p>
     <div className=" ms-3 me-3 ">
     <InputGroup className="mb-3">
+       <QHDropdown 
+       title={"Language"}
+       input= {
+        languages.map((language) => (
+          <>
+              <Dropdown.Item 
+                className={language.language_type===languageInfo.languageType?"highlight-lang":null}
+                onClick={()=>setLanguageInfo({languageId:language.id, languageType:language.language_type})}>
+                {language.language_type}
+                </Dropdown.Item>
+              <Dropdown.Divider />
+          </>
+          ))
+        }
+        value={languageInfo.languageType}
+        />
+        </InputGroup>
+
+    {/* <InputGroup className="mb-3">
         <DropdownButton
           variant="outline-secondary"
           title="Language"
@@ -113,11 +133,11 @@ const QuestionsHomepage = () => {
         aria-label="Text input with dropdown button" 
         value={languageInfo.languageType}
         />
-      </InputGroup>
+      </InputGroup> */}
     </div>
 
     <div className=" ms-3 me-3 qh-difficulty-dd">
-    <InputGroup className="mb-3">
+    {/* <InputGroup className="mb-3">
         <DropdownButton
           variant="outline-secondary"
           title="Difficulty"
@@ -142,8 +162,26 @@ const QuestionsHomepage = () => {
         aria-label="Text input with dropdown button" 
         value={difficultyInfo.difficultyType}
         />
-      </InputGroup>
-       {/* <QHDropdown /> */}
+      </InputGroup> */}
+
+      <InputGroup className="mb-3">
+       <QHDropdown 
+       title={"Difficulty"}
+       input={
+        difficulty.map((diff) => (
+          <>
+              <Dropdown.Item 
+                className={parseInt(difficultyInfo.difficultyId)===diff.id?"highlight-lang":null}
+                onClick={()=>setDifficultyInfo({difficultyId:diff.id, difficultyType:diff.difficulty_type})}>
+                {diff.difficulty_type}
+                </Dropdown.Item>
+              <Dropdown.Divider />
+          </>
+          ))
+        } 
+        value={difficultyInfo.difficultyType}
+        />  
+        </InputGroup>
     </div>
 
 
@@ -156,21 +194,9 @@ const QuestionsHomepage = () => {
       </button>
         ))
       }
-     {/* <button className="button-ct" variant="primary" type="submit" name="Beginner">
-         Beginner
-     </button>
-     <button className="button-ct" variant="primary" type="submit" name="Intermediate">
-          Intermediate
-      </button>
-      <button className="button-ct" variant="primary" type="submit" name="Advanced">
-           Advanced
-      </button>
-     <button className="button-ct" variant="primary" type="submit" name="Spicy">
-         Spicy
-     </button> */}
     </div>
 
-    <div className="qh-main-content me-3 ms-3 p-3">
+    <div className="qh-main-content me-3 ms-3 p-3 mb-3">
     <ol className="ol-qh-questions ps-3">
       {
         questions.map((question) => (
@@ -191,7 +217,6 @@ const QuestionsHomepage = () => {
         </li>
         </ol>
     </div>
-
     </div>
   );
 };
