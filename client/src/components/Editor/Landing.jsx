@@ -4,28 +4,23 @@ import CodeEditorWindow from "./CodeEditorWindow";
 import axios from "axios";
 import { classnames } from "../../utils/general";
 import { languageOptions } from "../../constants/languageOptions";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { defineTheme } from "../../lib/defineTheme";
-import useKeyPress from "../../hooks/useKeyPress";
+// import useKeyPress from "../../hooks/useKeyPress";
 import OutputWindow from "./OutputWindow";
 // import CustomInput from "./CustomInput";
 import OutputDetails from "./OutputDetails";
 import ThemeDropdown from "./ThemeDropdown";
 import OffCanvas from "./OffCanvas";
 // import LanguagesDropdown from "./LanguagesDropdown";
-import {Row, Col, Container} from 'react-bootstrap';
+import {Row, Col} from 'react-bootstrap';
 
-// let hardcodedLan = "python";
 
 const Landing = () => {
-  
-  // setLanguage(languageOptions[index])
-  // console.log(index)
   const [code, setCode] = useState();
-  const [customInput, setCustomInput] = useState("");
+  // const [customInput, setCustomInput] = useState("");
   const [outputDetails, setOutputDetails] = useState(null);
   const [processing, setProcessing] = useState(null);
   const [theme, setTheme] = useState("cobalt");
@@ -80,7 +75,7 @@ const handleCompile = () => {
       language_id: language.id,
       // encode source code in base64
       source_code: btoa(code),
-      stdin: btoa(customInput),
+      // stdin: btoa(customInput),
     };
     const options = {
       method: "POST",
@@ -257,11 +252,7 @@ const checkStatus = async (token) => {
   }
   return (
     <div className="m-2">
-    <OffCanvas 
-    solution={questionData.solution}
-    hint={questionData.hint}
-    theme={theme}
-    />
+    
       {/* <ToastContainer
         position="top-right"
         autoClose={2000}
@@ -273,18 +264,25 @@ const checkStatus = async (token) => {
         draggable
         pauseOnHover
       /> */}
-      <h3 className="mt-3">{questionData.name}</h3>
+      <div className="landing-question mb-4">
+      <h3 className="mt-3 landing-title">{questionData.name}</h3>
       <p>{questionData.question}</p>
-      <div>
-        <div className="px-4 py-2">
+      </div>
+      <div className="theme-info-container">
+        <div className="theme-dd">
+          <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
+        </div>
+        <div className="mt-2" >
           <p>Language: {language.name}</p>
           {/* <LanguagesDropdown onSelectChange={onSelectChange} index={language}/> */}
         </div>
-        <div className="px-4 py-2">
-          <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
-        </div>
-      </div>
+        <OffCanvas 
+        solution={questionData.solution}
+        hint={questionData.hint}
+        theme={theme}
+        />
 
+      </div>
       <div className="editor-output">
         {/* <Container> */}
           <Row>

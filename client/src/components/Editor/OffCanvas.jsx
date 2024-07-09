@@ -1,13 +1,11 @@
 // Add Code cat here for assistance if needed
-// Change button to be an info icon
 // Add theme change to offcanvas take out of busy front page??
 import React, { useState } from "react";
 import './Landing.css';
-import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Accordion from 'react-bootstrap/Accordion';
 import Editor from "@monaco-editor/react";
-
+import info from "../../assets/info.svg"
 const OffCanvas = ({solution, hint, theme }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -15,10 +13,7 @@ const OffCanvas = ({solution, hint, theme }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Help
-      </Button>
-
+      <img className="icon-image" src={info} onClick={handleShow} alt="info icon open offcanvas additional info"></img>
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Coding Challenge Info</Offcanvas.Title>

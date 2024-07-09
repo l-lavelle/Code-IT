@@ -3,6 +3,7 @@ import '../../Variables.css'
 import '../Login/Login.css'
 import Form from 'react-bootstrap/Form';
 import AuthService from '../../utils/auth';
+import {findURL} from '../../utils/general';
 
 const Signup = () => {
   const [signupData, setSignupData] = useState({ username: '', password: '' , confirmPassword:''});
@@ -36,14 +37,15 @@ const Signup = () => {
         setMessage({message:'Passwords do not match', status:'error',type:'password'});
     } else{
     try {
-      let url2
-      let domain = window.location.origin;
-      var url = new URL(domain);
-      url.port = '3001';  
-      url2 = `${url}signup/`;
-      if (process.env.NODE_ENV === "production") {
-        url2 = `${domain}/signup/`;
-     }
+      const url2 = findURL("signup")
+    //   let url2
+    //   let domain = window.location.origin;
+    //   var url = new URL(domain);
+    //   url.port = '3001';  
+    //   url2 = `${url}signup/`;
+    //   if (process.env.NODE_ENV === "production") {
+    //     url2 = `${domain}/signup/`;
+    //  }
       const response = await fetch(url2, {
         method: 'POST',
         body: JSON.stringify({ username: signupData.username,password:signupData.password }),

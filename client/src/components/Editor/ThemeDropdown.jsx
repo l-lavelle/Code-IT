@@ -8,6 +8,7 @@ const ThemeDropdown = ({ handleThemeChange, theme }) => {
   return (
     <div className="drop-styles">
       <p className="me-3 mt-2">Theme:</p>
+      
       <Select
         placeholder={`Select Theme`}
         options={Object.entries(monacoThemes).map(([themeId, themeName]) => ({

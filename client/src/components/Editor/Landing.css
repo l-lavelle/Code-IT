@@ -15,35 +15,35 @@
   font-size: 1.2rem;
 }
 
-/* Editor Window */
-/* .editor-window {
-  max-width: 100%;
-  border: 2px solid yellow;
+/* OffCanvas Styles */
+.icon-image {
+  width: 35px;
 }
-
-.editor-output {
-  border: 2px solid blue;
+.theme-info-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
-  */
 
-@media screen and (min-width: 1024px) {
+@media screen and (max-width: 528px) {
+  .theme-dd {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 992px) {
   .output-box {
     min-height: 300px;
   }
-
-  /* .output-box {
-    width: 30%;
-  }
-  .editor-window {
-    min-width: 55%;
-    max-width: 60%;
-  }
-
-  .editor-output {
-    border: 2px solid blue;
+  .theme-info-container {
     display: flex;
     flex-direction: row;
-  } */
+    justify-content: space-around;
+    align-items: center;
+    width: 66.2%;
+  }
+  .landing-question {
+    width: 60%;
+  }
 }
