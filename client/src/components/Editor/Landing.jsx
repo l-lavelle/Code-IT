@@ -103,10 +103,10 @@ const handleCompile = () => {
         checkStatus(token);
         // checkAnswer();
       })
-      .then(function () {
+      // .then(function () {
  
-        checkAnswer();
-      })
+      //   checkAnswer();
+      // })
       // .then(checkAnswer())
       .catch((err) => {
         let error = err.response ? err.response.data : err;
@@ -317,7 +317,7 @@ const checkStatus = async (token) => {
             </button>
           </div>
           {/* see if can put correct vs. incorrect in this file- if working correcly cut and change */}
-          {outputDetails && <OutputDetails outputDetails={outputDetails} />}
+          {outputDetails && <OutputDetails outputDetails={outputDetails} questionData={questionData}/>}
           {answerCorrect===undefined?null:<p>{answerCorrect}</p>}
         </div>
         </Col>

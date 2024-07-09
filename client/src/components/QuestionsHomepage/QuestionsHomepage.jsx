@@ -1,5 +1,4 @@
 // Condense code??: url code snippet repeat
-// On select dropdown quick change to blue
 import React from "react";
 import '../../Variables.css'
 import './QuestionsHomepage.css'

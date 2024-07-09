@@ -35,6 +35,10 @@ a.highlight-lang.dropdown-item {
 a.dropdown-item:hover {
   font-weight: bold;
 }
+a.dropdown-item:focus {
+  background-color: var(--gold);
+  color: var(--dark-blue);
+}
 hr.dropdown-divider:last-child {
   display: none;
 }
@@ -46,6 +50,7 @@ hr.dropdown-divider:last-child {
 .qh-main-content ol li:hover {
   font-weight: bold;
   background-color: var(--gold);
+  cursor: pointer;
 }
 button#input-group-dropdown-1 {
   color: var(--black);
