@@ -1,14 +1,10 @@
+// TODO: add in all content, possible new dev picture if can find one
 import React from "react";
-import '../../Variables.css'
+import '../../Variables.css';
 import './About.css';
 import laurenPic from '../../assets/lauren.JPG';
 import CodeCat from '../CodeCat/CodeCat';
 import {Row, Col} from 'react-bootstrap';
-
-// Add in site creator meet section to break up the middle?
-// Add in the figma and model to allow people to take a look how was built??
-// Possible picture up top with opacity: block color over and block color bottom with inset my info
-//  Need to finish making this cat first for spacing?? - put it in and see what happens
 
 const About = () => {
   return (
@@ -28,15 +24,13 @@ const About = () => {
    
     <Row className="lo-info-container mx-3">
         <Col md={5} lg={5} xl={4}>
-            <img id="lo-pic" src={laurenPic}/>
+            <img id="lo-pic" src={laurenPic} alt="Site Creator"/>
         </Col>
         <Col md={6} className="lo-info pt-2 pb-2">
             <h4 >Meet the Dev</h4>
             <p>Hi, Nice to Meet You! orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
         </Col>
     </Row>
-    
-    <div></div>
     </div>
   );
 };

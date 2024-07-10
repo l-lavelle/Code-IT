@@ -17,13 +17,17 @@ p {
   font-family: var(--roboto);
 }
 
+#tsparticles {
+  height: 300px;
+}
 #canvas-container {
   position: relative;
+  width: 100%;
 }
 #above-img {
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 40%;
+  top: 45%;
   left: 50%;
   width: 75%;
 }
@@ -104,20 +108,40 @@ p {
   z-index: -1;
 }
 
-@media screen and (max-width: 380px) {
-  .overlay-tech-lang p {
-    font-size: 15px;
+@media screen and (max-width: 200px) {
+  #tsparticles {
+    height: 50px;
   }
 }
+
 @media screen and (max-width: 767px) {
   .language-reverse {
     display: flex;
     flex-direction: column-reverse;
   }
+  #tsparticles {
+    height: 350px;
+  }
+}
+@media screen and (max-width: 380px) {
+  .overlay-tech-lang p {
+    font-size: 15px;
+  }
+  #tsparticles {
+    height: 100px;
+  }
 }
 @media screen and (min-width: 576px) and (max-width: 745px) {
   .overlay-tech-lang p {
     font-size: 15px;
+  }
+  #tsparticles {
+    height: 400px;
+  }
+}
+@media screen and (min-width: 745px) and (max-width: 1000px) {
+  #tsparticles {
+    height: 450px;
   }
 }
 @media screen and (min-width: 1000px) {
@@ -131,9 +155,15 @@ p {
     min-width: 100px;
     max-height: 175px;
   }
+  #tsparticles {
+    height: 470px;
+  }
 }
 @media screen and (min-width: 1396px) {
   .tech-img {
     max-width: 300px;
+  }
+  #tsparticles {
+    height: 500px;
   }
 }

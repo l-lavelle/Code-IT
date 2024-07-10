@@ -20,3 +20,6 @@ a.nav-link {
 a.nav-link:hover {
   color: var(--gold);
 }
+a#basic-nav-dropdown.dropdown-toggle.show.nav-link {
+  color: var(--gold);
+}

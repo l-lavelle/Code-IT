@@ -3,6 +3,7 @@ import '../../Variables.css';
 import './Login.css';
 import Form from 'react-bootstrap/Form';
 import AuthService from '../../utils/auth';
+import {findURL} from '../../utils/general';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ username: '', password: '' });
@@ -19,14 +20,7 @@ const Login = () => {
       setMessage({message:'Must enter username and password', status:'error'});
     } else {
     try {
-      let url2
-      let domain = window.location.origin;
-      var url = new URL(domain);
-      url.port = '3001';  
-      url2 = `${url}login/`;
-      if (process.env.NODE_ENV === "production") {
-         url2 = `${domain}/login/`;
-      }
+      const url2 = findURL("login");
       
       const response = await fetch(url2, {
         method: 'POST',

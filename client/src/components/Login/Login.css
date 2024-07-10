@@ -44,6 +44,7 @@
 .input-error {
   box-shadow: 0 0 5px #cc0000;
 }
+
 @media screen and (min-width: 767px) {
   .signup-login-container {
     display: flex;
@@ -51,7 +52,7 @@
     max-width: 90%;
     align-items: null;
     margin: auto;
-    border: 1px red solid;
+    /* border: 1px red solid; */
   }
   .login-container,
   .signup-container {
@@ -60,8 +61,7 @@
   .login-switch-container,
   .signup-switch-container {
     width: 50%;
-    text: center;
-    border: 1px red solid;
+    /* border: 1px red solid; */
   }
   .login-switch-container p,
   .signup-switch-container p {

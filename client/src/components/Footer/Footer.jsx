@@ -5,7 +5,7 @@ import './Footer.css'
 const Footer = () => {
   return (
     <div className="footer-container ps-3 pe-5">
-    <div>
+    <div className="footer-rights">
         <p id="rights">© 2024 CodeIT. All rights reserved.</p>
     </div>
     <div className="footer-links">

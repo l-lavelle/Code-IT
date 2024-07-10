@@ -1,7 +1,7 @@
 .footer-container {
-  height: 125px;
+  height: 100px;
   background-color: var(--dark-blue);
-  border-top: 4px black solid;
+  border-top: 5px black solid;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,11 +25,15 @@
 .footer-links a {
   display: block;
 }
-
+.footer-rights {
+  display: flex;
+  margin-top: auto;
+}
 @media screen and (max-width: 767px) {
   .footer-container {
-    padding-top: 10px;
+    padding-top: 7px;
     display: flex;
     flex-direction: column-reverse;
+    height: 125px;
   }
 }

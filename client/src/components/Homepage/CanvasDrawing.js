@@ -19,7 +19,7 @@ function waitForElm(selector) {
 
 // Canvas background drawing
 export async function asyncCall() {
-  const elm = await waitForElm("#canvas");
+  await waitForElm("#canvas");
   const canvas = document.querySelector("canvas");
   const img = await document.getElementById("above-img");
 

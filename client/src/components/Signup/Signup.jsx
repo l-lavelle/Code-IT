@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import '../../Variables.css'
-import '../Login/Login.css'
+import '../../Variables.css';
+import '../Login/Login.css';
 import Form from 'react-bootstrap/Form';
 import AuthService from '../../utils/auth';
 import {findURL} from '../../utils/general';
@@ -22,7 +22,7 @@ const Signup = () => {
         return true;
     else
         return false;
-}
+  };
 
   const handleSignup = async (event) => {
     event.preventDefault();
@@ -38,14 +38,6 @@ const Signup = () => {
     } else{
     try {
       const url2 = findURL("signup")
-    //   let url2
-    //   let domain = window.location.origin;
-    //   var url = new URL(domain);
-    //   url.port = '3001';  
-    //   url2 = `${url}signup/`;
-    //   if (process.env.NODE_ENV === "production") {
-    //     url2 = `${domain}/signup/`;
-    //  }
       const response = await fetch(url2, {
         method: 'POST',
         body: JSON.stringify({ username: signupData.username,password:signupData.password }),
