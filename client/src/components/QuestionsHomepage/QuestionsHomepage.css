@@ -1,5 +1,11 @@
 .qh-body {
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 150px);
+}
+.qh-summary {
+  text-align: center;
+  /* display: inline; */
+  padding-left: 15%;
+  padding-right: 15%;
 }
 .ol-qh-questions {
   list-style-type: decimal;
@@ -26,7 +32,6 @@
 .qh-main-content {
   background-color: var(--dark-blue);
 }
-
 a.highlight-lang.dropdown-item {
   background-color: var(--gold);
   color: var(--dark-blue);
