@@ -1,7 +1,6 @@
-// Condense code??: url code snippet repeat
 import React from "react";
-import '../../Variables.css'
-import './QuestionsHomepage.css'
+import '../../Variables.css';
+import './QuestionsHomepage.css';
 import QHDropdown from './QHDropdown';
 import Check from "../../assets/check.svg";
 import { useEffect, useState } from 'react';
@@ -11,7 +10,7 @@ import {findURL} from '../../utils/general';
 
 const QuestionsHomepage = () => {
   const [questions, setQuestions] = useState();
-  const [difficultyInfo,setDifficultyInfo]=useState({"difficultyType":"Beginner", "difficultyId":"1"})
+  const [difficultyInfo,setDifficultyInfo]=useState({"difficultyType":"Beginner", "difficultyId":"1"});
   const[languageInfo,setLanguageInfo]=useState({"languageType":"Java", "languageId":"1"});
   const [languages, setLanguages] = useState();
   const [difficulty, setDifficulty] = useState();
@@ -32,6 +31,7 @@ const QuestionsHomepage = () => {
 
   useEffect(() => {
     let url2 = findURL(`question/languages`)
+    console.log("languages", url2)
     fetch(url2, {
       method: 'GET',
       headers: { "Content-Type": "application/json" },
@@ -46,6 +46,7 @@ const QuestionsHomepage = () => {
 
   useEffect(() => {
     let url2 = findURL(`question/difficulty`)
+    console.log("difficulty", url2)
     fetch(url2, {
       method: 'GET',
       headers: { "Content-Type": "application/json" },
@@ -61,7 +62,7 @@ const QuestionsHomepage = () => {
 
     if (languages===undefined || difficulty=== undefined || questions === undefined) {
       return <>Still loading...</>;
-    }
+    };
 
   return (
     <div className="qh-body">
@@ -74,14 +75,14 @@ const QuestionsHomepage = () => {
        value={languageInfo.languageType}
        input= {
         languages.map((language) => (
-          <>
+          <div key={language.languageType}>
               <Dropdown.Item 
                 className={language.language_type===languageInfo.languageType?"highlight-lang":null}
                 onClick={()=>setLanguageInfo({languageId:language.id, languageType:language.language_type})}>
                 {language.language_type}
                 </Dropdown.Item>
               <Dropdown.Divider />
-          </>
+          </div>
           ))
         }
         />
@@ -95,14 +96,14 @@ const QuestionsHomepage = () => {
        value={difficultyInfo.difficultyType}
        input={
         difficulty.map((diff) => (
-          <>
+          <div key={diff.difficultyType}>
               <Dropdown.Item 
                 className={parseInt(difficultyInfo.difficultyId)===diff.id?"highlight-lang":null}
                 onClick={()=>setDifficultyInfo({difficultyId:diff.id, difficultyType:diff.difficulty_type})}>
                 {diff.difficulty_type}
                 </Dropdown.Item>
               <Dropdown.Divider />
-          </>
+          </div>
           ))
         } 
         />  

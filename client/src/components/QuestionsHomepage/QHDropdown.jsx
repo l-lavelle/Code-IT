@@ -12,7 +12,7 @@ function QHDropdown({title, input, value}) {
         </DropdownButton>
         <Form.Control aria-label="Text input with dropdown button" 
         value={value}
-        readonly/>
+        readOnly/>
       </InputGroup>
     </>
   );

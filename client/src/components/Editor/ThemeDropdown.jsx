@@ -1,8 +1,7 @@
-
+// TODO: Change to match other dropdown??
 import React from "react";
 import Select from "react-select";
 import monacoThemes from "monaco-themes/themes/themelist";
-import { customStyles } from "../../constants/customStyles";
 
 const ThemeDropdown = ({ handleThemeChange, theme }) => {
   return (
@@ -17,7 +16,6 @@ const ThemeDropdown = ({ handleThemeChange, theme }) => {
         key: themeId,
         }))}
         value={theme}
-        styles={customStyles}
         onChange={handleThemeChange}
       />
     </div>

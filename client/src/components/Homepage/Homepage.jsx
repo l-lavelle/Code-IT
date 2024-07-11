@@ -1,18 +1,18 @@
 import './Homepage.css';
-import '../../Variables.css'
+import '../../Variables.css';
 import React from "react";
 import homePic from '../../assets/homePic.jpg';
-import Java from '../../assets/e-java.png'
-import JavaScript from '../../assets/e-JS.png'
-import Python from '../../assets/e-python.png'
-import SQL from '../../assets/e-SQL.png'
+import Java from '../../assets/e-java.png';
+import JavaScript from '../../assets/e-JS.png';
+import Python from '../../assets/e-python.png';
+import SQL from '../../assets/e-SQL.png';
 import {Row, Col, Container} from 'react-bootstrap';
 import { ArrayPlusDelay } from './HomeFunction.js';
 import ParticleBackground from './ParticleBackground.jsx';
 
 const Homepage = () => {
 
-ArrayPlusDelay(['Gain Confidence','Expand Your Skills'], function(obj) {document.getElementById("RotatingKeywords").textContent=(obj)},5000)
+ArrayPlusDelay(['Gain Confidence','Expand Your Skills'], function(obj) {document.getElementById("RotatingKeywords").textContent=(obj)},5000);
 
   return (
     <div className="overlay overflow-hidden w-full h-full shadow-4xl mt-3">
@@ -32,28 +32,28 @@ ArrayPlusDelay(['Gain Confidence','Expand Your Skills'], function(obj) {document
             <Row className="mx-1">
                <Col xs={6} md={3} className="mb-3 tech-name">
                <img className="tech-img" src={Java}/>
-               <div class="overlay-tech-lang px-1">
+               <div className="overlay-tech-lang px-1">
                    <p>Object-Oriented Programming Language</p>
                </div>
                Java
                </Col>
                <Col xs={6} md={3} className="mb-3 tech-name">
                <img className="tech-img" src={JavaScript}/>
-               <div class="overlay-tech-lang px-1">
+               <div className="overlay-tech-lang px-1">
                    <p>Scripting Language for Creating Dynamic Web Page Content</p>
                </div>
                JavaScript
                </Col>
                <Col xs={6} md={3} className="mb-3 tech-name">
                <img className="tech-img" src={Python}/>
-               <div class="overlay-tech-lang px-1">
+               <div className="overlay-tech-lang px-1">
                   <p>General Purpose Language for Web Applications and Software</p>
                </div>
                Python
                </Col>
                <Col xs={6} md={3} className="mb-3 tech-name">
                <img className="tech-img" src={SQL}/>
-               <div class="overlay-tech-lang px-1">
+               <div className="overlay-tech-lang px-1">
                    <p>Standard Language for Database Creation and Manipulation</p>
                </div>
                SQL
