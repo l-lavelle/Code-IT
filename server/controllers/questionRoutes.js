@@ -1,11 +1,39 @@
 // TODO: finish routes with auth
 const router = require("express").Router();
-const { Question, Language, Difficulty } = require("../models");
+const {
+  Question,
+  Language,
+  Difficulty,
+  User,
+  User_Answer,
+} = require("../models");
 const { authMiddleware } = require("../utils/auth");
 
-// Get Question by Language and Difficulty
+// Logged In: Get Question by Language and Difficulty
+router.get("/log/:language_id/:difficulty_id", async (req, res) => {
+  try {
+    const questionData = await Question.findAll({
+      include: [
+        { model: Language, where: { id: req.params.language_id } },
+        { model: Difficulty, where: { id: req.params.difficulty_id } },
+      ],
+    });
+    console.log("questiondata", questionData);
+
+    const userData = await User.findOne({
+      where: { username: req.headers.authorization },
+    });
+    const userAnswerData = await User_Answer.findAll({
+      where: { user_id: userData.dataValues.id },
+    });
+    res.status(200).json({ questionData, userAnswerData });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Not Logged In get question by lanugage and difficulty
 router.get("/:language_id/:difficulty_id", async (req, res) => {
-  // with auth token added for reference if right or wrong/completed already
   try {
     const questionData = await Question.findAll({
       include: [

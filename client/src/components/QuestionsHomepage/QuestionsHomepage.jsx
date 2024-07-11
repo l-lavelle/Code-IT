@@ -1,3 +1,4 @@
+// TODO: set array of user_answers check to see if question correct- if is change class-name of question
 import React from "react";
 import '../../Variables.css';
 import './QuestionsHomepage.css';
@@ -6,7 +7,7 @@ import Check from "../../assets/check.svg";
 import { useEffect, useState } from 'react';
 import {InputGroup, Dropdown} from 'react-bootstrap';
 import {findURL} from '../../utils/general';
-// If logged in need to figure out if correct or not
+import AuthService from '../../utils/auth';
 
 const QuestionsHomepage = () => {
   const [questions, setQuestions] = useState();
@@ -16,17 +17,39 @@ const QuestionsHomepage = () => {
   const [difficulty, setDifficulty] = useState();
 
   useEffect(() => {
-    let url2 = findURL(`question/${languageInfo.languageId}/${difficultyInfo.difficultyId}`)
-    fetch(url2, {
-      method: 'GET',
-      headers: { "Content-Type": "application/json" },
-      })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setQuestions(data);
-      });
+    if(AuthService.getToken()!=null){
+      let url2 = findURL(`question/log/${languageInfo.languageId}/${difficultyInfo.difficultyId}`);
+      let decodedBearer = AuthService.getProfile().username;
+      fetch(url2, {
+        method: 'GET',
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization":decodedBearer
+           },
+        })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          console.log("logged in",data)
+          setQuestions(data.questionData);
+        });
+    }else{
+      let url2 = findURL(`question/${languageInfo.languageId}/${difficultyInfo.difficultyId}`);
+      fetch(url2, {
+        method: 'GET',
+        headers: { 
+          "Content-Type": "application/json",
+           },
+        })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          console.log("not logged in",data)
+          setQuestions(data);
+        });
+    }
   }, [difficultyInfo.difficultyId, languageInfo.languageId]);
 
   useEffect(() => {
