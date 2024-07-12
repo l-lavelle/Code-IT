@@ -1,19 +1,21 @@
 // Question data going to Output details take it out of landing.jsx
-import "./Landing.css";
-import '../../Variables.css';
+// Add all the lanugages back into the lanugage constant file
+import "../Landing.css";
+import '../../../Variables.css';
 import React, { useEffect, useState } from "react";
-import CodeEditorWindow from "./CodeEditorWindow";
+import CodeEditorWindow from "../CodeEditorWindow";
 import axios from "axios";
-import { classnames } from "../../utils/general";
-import { languageOptions } from "../../constants/languageOptions";
+import { classnames } from "../../../utils/general";
+import { languageOptions } from "../../../constants/languageOptions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { defineTheme } from "../../lib/defineTheme";
-import OutputWindow from "./OutputWindow";
-import OutputDetails from "./OutputDetails";
-import ThemeDropdown from "./ThemeDropdown";
-import LanguagesDropdown from "./LanguagesDropdown";
+import { defineTheme } from "../../../lib/defineTheme";
+import OutputWindow from "../OutputWindow";
+import OutputDetails from "../OutputDetails";
+import ThemeDropdown from "../ThemeDropdown";
+import LanguagesDropdown from "../LanguagesDropdown";
+import SaveModal from "./SaveModal";
 import {Row, Col} from 'react-bootstrap';
 
 
@@ -174,6 +176,7 @@ const FreeCode = () => {
       <div className="landing-question mb-4">
         <h3 className="mt-3 landing-title">Code Editor</h3>
       </div>
+      {/* if auth loggedIn - show save modal */}
       <div className="theme-info-container">
         <div className="theme-dd">
           <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />

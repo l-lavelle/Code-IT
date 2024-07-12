@@ -15,6 +15,7 @@ const QuestionsHomepage = () => {
   const[languageInfo,setLanguageInfo]=useState({"languageType":"Java", "languageId":"1"});
   const [languages, setLanguages] = useState();
   const [difficulty, setDifficulty] = useState();
+  const [correctQuestions, setCorrectQuestions] = useState();
 
   useEffect(() => {
     if(AuthService.getToken()!=null){
@@ -33,6 +34,13 @@ const QuestionsHomepage = () => {
         .then((data) => {
           console.log("logged in",data)
           setQuestions(data.questionData);
+          let userAnswer = data.userAnswerData.map(answers=>answers.question_id)
+          let currentQuestions = data.questionData.map(answers=>answers.id)
+          const intersection = currentQuestions.filter(element => userAnswer.includes(element));
+          setCorrectQuestions(intersection)
+          console.log("help",intersection)
+          console.log("find out",correctQuestions)
+          // console.log("trial",data.userAnswerData.map(trail=>trail.question_id))
         });
     }else{
       let url2 = findURL(`question/${languageInfo.languageId}/${difficultyInfo.difficultyId}`);
@@ -48,6 +56,7 @@ const QuestionsHomepage = () => {
         .then((data) => {
           console.log("not logged in",data)
           setQuestions(data);
+          console.log("trial", correctQuestions)
         });
     }
   }, [difficultyInfo.difficultyId, languageInfo.languageId]);
@@ -145,22 +154,29 @@ const QuestionsHomepage = () => {
 
     <div className="qh-main-content me-3 ms-3 p-3 mb-3">
       <ol className="ol-qh-questions ps-3">
-        {
+        {correctQuestions!=undefined?
           questions.map((question) => (
-          <li key={question.id} className="pt-2 pb-2 ps-2 m-2 qh-questions"
+          <li key={question.id} className={correctQuestions.includes(question.id)? "pt-2 pb-2 ps-2 m-2  qh-questions-correct":"pt-2 pb-2 ps-2 m-2 qh-questions"}
           onClick={()=>window.location.assign(`/challenge/${question.id}`)}>
             {question.question}
+            {correctQuestions.includes(question.id)? <img src={Check} className="ps-2" alt="Correct Question Checkmark"></img>:null}
           </li>
-          ))
+          )):
+          questions.map((question) => (
+            <li key={question.id} className="pt-2 pb-2 ps-2 m-2 qh-questions"
+            onClick={()=>window.location.assign(`/challenge/${question.id}`)}>
+              {question.question}
+            </li>
+            ))
         }
-          {/* <li className="pt-2 pb-2 ps-2 m-2 qh-questions">
+          <li className="pt-2 pb-2 ps-2 m-2 qh-questions">
             havent anserwered question
 
           </li>
           <li className="pt-2 pb-2 ps-2 m-2  qh-questions-correct">
               correct question
               <img src={Check} className="ps-2" alt="Correct Question Checkmark"></img>
-          </li> */}
+          </li>
       </ol>
     </div>
     </div>
