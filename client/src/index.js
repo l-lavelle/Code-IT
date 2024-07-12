@@ -9,7 +9,7 @@ import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import Login from "./components/Login/LoginSignup";
 import QuestionsHomepage from "./components/QuestionsHomepage/QuestionsHomepage";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import FreeCode from "./components/Editor/FreeCode";
 import "bootstrap/dist/css/bootstrap.css";
 const router = createBrowserRouter([
   {
@@ -24,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/challenge/:question_Id",
         element: <Landing />,
+      },
+      {
+        path: "/freeCode",
+        element: <FreeCode />,
       },
       {
         path: "/About",

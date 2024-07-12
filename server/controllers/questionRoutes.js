@@ -1,4 +1,5 @@
 // TODO: finish routes with auth
+// TODO: add try/catch with error to all extra calls in auth
 const router = require("express").Router();
 const {
   Question,
@@ -32,7 +33,7 @@ router.get("/log/:language_id/:difficulty_id", async (req, res) => {
   }
 });
 
-// Not Logged In get question by lanugage and difficulty
+// Not Logged In: Get question by lanugage and difficulty
 router.get("/:language_id/:difficulty_id", async (req, res) => {
   try {
     const questionData = await Question.findAll({

@@ -54,7 +54,6 @@ const QuestionsHomepage = () => {
 
   useEffect(() => {
     let url2 = findURL(`question/languages`)
-    console.log("languages", url2)
     fetch(url2, {
       method: 'GET',
       headers: { "Content-Type": "application/json" },
@@ -69,7 +68,6 @@ const QuestionsHomepage = () => {
 
   useEffect(() => {
     let url2 = findURL(`question/difficulty`)
-    console.log("difficulty", url2)
     fetch(url2, {
       method: 'GET',
       headers: { "Content-Type": "application/json" },

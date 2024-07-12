@@ -17,6 +17,7 @@ const NavigationBar = () => {
                 {/* <Nav.Link href="/QuestionsHomepage">Questions Homepage</Nav.Link> */}
                 <NavDropdown title=" Start Coding" id="basic-nav-dropdown">
                   <NavDropdown.Item href="/QuestionsHomepage">Code Challenges</NavDropdown.Item>
+                  <NavDropdown.Item href="/freeCode">Free Code</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
                     Another action
                   </NavDropdown.Item>
