@@ -1,6 +1,5 @@
 // TODO: Do we want response codes 
 // If correct do we want to show on the page as well?
-// on comile if logged in must save data to backend
 import "./Landing.css";
 import '../../Variables.css';
 import React, { useEffect, useState } from "react";
@@ -112,11 +111,9 @@ const Landing = () => {
         });
   };
 
-// Creating multiple answers create if not there and update if is 
+
   const checkAnswer = async (data) => {
     let trialAnswer = (atob(data.stdout)).trim()
-    // if (AuthService.)
-
     if (trialAnswer===questionData.answer){
       setAnswerCorrect("Correct Answer");
       updateUserAnswer(1)

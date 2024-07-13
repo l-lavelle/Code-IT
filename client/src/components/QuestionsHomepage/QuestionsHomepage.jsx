@@ -32,9 +32,13 @@ const QuestionsHomepage = () => {
         })
         .then((data) => {
           setQuestions(data.questionData);
+          console.log(data.userAnswerData)
+          const devReact = data.userAnswerData.filter(obj => obj.solved===(true)).map(answers=>answers.question_id);
+
+          console.log("devreact", devReact)
           let userAnswer = data.userAnswerData.map(answers=>answers.question_id)
           let currentQuestions = data.questionData.map(answers=>answers.id)
-          const intersection = currentQuestions.filter(element => userAnswer.includes(element));
+          const intersection = currentQuestions.filter(element => devReact.includes(element));
           setCorrectQuestions(intersection)
         });
     }else{
