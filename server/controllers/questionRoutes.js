@@ -1,4 +1,3 @@
-// TODO: finish routes with auth
 // TODO: add try/catch with error to all extra calls in auth
 const router = require("express").Router();
 const {
@@ -8,7 +7,6 @@ const {
   User,
   User_Answer,
 } = require("../models");
-const { authMiddleware } = require("../utils/auth");
 
 // Logged In: Get Question by Language and Difficulty
 router.get("/log/:language_id/:difficulty_id", async (req, res) => {
@@ -82,8 +80,11 @@ router.get("/log/:question_id", async (req, res) => {
       where: { username: req.headers.authorization },
     });
     const userAnswerData = await User_Answer.findAll({
-      where: { user_id: userData.dataValues.id },
-      where: { question_id: req.params.question_id },
+      where: {
+        user_id: userData.dataValues.id,
+        question_id: req.params.question_id,
+      },
+      // where: { question_id: req.params.question_id },
     });
     console.log(userAnswerData);
     res.status(200).json({ questionData, userAnswerData });
@@ -108,7 +109,7 @@ router.get("/reg/:question_id", async (req, res) => {
   }
 });
 
-// Will update needs to create if not there
+// If logged in: create or update user answer
 router.put("/log/:question_id", async (req, res) => {
   try {
     const userData = await User.findOne({
@@ -148,22 +149,6 @@ router.put("/log/:question_id", async (req, res) => {
     console.log(err);
     res.status(500).json(err);
   }
-  // try {
-  //   const questionData = await Question.findOne({
-  //     where: {
-  //       id: req.params.question_id,
-  //     },
-  //   });
-  //   if (!questionData) {
-  //     res.status(400).json({ message: "Question does not exist" });
-  //     return;
-  //   }
-  //   if (questionData.dataValues.answer === req.body.answer) {
-  //     res.status(200).json(questionData);
-  //   } else {
-  //     res.status(200).json({ message: "Your Answer is Incorrect" });
-  //   }
-  // console.log(questionData.dataValues.answer);
 });
 
 module.exports = router;

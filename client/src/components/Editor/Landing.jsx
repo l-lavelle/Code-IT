@@ -116,11 +116,17 @@ const Landing = () => {
   const checkAnswer = async (data) => {
     let trialAnswer = (atob(data.stdout)).trim()
     // if (AuthService.)
+
     if (trialAnswer===questionData.answer){
-      setAnswerCorrect("Correct Answer")
+      setAnswerCorrect("Correct Answer");
+      updateUserAnswer(1)
     }else{
-      setAnswerCorrect("Incorrect Answer. Try Again")
+      setAnswerCorrect("Incorrect Answer. Try Again");
+      updateUserAnswer(0)
     }
+  };
+
+  const updateUserAnswer = async (status) => {
     if(AuthService.getToken()!=null){
       console.log("hit wuth")
       let questionId= window.location.pathname.split('/')[2]
@@ -128,15 +134,9 @@ const Landing = () => {
       let decodedBearer = AuthService.getProfile().username;
       const response = await fetch(url2, {
         method: 'PUT',
-        // send thorugh boolen and user work 
-        // should boolean be true and false or one and 0?
-        body: JSON.stringify({ solved:1 , user_work:code}),
+        body: JSON.stringify({ solved:status , user_work:code}),
         headers: { "Content-Type": "application/json","Authorization":decodedBearer },
        });
-      //  if (response.ok) {
-      //      const data = await response.json();
-      //      AuthService.login(data.token);
-      //  }
    }
   };
 
