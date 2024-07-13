@@ -34,7 +34,7 @@ router.get("/log/:language_id/:difficulty_id", async (req, res) => {
 });
 
 // Not Logged In: Get question by lanugage and difficulty
-router.get("/:language_id/:difficulty_id", async (req, res) => {
+router.get("/reg/:language_id/:difficulty_id", async (req, res) => {
   try {
     const questionData = await Question.findAll({
       include: [
@@ -68,9 +68,33 @@ router.get("/difficulty", async (req, res) => {
   }
 });
 
+// Logged In: Get single question data with user answer
+router.get("/log/:question_id", async (req, res) => {
+  console.log("new");
+  try {
+    const questionData = await Question.findOne({
+      where: {
+        id: req.params.question_id,
+      },
+      include: [{ model: Language }],
+    });
+    const userData = await User.findOne({
+      where: { username: req.headers.authorization },
+    });
+    const userAnswerData = await User_Answer.findAll({
+      where: { user_id: userData.dataValues.id },
+      where: { question_id: req.params.question_id },
+    });
+    console.log(userAnswerData);
+    res.status(200).json({ questionData, userAnswerData });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // Get single question - populate page with info
-router.get("/:question_id", async (req, res) => {
-  // if authincated grab saved answer
+router.get("/reg/:question_id", async (req, res) => {
+  console.log("hit normal");
   try {
     const questionData = await Question.findOne({
       where: {

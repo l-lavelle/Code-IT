@@ -8,13 +8,14 @@ import { classnames } from "../../utils/general";
 import { languageOptions } from "../../constants/languageOptions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import AuthService from '../../utils/auth';
 import { defineTheme } from "../../lib/defineTheme";
 import OutputWindow from "./OutputWindow";
 import OutputDetails from "./OutputDetails";
 import ThemeDropdown from "./ThemeDropdown";
 import OffCanvas from "./OffCanvas";
 import {Row, Col} from 'react-bootstrap';
+import {findURL} from '../../utils/general';
 
 
 const Landing = () => {
@@ -27,17 +28,54 @@ const Landing = () => {
   const [answerCorrect, setAnswerCorrect] = useState()
 
   useEffect(() => {
-    let url2
-    let domain = window.location.origin;
-    var url = new URL(domain);
-    url.port = '3001';  
+    if(AuthService.getToken()!=null){
+      console.log("authorized")
+      // let url2
+      // let domain = window.location.origin;
+      // var url = new URL(domain);
+      // url.port = '3001';  
+      let questionId= window.location.pathname.split('/')[2]
+      console.log("id",questionId)
+      // Will this change on deployment??
+      // console.log("questionId",window.location.pathname.split('/')[2]);
+      let url2 = findURL(`question/log/${questionId}`);
+      let decodedBearer = AuthService.getProfile().username;
+      // if (process.env.NODE_ENV === "production") {
+      //     url2 = `${domain}/question/log/${questionId}`;
+      // }
+      console.log("url2",url2)
+      fetch(url2, {
+        method: 'GET',
+        headers: { "Content-Type": "application/json" ,"Authorization":decodedBearer},
+        })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          console.log("data",data)
+          setQuestionData(data.questionData);
+          var index = languageOptions.map(function (lang) { return lang.name; }).indexOf(data.questionData?.language?.language_type);
+          setLanguage(languageOptions[index]);
+          if (data.userAnswerData.length>0){
+            console.log("hello", data.userAnswerData[0].user_work)
+            setCode(data.userAnswerData[0].user_work)
+          }
+          
+        })
+    }else{
+    // let url2
+    // let domain = window.location.origin;
+    // var url = new URL(domain);
+    // url.port = '3001';  
+    // let questionId= window.location.pathname.split('/')[2]
     let questionId= window.location.pathname.split('/')[2]
+    let url2 = findURL(`question/reg/${questionId}`);
     // Will this change on deployment??
     // console.log("questionId",window.location.pathname.split('/')[2]);
-    url2 = `${url}question/${questionId}`;
-    if (process.env.NODE_ENV === "production") {
-        url2 = `${domain}/question/${questionId}`;
-    }
+    // url2 = `${url}question/${questionId}`;
+    // if (process.env.NODE_ENV === "production") {
+    //     url2 = `${domain}/question/${questionId}`;
+    // }
     fetch(url2, {
       method: 'GET',
       headers: { "Content-Type": "application/json" },
@@ -46,10 +84,12 @@ const Landing = () => {
         return res.json();
       })
       .then((data) => {
+        console.log("logged out", data)
         setQuestionData(data);
         var index = languageOptions.map(function (lang) { return lang.name; }).indexOf(data?.language?.language_type);
         setLanguage(languageOptions[index]);
       })
+    }
   }, []);
 
   const handleCompile = () => {

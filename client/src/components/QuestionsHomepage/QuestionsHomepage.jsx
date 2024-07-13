@@ -1,4 +1,3 @@
-// TODO: set array of user_answers check to see if question correct- if is change class-name of question
 import React from "react";
 import '../../Variables.css';
 import './QuestionsHomepage.css';
@@ -32,18 +31,14 @@ const QuestionsHomepage = () => {
           return res.json();
         })
         .then((data) => {
-          console.log("logged in",data)
           setQuestions(data.questionData);
           let userAnswer = data.userAnswerData.map(answers=>answers.question_id)
           let currentQuestions = data.questionData.map(answers=>answers.id)
           const intersection = currentQuestions.filter(element => userAnswer.includes(element));
           setCorrectQuestions(intersection)
-          console.log("help",intersection)
-          console.log("find out",correctQuestions)
-          // console.log("trial",data.userAnswerData.map(trail=>trail.question_id))
         });
     }else{
-      let url2 = findURL(`question/${languageInfo.languageId}/${difficultyInfo.difficultyId}`);
+      let url2 = findURL(`question/reg/${languageInfo.languageId}/${difficultyInfo.difficultyId}`);
       fetch(url2, {
         method: 'GET',
         headers: { 
@@ -54,9 +49,7 @@ const QuestionsHomepage = () => {
           return res.json();
         })
         .then((data) => {
-          console.log("not logged in",data)
           setQuestions(data);
-          console.log("trial", correctQuestions)
         });
     }
   }, [difficultyInfo.difficultyId, languageInfo.languageId]);
@@ -169,14 +162,6 @@ const QuestionsHomepage = () => {
             </li>
             ))
         }
-          <li className="pt-2 pb-2 ps-2 m-2 qh-questions">
-            havent anserwered question
-
-          </li>
-          <li className="pt-2 pb-2 ps-2 m-2  qh-questions-correct">
-              correct question
-              <img src={Check} className="ps-2" alt="Correct Question Checkmark"></img>
-          </li>
       </ol>
     </div>
     </div>
