@@ -108,28 +108,62 @@ router.get("/reg/:question_id", async (req, res) => {
   }
 });
 
-// Try to see if question is correct and update user answer if authenciated
-router.post("/:question_id", async (req, res) => {
-  // if authincated change boolean for solved
+// Will update needs to create if not there
+router.put("/log/:question_id", async (req, res) => {
   try {
-    const questionData = await Question.findOne({
+    const userData = await User.findOne({
+      where: { username: req.headers.authorization },
+    });
+    console.log("userData", userData);
+    const questionData = await User_Answer.findOne({
       where: {
-        id: req.params.question_id,
+        question_id: req.params.question_id,
+        user_id: userData.dataValues.id,
       },
     });
-    if (!questionData) {
-      res.status(400).json({ message: "Question does not exist" });
-      return;
-    }
-    if (questionData.dataValues.answer === req.body.answer) {
-      res.status(200).json(questionData);
+    console.log("questionData", questionData);
+    if (questionData != null) {
+      console.log("update");
+      const updatedData = await User_Answer.update(
+        { user_work: req.body.user_work, solved: req.body.solved },
+        {
+          where: {
+            id: questionData.dataValues.id,
+          },
+        }
+      );
+      res.status(200).json(updatedData);
     } else {
-      res.status(200).json({ message: "Your Answer is Incorrect" });
+      console.log("create new");
+      const dbUserData = await User_Answer.create({
+        user_id: userData.dataValues.id,
+        question_id: req.params.question_id,
+        user_work: req.body.user_work,
+        solved: req.body.solved,
+      });
+      console.log("user_answer created", dbUserData);
+      res.status(200).json(dbUserData);
     }
-    // console.log(questionData.dataValues.answer);
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
+  // try {
+  //   const questionData = await Question.findOne({
+  //     where: {
+  //       id: req.params.question_id,
+  //     },
+  //   });
+  //   if (!questionData) {
+  //     res.status(400).json({ message: "Question does not exist" });
+  //     return;
+  //   }
+  //   if (questionData.dataValues.answer === req.body.answer) {
+  //     res.status(200).json(questionData);
+  //   } else {
+  //     res.status(200).json({ message: "Your Answer is Incorrect" });
+  //   }
+  // console.log(questionData.dataValues.answer);
 });
 
 module.exports = router;

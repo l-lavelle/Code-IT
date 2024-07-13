@@ -1,4 +1,6 @@
-// TODO: Do we want response codes and only need one check for correction
+// TODO: Do we want response codes 
+// If correct do we want to show on the page as well?
+// on comile if logged in must save data to backend
 import "./Landing.css";
 import '../../Variables.css';
 import React, { useEffect, useState } from "react";
@@ -29,21 +31,9 @@ const Landing = () => {
 
   useEffect(() => {
     if(AuthService.getToken()!=null){
-      console.log("authorized")
-      // let url2
-      // let domain = window.location.origin;
-      // var url = new URL(domain);
-      // url.port = '3001';  
       let questionId= window.location.pathname.split('/')[2]
-      console.log("id",questionId)
-      // Will this change on deployment??
-      // console.log("questionId",window.location.pathname.split('/')[2]);
       let url2 = findURL(`question/log/${questionId}`);
       let decodedBearer = AuthService.getProfile().username;
-      // if (process.env.NODE_ENV === "production") {
-      //     url2 = `${domain}/question/log/${questionId}`;
-      // }
-      console.log("url2",url2)
       fetch(url2, {
         method: 'GET',
         headers: { "Content-Type": "application/json" ,"Authorization":decodedBearer},
@@ -57,39 +47,24 @@ const Landing = () => {
           var index = languageOptions.map(function (lang) { return lang.name; }).indexOf(data.questionData?.language?.language_type);
           setLanguage(languageOptions[index]);
           if (data.userAnswerData.length>0){
-            console.log("hello", data.userAnswerData[0].user_work)
             setCode(data.userAnswerData[0].user_work)
-          }
-          
-        })
-    }else{
-    // let url2
-    // let domain = window.location.origin;
-    // var url = new URL(domain);
-    // url.port = '3001';  
-    // let questionId= window.location.pathname.split('/')[2]
-    let questionId= window.location.pathname.split('/')[2]
-    let url2 = findURL(`question/reg/${questionId}`);
-    // Will this change on deployment??
-    // console.log("questionId",window.location.pathname.split('/')[2]);
-    // url2 = `${url}question/${questionId}`;
-    // if (process.env.NODE_ENV === "production") {
-    //     url2 = `${domain}/question/${questionId}`;
-    // }
-    fetch(url2, {
-      method: 'GET',
-      headers: { "Content-Type": "application/json" },
-      })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        console.log("logged out", data)
-        setQuestionData(data);
-        var index = languageOptions.map(function (lang) { return lang.name; }).indexOf(data?.language?.language_type);
-        setLanguage(languageOptions[index]);
-      })
-    }
+          } 
+        })} else {
+        let questionId= window.location.pathname.split('/')[2]
+        let url2 = findURL(`question/reg/${questionId}`);
+        fetch(url2, {
+          method: 'GET',
+          headers: { "Content-Type": "application/json" },
+          })
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            setQuestionData(data);
+            var index = languageOptions.map(function (lang) { return lang.name; }).indexOf(data?.language?.language_type);
+            setLanguage(languageOptions[index]);
+          })
+        }
   }, []);
 
   const handleCompile = () => {
@@ -137,14 +112,32 @@ const Landing = () => {
         });
   };
 
-
+// Creating multiple answers create if not there and update if is 
   const checkAnswer = async (data) => {
-    let trial = (atob(data.stdout)).trim()
-    if (trial===questionData.answer){
+    let trialAnswer = (atob(data.stdout)).trim()
+    // if (AuthService.)
+    if (trialAnswer===questionData.answer){
       setAnswerCorrect("Correct Answer")
     }else{
       setAnswerCorrect("Incorrect Answer. Try Again")
     }
+    if(AuthService.getToken()!=null){
+      console.log("hit wuth")
+      let questionId= window.location.pathname.split('/')[2]
+      let url2 = findURL(`question/log/${questionId}`);
+      let decodedBearer = AuthService.getProfile().username;
+      const response = await fetch(url2, {
+        method: 'PUT',
+        // send thorugh boolen and user work 
+        // should boolean be true and false or one and 0?
+        body: JSON.stringify({ solved:1 , user_work:code}),
+        headers: { "Content-Type": "application/json","Authorization":decodedBearer },
+       });
+      //  if (response.ok) {
+      //      const data = await response.json();
+      //      AuthService.login(data.token);
+      //  }
+   }
   };
 
   const onChange = (action, data) => {
