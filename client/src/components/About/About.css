@@ -15,7 +15,7 @@
 #lo-pic {
   margin-bottom: 10px;
   border-radius: 50px;
-  max-width: 75%;
+  max-width: 350px;
 }
 .lo-info {
   background-color: var(--white);
@@ -32,6 +32,13 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+  }
+  .about-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 1100px;
   }
 }
 
