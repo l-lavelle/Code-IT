@@ -9,8 +9,16 @@ const sequelize = require("./config/connection");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+let corsOptions = {
+  origin: [
+    "http://localhost:3000",
+    "https://lostack-code-it-eca13016c372.herokuapp.com",
+  ],
+};
+
+app.use(cors(corsOptions));
 // Add specifics to cors
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
