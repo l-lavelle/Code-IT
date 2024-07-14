@@ -1,6 +1,9 @@
 .SL-wrapper {
   background-color: var(--light-blue);
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 150px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .visible {
   animation: fadeIn 5s;
@@ -25,6 +28,7 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
+  width: 100%;
 }
 .login-container,
 .signup-container {

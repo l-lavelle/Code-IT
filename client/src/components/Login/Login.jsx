@@ -44,6 +44,7 @@ const Login = () => {
    
   return (
     <>
+    <h1 className="mb-4">Login</h1>
     <Form onSubmit={handleLogin}>
     <Form.Group className="mb-3 text-left signup-login-text">
       <Form.Label>Username</Form.Label>
@@ -69,8 +70,8 @@ const Login = () => {
    <button className="button-ct" variant="primary" type="submit">
         Submit
    </button>
-   {message.status==='error'?<p className='text-center mt-3' style={{color:"red"}}>{message.message}</p>:<p></p>}
   </Form>
+  {message.status==='error'?<p className='text-center mt-3' style={{color:"red"}}>{message.message}</p>:<p className='mt-3'>&#8203;</p>}
   </>
   );
 };

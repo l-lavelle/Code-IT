@@ -10,7 +10,6 @@ const LoginSignup = () => {
    
   return (
   <main className="SL-wrapper">
-  {switched===true? <h2 className="pt-5 sl-title">SignUp</h2>:<h2 className="pt-5 sl-title">Login</h2> }
     <div className="p-3 signup-login-container">
       <div className={switched===true? "hidden ":"visible login-container"}>
         <Login/>
