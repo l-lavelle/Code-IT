@@ -1,8 +1,9 @@
+import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import App from "./App";
 import Landing from "./components/Editor/Landing";
 import Homepage from "./components/Homepage/Homepage";
 import About from "./components/About/About";
@@ -12,11 +13,12 @@ import QuestionsHomepage from "./components/QuestionsHomepage/QuestionsHomepage"
 import FreeCode from "./components/Editor/FreeCode/FreeCode";
 import Error from "./components/Error/Error";
 import "bootstrap/dist/css/bootstrap.css";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    // errorElement: <Error />,
+    errorElement: <Error />,
     children: [
       {
         index: true,
