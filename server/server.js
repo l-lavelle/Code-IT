@@ -17,14 +17,11 @@ let corsOptions = {
 };
 
 app.use(cors(corsOptions));
-// Add specifics to cors
-// app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(routes);
 
-// trial for heroku deployment
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
 
