@@ -1,4 +1,3 @@
-// TODO: add try/catch with error to all extra calls in auth
 const router = require("express").Router();
 const {
   Question,
@@ -84,7 +83,6 @@ router.get("/log/:question_id", async (req, res) => {
         user_id: userData.dataValues.id,
         question_id: req.params.question_id,
       },
-      // where: { question_id: req.params.question_id },
     });
     console.log(userAnswerData);
     res.status(200).json({ questionData, userAnswerData });

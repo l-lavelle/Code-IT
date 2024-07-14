@@ -1,7 +1,7 @@
 export const languageOptions = [
     {
       id: 63,
-      name: "JavaScript (Node.js 12.14.0)",
+      name: "JavaScript",
       label: "JavaScript (Node.js 12.14.0)",
       value: "javascript",
     },
@@ -38,7 +38,7 @@ export const languageOptions = [
     },
     {
       id: 82,
-      name: "SQL (SQLite 3.27.2)",
+      name: "SQL",
       label: "SQL (SQLite 3.27.2)",
       value: "sql",
     },

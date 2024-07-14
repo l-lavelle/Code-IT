@@ -23,9 +23,7 @@ router.post("/", async (req, res) => {
     }
 
     const token = generateAccessToken({ username: req.body.username });
-    res
-      .status(200)
-      .json({ user: dbUserData, token, message: "You are now logged in!" });
+    res.status(200).json({ token, message: "You are now logged in!" });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

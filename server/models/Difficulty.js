@@ -14,13 +14,6 @@ Difficulty.init(
     difficulty_type: {
       type: DataTypes.STRING,
     },
-    // question_id: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: "questions",
-    //     key: "id",
-    //   },
-    // },
   },
   {
     sequelize,

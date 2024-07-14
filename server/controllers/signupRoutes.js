@@ -10,19 +10,9 @@ router.post("/", async (req, res) => {
       password: req.body.password,
     });
     const token = generateAccessToken({ username: req.body.username });
-    res.status(200).json({ dbUserData, token });
+    res.status(200).json({ token, message: "You are now signed up" });
   } catch (err) {
     console.log(err);
-    res.status(500).json(err);
-  }
-});
-
-// Testing Route- can delete later
-router.get("/", async (req, res) => {
-  try {
-    const locationData = await User.findAll();
-    res.status(200).json(locationData);
-  } catch (err) {
     res.status(500).json(err);
   }
 });

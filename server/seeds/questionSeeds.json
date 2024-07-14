@@ -1,12 +1,12 @@
 [
     {
-         "name": "Odd or Even ",
-         "question": " Write code to return the string odd if number is an odd number and return the string even if number is an even number. Check your answer using the number 74.",
+         "name": "Odd or Even",
+         "question": "Write code to return the string odd if number is an odd number and return the string even if number is an even number. Check your answer using the number 74.",
          "answer": "even",
          "hint": "Use a conditional statement to see if the number is even or odd",
          "solution": "Easy",
-         "difficulty_id": "1",
-         "language_id": "2"
+         "difficulty_id": 1,
+         "language_id": 2
     }
  
 ] 

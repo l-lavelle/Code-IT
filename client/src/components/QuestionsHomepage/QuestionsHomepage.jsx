@@ -152,14 +152,14 @@ const QuestionsHomepage = () => {
           questions.map((question) => (
           <li key={question.id} className={correctQuestions.includes(question.id)? "pt-2 pb-2 ps-2 m-2  qh-questions-correct":"pt-2 pb-2 ps-2 m-2 qh-questions"}
           onClick={()=>window.location.assign(`/challenge/${question.id}`)}>
-            {question.question}
+            {question.name}
             {correctQuestions.includes(question.id)? <img src={Check} className="ps-2" alt="Correct Question Checkmark"></img>:null}
           </li>
           )):
           questions.map((question) => (
             <li key={question.id} className="pt-2 pb-2 ps-2 m-2 qh-questions"
             onClick={()=>window.location.assign(`/challenge/${question.id}`)}>
-              {question.question}
+              {question.name}
             </li>
             ))
         }
