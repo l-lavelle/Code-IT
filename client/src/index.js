@@ -10,12 +10,13 @@ import Contact from "./components/Contact/Contact";
 import Login from "./components/Login/LoginSignup";
 import QuestionsHomepage from "./components/QuestionsHomepage/QuestionsHomepage";
 import FreeCode from "./components/Editor/FreeCode/FreeCode";
+import Error from "./components/Error/Error";
 import "bootstrap/dist/css/bootstrap.css";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    //    errorElement: <Error />,
+    errorElement: <Error />,
     children: [
       {
         index: true,

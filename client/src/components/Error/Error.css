@@ -1,0 +1,28 @@
+.error-404 {
+  font-size: 4rem;
+  font-family: var(--outfit);
+}
+.error-text {
+  font-family: var(--roboto);
+}
+.error-text h4 a {
+  font-family: var(--roboto);
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: bold;
+}
+.error-text h4 a:hover {
+  color: var(--light-blue);
+}
+.error-wrapper {
+  position: absolute;
+}
+.error-content {
+  position: fixed;
+  background-color: white;
+  border-radius: 25px;
+  padding: 20px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

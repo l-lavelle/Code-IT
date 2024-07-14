@@ -19,7 +19,7 @@ ArrayPlusDelay(['Gain Confidence','Expand Your Skills'], function(obj) {document
     <h1 id="RotatingKeywords" >Build Expertise</h1>
     <h4 className="mb-3">Test And Expand Your Coding Knowledge To Master Web Development </h4>
     <div id='canvas-container'>
-    <ParticleBackground/>
+    <ParticleBackground fullScreen={false}/>
     <img id="above-img"  className="mt-3" src={homePic} alt="Programmer Working" />
 
     </div>

@@ -3,7 +3,7 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim"; 
 
 
-const ParticleBackground = () => {
+const ParticleBackground = ({fullScreen}) => {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -86,7 +86,7 @@ const ParticleBackground = () => {
       },
       detectRetina: true,
       fullScreen: { 
-        enable: false,
+        enable: fullScreen,
         zIndex:-1 },
     }),
     [],
