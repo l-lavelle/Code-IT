@@ -23,6 +23,7 @@
   font-family: var(--roboto);
   font-size: 20px;
 }
+
 .signup-login-container {
   display: flex;
   flex-direction: column;
@@ -37,6 +38,11 @@
 .login-switch-container,
 .signup-switch-container {
   margin-top: 20px;
+}
+.login-switch-container p,
+.signup-switch-container p,
+.sl-error {
+  font-size: 18px;
 }
 .SL-switch-text {
   font-weight: bold;

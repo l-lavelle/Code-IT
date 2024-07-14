@@ -99,7 +99,7 @@ const Signup = () => {
         Submit
         </button>
         </Form>
-        {message.status==='error'?<p className='text-center mt-3' style={{color:"red"}}>{message.message}</p>:<p className='mt-3'>&#8203;</p>}
+        {message.status==='error'?<p className='text-center mt-3 sl-error' style={{color:"red"}}>{message.message}</p>:<p className='mt-3 sl-error'>&#8203;</p>}
         </>
   );
 };
