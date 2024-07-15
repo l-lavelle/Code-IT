@@ -60,9 +60,8 @@ const Contact = () => {
           Send
         </button>
         </Form>
-
-        {message.status==='error'?<p className='text-center mt-2 mb-2 message-error' >{message.message}</p>:null}
-        {message.status==='success'?<p className='text-center mt-2 mb-2 message-success'>{message.message}</p>:null}
+        {message.status==='error'?<p className='text-center message-error' >{message.message}</p>:<p>&#8203;</p>}
+        {message.status==='success'?<p className='text-center message-success'>{message.message}</p>:<p>&#8203;</p>}
       </div>
     </div>
 

@@ -26,7 +26,7 @@ const About = () => {
             <img id="lo-pic" src={laurenPic} alt="Site Creator"/>
         </Col>
         <Col md={12} lg={7} className="lo-info pt-2 pb-2">
-            <h4 >Meet the Dev</h4>
+            <h4>Meet the Dev</h4>
             <p>Hi, Nice to Meet You! orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
         </Col>
     </Row>

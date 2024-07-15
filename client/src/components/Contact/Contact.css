@@ -1,5 +1,6 @@
 .contact-group {
   font-family: var(--roboto);
+  font-size: 20px;
 }
 .contact-container-wrapper {
   position: relative;
@@ -39,19 +40,25 @@
   flex-direction: column;
   justify-content: center;
 }
+.contact-container h2 {
+  font-weight: bold;
+  font-family: var(--outfit);
+}
 .message-success {
-  color: var(--dark-blue);
+  color: green;
+  font-size: 18px;
   font-family: var(--roboto);
 }
 .message-error {
   color: var(--red);
+  font-size: 18px;
   font-family: var(--roboto);
 }
 
 @media screen and (max-width: 632px) {
   .contact-container {
     p {
-      font-size: 14px;
+      font-size: 16px;
     }
     .contact-top-container {
       height: 60%;
