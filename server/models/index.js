@@ -3,6 +3,7 @@ const Question = require("./Question");
 const Difficulty = require("./Difficulty");
 const Language = require("./Language");
 const User_Answer = require("./User_Answer");
+const User_Code = require("./User_Code");
 
 // Question have one difficulty
 Question.belongsTo(Difficulty, {
@@ -33,6 +34,12 @@ User_Answer.belongsTo(Question, {
 // Questions has many Answers
 Question.hasMany(User_Answer, {
   foreignKey: "question_id",
+  onDelete: "CASCADE",
+});
+
+// User has many saved code blocks
+User.hasMany(User_Code, {
+  foreignKey: "user_id",
   onDelete: "CASCADE",
 });
 

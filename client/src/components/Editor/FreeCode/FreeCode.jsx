@@ -1,5 +1,4 @@
 // Question data going to Output details take it out of landing.jsx
-// Add all the lanugages back into the lanugage constant file
 import "../Landing.css";
 import '../../../Variables.css';
 import React, { useEffect, useState } from "react";
@@ -17,7 +16,7 @@ import ThemeDropdown from "../ThemeDropdown";
 import LanguagesDropdown from "../LanguagesDropdown";
 import SaveModal from "./SaveModal";
 import {Row, Col} from 'react-bootstrap';
-
+import AuthService from '../../../utils/auth';
 
 const FreeCode = () => {
   const [code, setCode] = useState();
@@ -176,7 +175,7 @@ const FreeCode = () => {
       <div className="landing-question mb-4">
         <h3 className="mt-3 landing-title">Code Editor</h3>
       </div>
-      {/* if auth loggedIn - show save modal */}
+      {AuthService.loggedIn()?(<SaveModal/>):null}
       <div className="theme-info-container">
         <div className="theme-dd">
           <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
