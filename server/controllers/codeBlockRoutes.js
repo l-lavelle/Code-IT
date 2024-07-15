@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User_Code } = require("../models");
+const { User_Code, User } = require("../models");
 
 // Create new code block
 router.post("/", async (req, res) => {

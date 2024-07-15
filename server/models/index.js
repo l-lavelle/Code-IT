@@ -43,4 +43,11 @@ User.hasMany(User_Code, {
   onDelete: "CASCADE",
 });
 
-module.exports = { User, Question, Difficulty, Language, User_Answer };
+module.exports = {
+  User,
+  Question,
+  Difficulty,
+  Language,
+  User_Answer,
+  User_Code,
+};
