@@ -3,11 +3,17 @@ import {Row, Col} from 'react-bootstrap';
 import {findURL} from '../../../utils/general';
 import AuthService from '../../../utils/auth';
 import Editor from "@monaco-editor/react";
+import SaveDashModal from './SaveDashModal';
 
 function CodeBlockDashboard() {
-const [codeData, setCodeData] =useState();
+    const [codeData, setCodeData] =useState();
+    const [show, setShow] = useState(false);
+
 
 // createCodeblock function- modal opens same code and reroute for editing
+const createCodeblock = async () => {
+    setShow(true)
+  };
 
 useEffect(() => {
     let url2 = findURL(`codeBlock`);
@@ -41,14 +47,22 @@ useEffect(() => {
         <p>{codeblock.description}</p> 
         <Editor 
         width={`100%`}
-        height="125px"
-        // value={ codeblock .code}
-        // theme={theme.value}
+        height="200px"
+        value={codeblock.code}
+        theme="vs-dark"
         />
         </Col>)):null}
+        {/* Add new code block */}
         <Col md={12} lg={5} xl={4}>
-            {/* <div onClick={createCodeblock}></div> add div */}
+            <div onClick={createCodeblock}>
+            <Editor 
+            width={`100%`}
+            height="200px"
+            theme="vs-dark"
+            />
+            </div>
         </Col>
+        <SaveDashModal show={show} setShow={setShow}/>
         </Row>
     </div>
     </>

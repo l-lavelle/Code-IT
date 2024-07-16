@@ -2,26 +2,28 @@ import { useState } from 'react';
 import {Modal, Form} from 'react-bootstrap';
 import {findURL} from '../../../utils/general';
 import AuthService from '../../../utils/auth';
+import LanguagesDropdown from '../LanguagesDropdown';
+import { languageOptions } from "../../../constants/languageOptions";
 
-function SaveModal({language, code}) {
-  const [show, setShow] = useState(false);
-
+function SaveDashModal({show, setShow}) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [codeData, setCodeData] = useState({ title: '', description: ''});
   const [message, setMessage]=useState({message:'', status:''});
+  const [language, setLanguage] = useState(languageOptions[0]);
 
   const updateCodeData= async (event)=>{
     const { name, value } = event.target;
     setCodeData ({ ...codeData, [name]: value });
   };
 
+  const onSelectChange = (sl) => {
+    setLanguage(sl);
+  };
+
   const saveCodeBlock = async (event) => {
     event.preventDefault();
-    if (code===''){
-      setMessage({message:'Must enter code in editor window', status:'error'});
-    } 
-    else if (codeData.title ==="" || codeData.description === ""){
+    if (codeData.title ==="" || codeData.description === ""){
       setMessage({message:'Must enter title and description', status:'error'});
     } else {
     try {
@@ -30,7 +32,7 @@ function SaveModal({language, code}) {
       console.log("url", url2)
       const response = await fetch(url2, {
         method: 'POST',
-        body: JSON.stringify({ title: codeData.title , description:codeData.description, code:code, language:language.name }),
+        body: JSON.stringify({ title: codeData.title , description:codeData.description, language:language.name }),
         headers: { "Content-Type": "application/json",   "Authorization":decodedBearer },
        });
        if (response.ok) {
@@ -49,14 +51,12 @@ function SaveModal({language, code}) {
     }
   };
 
-  console.log("l", language);
-  console.log("c", code);
   return (
     <>
-      <button className="button-ct" variant="primary" type="submit" onClick={handleShow}> Save Code Block</button>
+      {/* <button className="button-ct" variant="primary" type="submit" onClick={handleShow}> Save Code Block</button> */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Save Code Block</Modal.Title>
+          <Modal.Title>Create New CodeBlock</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group className="mb-3 text-left">
@@ -82,14 +82,15 @@ function SaveModal({language, code}) {
           className={message.status==='error'?"input-error":null}
           />
         </Form.Group> 
+        <LanguagesDropdown onSelectChange={onSelectChange}/>
         {message.status==='error'?<p className='text-center mt-3 sl-error' style={{color:"red"}}>{message.message}</p>:<p className='mt-3 sl-error'>&#8203;</p>}     
         </Modal.Body>
         <Modal.Footer>
-          <button className="button-ct" variant="primary" type="submit" onClick={saveCodeBlock}> Save </button>
+          <button className="button-ct" variant="primary" type="submit" onClick={saveCodeBlock}> Create </button>
         </Modal.Footer>
       </Modal>
     </>
   );
 }
 
-export default SaveModal;
+export default SaveDashModal;
