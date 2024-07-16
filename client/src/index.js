@@ -13,6 +13,7 @@ import QuestionsHomepage from "./components/QuestionsHomepage/QuestionsHomepage"
 import FreeCode from "./components/Editor/FreeCode/FreeCode";
 import CodeBlockDashboard from "./components/Editor/CodeblockDashboard/CodeblockDashboard";
 import Error from "./components/Error/Error";
+import UpdateCodeBlock from "./components/Editor/UpdateCodeBlock/UpdateCodeBlock";
 import "bootstrap/dist/css/bootstrap.css";
 
 const router = createBrowserRouter([
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "codeBlockDash",
         element: <CodeBlockDashboard />,
+      },
+      {
+        path: "/updateCode/:usercode_id",
+        element: <UpdateCodeBlock />,
       },
     ],
   },

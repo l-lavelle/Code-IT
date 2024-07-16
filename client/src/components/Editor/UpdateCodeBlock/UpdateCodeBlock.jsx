@@ -7,13 +7,13 @@ import { classnames } from "../../../utils/general";
 import { languageOptions } from "../../../constants/languageOptions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import {findURL} from '../../../utils/general';
 import { defineTheme } from "../../../lib/defineTheme";
 import OutputWindow from "../OutputWindow";
 import OutputDetails from "../OutputDetails";
 import ThemeDropdown from "../ThemeDropdown";
-import LanguagesDropdown from "../LanguagesDropdown";
-import SaveModal from "./SaveModal";
+// import LanguagesDropdown from "../LanguagesDropdown";
+
 import {Row, Col} from 'react-bootstrap';
 import AuthService from '../../../utils/auth';
 
@@ -23,11 +23,52 @@ const UpdateCodeBlock = () => {
   const [processing, setProcessing] = useState(null);
   const [theme, setTheme] = useState("cobalt");
   const [language, setLanguage] = useState(languageOptions[0]);
+  const [codeData, setCodeData] = useState();
 
+  useEffect(() => {
+    let usercode_id = window.location.pathname.split('/')[2]
+    let url2 = findURL(`codeBlock/${usercode_id}`);
+    let decodedBearer = AuthService.getProfile().username;
+    fetch(url2, {
+      method: 'GET',
+      headers: { "Content-Type": "application/json" ,"Authorization":decodedBearer},
+      })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setCodeData(data)
+        var index = languageOptions.map(function (lang) { return lang.name; }).indexOf(data.language);
+        setLanguage(languageOptions[index]);
+        if (data.code!=null){
+          setCode(data.code)
+        }
+        })
+      
+}, []);
   
-  const onSelectChange = (sl) => {
-    setLanguage(sl);
-  };
+const updateCodeBlock = ()=>{
+  let usercode_id = window.location.pathname.split('/')[2]
+  let url2 = findURL(`codeBlock/${usercode_id}`);
+  let decodedBearer = AuthService.getProfile().username;
+  fetch(url2, {
+    method: 'PUT',
+    body: JSON.stringify({ code:code}),
+    headers: { "Content-Type": "application/json" ,"Authorization":decodedBearer},
+    })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      console.log("data",data)
+    //   setQuestionData(data.questionData);
+    //   var index = languageOptions.map(function (lang) { return lang.name; }).indexOf(data.questionData?.language?.language_type);
+    //   setLanguage(languageOptions[index]);
+    //   if (data.userAnswerData.length>0){
+    //     setCode(data.userAnswerData[0].user_work)
+    //   } 
+    })
+}
 
   const handleCompile = () => {
     setProcessing(true);
@@ -157,7 +198,9 @@ const UpdateCodeBlock = () => {
     });
   };
 
-  
+  if (codeData===undefined) {
+    return <>Still loading...</>;
+  }
  
   return (
     <div className="m-2">
@@ -173,15 +216,18 @@ const UpdateCodeBlock = () => {
         pauseOnHover
       />
       <div className="landing-question mb-4">
-        <h3 className="mt-3 landing-title">Code Editor</h3>
+        <h3 className="mt-3 landing-title">{codeData.title}</h3>
+        <p >{codeData.description}</p>
       </div>
-      {AuthService.loggedIn()?(<SaveModal language={language} code={code}/>):null}
+      <button className="button-ct" variant="primary" type="submit" onClick={updateCodeBlock}> Update CodeBlock</button> 
       <div className="theme-info-container">
         <div className="theme-dd">
           <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
         </div>
         <div className="px-4 py-2">
-          <LanguagesDropdown onSelectChange={onSelectChange} />
+            <div className="mt-2 language-dd" >
+            <p>Language: {language.name}</p>
+            </div>
         </div>
       </div>
       <div className="editor-output">

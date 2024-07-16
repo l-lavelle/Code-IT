@@ -10,14 +10,12 @@ function CodeBlockDashboard() {
     const [codeData, setCodeData] =useState();
     const [show, setShow] = useState(false);
 
-
-// createCodeblock function- modal opens same code and reroute for editing
-const createCodeblock = async () => {
-    setShow(true)
-  };
+    const createCodeblock = async () => {
+        setShow(true)
+    };
 
   const updateCodeBlock = async (id) => {
-    window.location.assign(`/codeblock/${id}`);
+    window.location.assign(`/updateCode/${id}`);
   };
 
   const deleteCodeBlock = async (id)=>{

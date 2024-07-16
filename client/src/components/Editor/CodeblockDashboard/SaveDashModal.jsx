@@ -37,10 +37,7 @@ function SaveDashModal({show, setShow}) {
        });
        if (response.ok) {
            const data = await response.json();
-           console.log("saved data",data.id);
-
-	// use to get codeblock_id
-// close the modal and load single query page- update only 
+           window.location.assign(`/updateCode/${data.id}`);
        }else{
         setMessage({message:'Unable to save code block', status:'error'});
        }

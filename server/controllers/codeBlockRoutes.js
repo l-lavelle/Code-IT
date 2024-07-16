@@ -55,7 +55,7 @@ router.get("/:usercode_id", async (req, res) => {
 });
 
 // Update a code block
-router.put("/:usercode_id ", async (req, res) => {
+router.put("/:usercode_id", async (req, res) => {
   try {
     const userData = await User.findOne({
       where: { username: req.headers.authorization },
@@ -64,9 +64,6 @@ router.put("/:usercode_id ", async (req, res) => {
 
     const updatedCodeBlock = await User_Code.update(
       {
-        title: req.body.title,
-        description: req.body.description,
-        language_id: req.body.language_id,
         code: req.body.code,
       },
       {
@@ -84,7 +81,6 @@ router.put("/:usercode_id ", async (req, res) => {
 
 // Delete a code block
 router.delete("/:id", async (req, res) => {
-  console.log("trial", req.params.id);
   try {
     await User_Code.destroy({
       where: {
