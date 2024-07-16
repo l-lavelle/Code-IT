@@ -1,5 +1,4 @@
 // Add Code cat here for assistance if needed
-// Add theme change to offcanvas take out of busy front page??
 import React, { useState } from "react";
 import './Landing.css';
 import Offcanvas from 'react-bootstrap/Offcanvas';

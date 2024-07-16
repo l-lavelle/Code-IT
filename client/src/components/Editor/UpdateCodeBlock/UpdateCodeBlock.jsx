@@ -12,10 +12,9 @@ import { defineTheme } from "../../../lib/defineTheme";
 import OutputWindow from "../OutputWindow";
 import OutputDetails from "../OutputDetails";
 import ThemeDropdown from "../ThemeDropdown";
-// import LanguagesDropdown from "../LanguagesDropdown";
-
 import {Row, Col} from 'react-bootstrap';
 import AuthService from '../../../utils/auth';
+import {showErrorToast,showSuccessToast} from '../../../utils/general';
 
 const UpdateCodeBlock = () => {
   const [code, setCode] = useState();
@@ -44,8 +43,8 @@ const UpdateCodeBlock = () => {
           setCode(data.code)
         }
         })
-      
-}, []);
+      }, 
+    []);
   
 const updateCodeBlock = ()=>{
   let usercode_id = window.location.pathname.split('/')[2]
@@ -55,18 +54,6 @@ const updateCodeBlock = ()=>{
     method: 'PUT',
     body: JSON.stringify({ code:code}),
     headers: { "Content-Type": "application/json" ,"Authorization":decodedBearer},
-    })
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      console.log("data",data)
-    //   setQuestionData(data.questionData);
-    //   var index = languageOptions.map(function (lang) { return lang.name; }).indexOf(data.questionData?.language?.language_type);
-    //   setLanguage(languageOptions[index]);
-    //   if (data.userAnswerData.length>0){
-    //     setCode(data.userAnswerData[0].user_work)
-    //   } 
     })
 }
 
@@ -175,28 +162,6 @@ const updateCodeBlock = ()=>{
     );
   }, []);
 
-  const showSuccessToast = (msg) => {
-    toast.success(msg || `Compiled Successfully!`, {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-  const showErrorToast = (msg) => {
-    toast.error(msg || `Something went wrong! Please try again.`, {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
 
   if (codeData===undefined) {
     return <>Still loading...</>;

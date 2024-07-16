@@ -3,7 +3,6 @@
 import "./Landing.css";
 import '../../Variables.css';
 import React, { useEffect, useState } from "react";
-import CodeEditorWindow from "./CodeEditorWindow";
 import axios from "axios";
 import { classnames } from "../../utils/general";
 import { languageOptions } from "../../constants/languageOptions";
@@ -11,12 +10,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AuthService from '../../utils/auth';
 import { defineTheme } from "../../lib/defineTheme";
+import CodeEditorWindow from "./CodeEditorWindow";
 import OutputWindow from "./OutputWindow";
 import OutputDetails from "./OutputDetails";
 import ThemeDropdown from "./ThemeDropdown";
 import OffCanvas from "./OffCanvas";
 import {Row, Col} from 'react-bootstrap';
-import {findURL} from '../../utils/general';
+import {findURL,showErrorToast,showSuccessToast} from '../../utils/general';
 
 
 const Landing = () => {
@@ -72,7 +72,6 @@ const Landing = () => {
         language_id: language.id,
         // encode source code in base64
         source_code: btoa(code),
-        // stdin: btoa(customInput),
       };
       const options = {
         method: "POST",
@@ -111,7 +110,6 @@ const Landing = () => {
         });
   };
 
-
   const checkAnswer = async (data) => {
     let trialAnswer = (atob(data.stdout)).trim()
     if (trialAnswer===questionData.answer){
@@ -125,7 +123,6 @@ const Landing = () => {
 
   const updateUserAnswer = async (status) => {
     if(AuthService.getToken()!=null){
-      console.log("hit wuth")
       let questionId= window.location.pathname.split('/')[2]
       let url2 = findURL(`question/log/${questionId}`);
       let decodedBearer = AuthService.getProfile().username;
@@ -198,30 +195,6 @@ const Landing = () => {
     );
   }, []);
 
-  const showSuccessToast = (msg) => {
-    toast.success(msg || `Compiled Successfully!`, {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-  const showErrorToast = (msg) => {
-    toast.error(msg || `Something went wrong! Please try again.`, {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-
-  
   if (questionData===undefined) {
     return <>Still loading...</>;
   }
@@ -280,7 +253,6 @@ const Landing = () => {
               {processing ? "Processing..." : "Compile and Execute"}
               </button>
               </div>
-          {/* see if can put correct vs. incorrect in this file- if working correcly cut and change */}
           {outputDetails && <OutputDetails outputDetails={outputDetails} questionData={questionData}/>}
           {answerCorrect===undefined?null:<p>{answerCorrect}</p>}
             </div>

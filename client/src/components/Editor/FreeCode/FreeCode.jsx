@@ -1,4 +1,3 @@
-// Question data going to Output details take it out of landing.jsx
 import "../Landing.css";
 import '../../../Variables.css';
 import React, { useEffect, useState } from "react";
@@ -8,7 +7,6 @@ import { classnames } from "../../../utils/general";
 import { languageOptions } from "../../../constants/languageOptions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import { defineTheme } from "../../../lib/defineTheme";
 import OutputWindow from "../OutputWindow";
 import OutputDetails from "../OutputDetails";
@@ -17,6 +15,7 @@ import LanguagesDropdown from "../LanguagesDropdown";
 import SaveModal from "./SaveModal";
 import {Row, Col} from 'react-bootstrap';
 import AuthService from '../../../utils/auth';
+import {showErrorToast,showSuccessToast} from '../../../utils/general';
 
 const FreeCode = () => {
   const [code, setCode] = useState();
@@ -52,7 +51,6 @@ const FreeCode = () => {
     axios
       .request(options)
       .then(function (response) {
-        console.log("res.data", response.data);
         const token = response.data.token;
         checkStatus(token);
       })
@@ -133,31 +131,7 @@ const FreeCode = () => {
       setTheme({ value: "oceanic-next", label: "Oceanic Next" })
     );
   }, []);
-
-  const showSuccessToast = (msg) => {
-    toast.success(msg || `Compiled Successfully!`, {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-  const showErrorToast = (msg) => {
-    toast.error(msg || `Something went wrong! Please try again.`, {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-
-  
+ 
  
   return (
     <div className="m-2">

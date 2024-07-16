@@ -5,7 +5,6 @@ import AuthService from '../../../utils/auth';
 
 function SaveModal({language, code}) {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [codeData, setCodeData] = useState({ title: '', description: ''});
@@ -46,8 +45,6 @@ function SaveModal({language, code}) {
     }
   };
 
-  console.log("l", language);
-  console.log("c", code);
   return (
     <>
       <button className="button-ct" variant="primary" type="submit" onClick={handleShow}> Save Code Block</button>

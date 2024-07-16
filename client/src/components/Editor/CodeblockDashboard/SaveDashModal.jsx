@@ -29,7 +29,6 @@ function SaveDashModal({show, setShow}) {
     try {
       const url2 = findURL("codeBlock");
       let decodedBearer = AuthService.getProfile().username;
-      console.log("url", url2)
       const response = await fetch(url2, {
         method: 'POST',
         body: JSON.stringify({ title: codeData.title , description:codeData.description, language:language.name }),
@@ -50,7 +49,6 @@ function SaveDashModal({show, setShow}) {
 
   return (
     <>
-      {/* <button className="button-ct" variant="primary" type="submit" onClick={handleShow}> Save Code Block</button> */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Create New CodeBlock</Modal.Title>
