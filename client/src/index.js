@@ -11,6 +11,7 @@ import Contact from "./components/Contact/Contact";
 import Login from "./components/Login/LoginSignup";
 import QuestionsHomepage from "./components/QuestionsHomepage/QuestionsHomepage";
 import FreeCode from "./components/Editor/FreeCode/FreeCode";
+import CodeBlockDashboard from "./components/Editor/CodeblockDashboard/CodeblockDashboard";
 import Error from "./components/Error/Error";
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "QuestionsHomepage",
         element: <QuestionsHomepage />,
+      },
+      {
+        path: "codeBlockDash",
+        element: <CodeBlockDashboard />,
       },
     ],
   },

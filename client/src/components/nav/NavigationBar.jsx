@@ -16,6 +16,7 @@ const NavigationBar = () => {
                 <NavDropdown title=" Start Coding" id="basic-nav-dropdown">
                   <NavDropdown.Item href="/QuestionsHomepage">Code Challenges</NavDropdown.Item>
                   <NavDropdown.Item href="/freeCode">Free Code</NavDropdown.Item>
+                  {AuthService.loggedIn()?(<NavDropdown.Item href="/codeBlockDash">CodeBlock Dashboard</NavDropdown.Item>):null}
                 </NavDropdown>
                 {AuthService.loggedIn()?(<Nav.Link onClick={AuthService.logout}>Logout</Nav.Link>):(<Nav.Link href="/Login">Login</Nav.Link>)}
               </Nav>
