@@ -1,3 +1,4 @@
+import './CodeblockDashboard.css'
 import { useState, useEffect } from 'react';
 import {Row, Col} from 'react-bootstrap';
 import {findURL} from '../../../utils/general';
@@ -14,6 +15,26 @@ function CodeBlockDashboard() {
 const createCodeblock = async () => {
     setShow(true)
   };
+
+  const updateCodeBlock = async (id) => {
+    window.location.assign(`/codeblock/${id}`);
+  };
+
+  const deleteCodeBlock = async (id)=>{
+    let url2 = findURL(`codeBlock/${id}`);
+    let decodedBearer = AuthService.getProfile().username;
+    fetch(url2, {
+      method: 'DELETE',
+      headers: { "Content-Type": "application/json", "Authorization": decodedBearer },
+      })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setCodeData(data)
+      });
+}
+
 
 useEffect(() => {
     let url2 = findURL(`codeBlock`);
@@ -43,16 +64,22 @@ useEffect(() => {
     {codeData.length>0?
     codeData.map((codeblock)=>(
         <Col md={12} lg={5} xl={4}>
-        <h3>{codeblock.title}</h3>
-        <p>{codeblock.description}</p> 
+        <div className='code-editor-block'>
         <Editor 
         width={`100%`}
         height="200px"
         value={codeblock.code}
         theme="vs-dark"
         />
-        </Col>)):null}
-        {/* Add new code block */}
+        <div className='overlay-edit-code'>
+         <h3>{codeblock.title}</h3>
+         <p>{codeblock.description}</p> 
+         <button className="button-ct" variant="primary" type="submit" onClick={()=>updateCodeBlock(codeblock.id)}> Edit</button> 
+         <button className="button-ct" variant="primary" type="submit" onClick={()=>deleteCodeBlock(codeblock.id)}> Delete</button> 
+         </div>
+         </div>
+        </Col>
+        )):null}
         <Col md={12} lg={5} xl={4}>
             <div onClick={createCodeblock}>
             <Editor 

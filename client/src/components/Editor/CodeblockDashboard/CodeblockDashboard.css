@@ -1,0 +1,24 @@
+.code-editor-block {
+  position: relative;
+}
+.overlay-edit-code {
+  background-color: blue;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: var(--gold);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.overlay-edit-code:hover {
+  opacity: 1;
+  transform: scale(1.5);
+  z-index: 5;
+}

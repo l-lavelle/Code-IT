@@ -83,12 +83,19 @@ router.put("/:usercode_id ", async (req, res) => {
 });
 
 // Delete a code block
-router.delete("/:usercode_id ", async (req, res) => {
+router.delete("/:id", async (req, res) => {
+  console.log("trial", req.params.id);
   try {
-    const codeBlockData = await User_Code.destroy({
+    await User_Code.destroy({
       where: {
-        id: req.params.usercode_id,
+        id: req.params.id,
       },
+    });
+    const userData = await User.findOne({
+      where: { username: req.headers.authorization },
+    });
+    const codeBlockData = await User_Code.findAll({
+      where: { user_id: userData.dataValues.id },
     });
     res.status(200).json(codeBlockData);
   } catch (err) {
