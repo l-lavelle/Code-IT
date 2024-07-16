@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
     const userData = await User.findOne({
       where: { username: req.headers.authorization },
     });
-    console.log("userData", userData);
+
     const codeBlockData = await User_Code.create({
       user_id: userData.dataValues.id,
       language: req.body.language,
@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
       description: req.body.description,
       code: req.body.code,
     });
-    console.log("user code block was created", codeBlockData);
+
     res.status(200).json(codeBlockData);
   } catch (err) {
     res.status(500).json(err);
@@ -28,7 +28,6 @@ router.get("/", async (req, res) => {
     const userData = await User.findOne({
       where: { username: req.headers.authorization },
     });
-    console.log("userData", userData);
     const codeBlockData = await User_Code.findAll({
       where: { user_id: userData.dataValues.id },
     });
@@ -38,13 +37,12 @@ router.get("/", async (req, res) => {
   }
 });
 
-// get one code blocks for a specific user
+// Get one code blocks for a specific user
 router.get("/:usercode_id", async (req, res) => {
   try {
     const userData = await User.findOne({
       where: { username: req.headers.authorization },
     });
-    console.log("userData", userData);
     const codeBlockData = await User_Code.findOne({
       where: { user_id: userData.dataValues.id, id: req.params.usercode_id },
     });
@@ -60,8 +58,6 @@ router.put("/:usercode_id", async (req, res) => {
     const userData = await User.findOne({
       where: { username: req.headers.authorization },
     });
-    console.log("userData", userData);
-
     const updatedCodeBlock = await User_Code.update(
       {
         code: req.body.code,
