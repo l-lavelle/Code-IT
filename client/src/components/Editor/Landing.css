@@ -1,3 +1,8 @@
+/* Code Editor Window */
+div.editor-window {
+  height: 75vh;
+}
+
 /* Output Window Styles */
 .output-box {
   width: 100%;
@@ -16,17 +21,29 @@
 }
 .theme-info-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
+.offcanvas-styles {
+  font-family: var(--outfit);
+}
 
 /* Landing Styles */
-.landing-title,
-.landing-question p,
-.theme-dd,
-.language-dd p {
+.landing-title {
+  font-family: var(--outfit);
+}
+.theme-dd p,
+.language-dd p,
+.landing-question p {
+  font-size: 16px;
   font-family: var(--roboto);
+}
+.landing-question div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Lanuages DropDown */
@@ -41,6 +58,9 @@
   }
 }
 @media screen and (min-width: 992px) {
+  div.editor-window {
+    height: 100vh;
+  }
   .output-box {
     min-height: 300px;
   }

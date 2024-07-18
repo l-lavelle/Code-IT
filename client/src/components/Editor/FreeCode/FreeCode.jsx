@@ -149,7 +149,7 @@ const FreeCode = () => {
       <div className="landing-question mb-4">
         <h3 className="mt-3 landing-title">Code Editor</h3>
       </div>
-      {AuthService.loggedIn()?(<SaveModal language={language} code={code}/>):null}
+      {/* {AuthService.loggedIn()?(<SaveModal language={language} code={code}/>):null} */}
       <div className="theme-info-container">
         <div className="theme-dd">
           <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
@@ -157,6 +157,7 @@ const FreeCode = () => {
         <div className="px-4 py-2">
           <LanguagesDropdown onSelectChange={onSelectChange} />
         </div>
+        {AuthService.loggedIn()?(<SaveModal language={language} code={code}/>):null}
       </div>
       <div className="editor-output">
         <Row>

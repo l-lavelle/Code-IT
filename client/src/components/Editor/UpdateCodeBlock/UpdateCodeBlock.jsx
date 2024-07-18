@@ -184,7 +184,7 @@ const updateCodeBlock = ()=>{
         <h3 className="mt-3 landing-title">{codeData.title}</h3>
         <p >{codeData.description}</p>
       </div>
-      <button className="button-ct" variant="primary" type="submit" onClick={updateCodeBlock}> Update CodeBlock</button> 
+      
       <div className="theme-info-container">
         <div className="theme-dd">
           <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
@@ -194,6 +194,7 @@ const updateCodeBlock = ()=>{
             <p>Language: {language.name}</p>
             </div>
         </div>
+        <button className="button-ct" variant="primary" type="submit" onClick={updateCodeBlock}> Update CodeBlock</button> 
       </div>
       <div className="editor-output">
         <Row>

@@ -1,8 +1,14 @@
+.codeblock-dash {
+  min-height: calc(100vh - 150px);
+}
+.cd-title {
+  font-family: var(--outfit);
+}
 .code-editor-block {
   position: relative;
+  margin-bottom: 25px;
 }
 .overlay-edit-code {
-  background-color: blue;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -12,13 +18,27 @@
   width: 100%;
   opacity: 0;
   transition: 0.5s ease;
-  background-color: var(--gold);
+  background-color: var(--light-blue);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .overlay-edit-code:hover {
   opacity: 1;
-  transform: scale(1.5);
+  transform: scale(1.3);
   z-index: 5;
+}
+.cd-add {
+  width: 100%;
+  height: 200px;
+  background-color: black;
+  border-radius: 25px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cd-plus-img {
+  width: 150px;
 }

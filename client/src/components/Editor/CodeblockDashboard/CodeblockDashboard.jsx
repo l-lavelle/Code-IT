@@ -1,10 +1,12 @@
-import './CodeblockDashboard.css'
+import './CodeblockDashboard.css';
+import '../../../Variables.css';
 import { useState, useEffect } from 'react';
 import {Row, Col} from 'react-bootstrap';
 import {findURL} from '../../../utils/general';
 import AuthService from '../../../utils/auth';
 import Editor from "@monaco-editor/react";
 import SaveDashModal from './SaveDashModal';
+import Plus from '../../../assets/plus.png';
 
 function CodeBlockDashboard() {
     const [codeData, setCodeData] =useState();
@@ -49,13 +51,15 @@ useEffect(() => {
       });
   }, []);
 
+  const truncate = (input) => input.length > 25 ? `${input.substring(0, 25)}...` : input;
+  
     if (codeData ===undefined) {
         return <>Still loading...</>;
         };
 
   return (
-    <>
-    <h1>CodeBlock DashBoard</h1>
+    <div className='codeblock-dash'>
+    <h1 className='mt-3 cd-title'>CodeBlock DashBoard</h1>
     <div>
     <Row className="lo-info-container mx-3">
     {codeData.length>0?
@@ -70,26 +74,24 @@ useEffect(() => {
         />
         <div className='overlay-edit-code'>
          <h3>{codeblock.title}</h3>
-         <p>{codeblock.description}</p> 
-         <button className="button-ct" variant="primary" type="submit" onClick={()=>updateCodeBlock(codeblock.id)}> Edit</button> 
-         <button className="button-ct" variant="primary" type="submit" onClick={()=>deleteCodeBlock(codeblock.id)}> Delete</button> 
+         <p>{truncate(codeblock.description)}</p>
+         <div>
+          <button className="me-3 button-ct" variant="primary" type="submit" onClick={()=>updateCodeBlock(codeblock.id)}> Edit</button> 
+          <button className="button-ct" variant="primary" type="submit" onClick={()=>deleteCodeBlock(codeblock.id)}> Delete</button> 
+         </div> 
          </div>
          </div>
         </Col>
         )):null}
         <Col md={12} lg={5} xl={4}>
-            <div onClick={createCodeblock}>
-            <Editor 
-            width={`100%`}
-            height="200px"
-            theme="vs-dark"
-            />
+            <div className="cd-add" onClick={createCodeblock}>
+            <img className="cd-plus-img" src={Plus}/>
             </div>
         </Col>
         <SaveDashModal show={show} setShow={setShow}/>
         </Row>
     </div>
-    </>
+    </div>
   );
 }
 

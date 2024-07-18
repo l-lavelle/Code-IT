@@ -10,10 +10,11 @@ const OffCanvas = ({solution, hint, theme }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  
   return (
     <>
       <img className="icon-image" src={info} onClick={handleShow} alt="info icon open offcanvas additional info"></img>
-      <Offcanvas show={show} onHide={handleClose}>
+      <Offcanvas show={show} onHide={handleClose} className="offcanvas-styles">
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Coding Challenge Info</Offcanvas.Title>
         </Offcanvas.Header>
@@ -22,7 +23,7 @@ const OffCanvas = ({solution, hint, theme }) => {
         <Accordion.Item eventKey="1">
             <Accordion.Header>Directions</Accordion.Header>
             <Accordion.Body>
-            The editor is setup up to run the code you enter. You can change the theme to your perference. When you think you have the correct answer hit the compile button. It will run the code in the lnguage idenified at the top of the screen and let you know if you are correct or not.
+            The editor is setup up to run the code you enter. You can change the theme to your perference. When you think you have the correct answer hit the compile button. It will run the code in the language idenified at the top of the screen and let you know if you are correct or not.
             </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey="2">
@@ -39,6 +40,8 @@ const OffCanvas = ({solution, hint, theme }) => {
                 height="125px"
                 value={solution}
                 theme={theme.value}
+                readOnly={true}
+                
             />
             </Accordion.Body>
         </Accordion.Item>

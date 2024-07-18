@@ -212,7 +212,14 @@ const Landing = () => {
         pauseOnHover
       />
       <div className="landing-question mb-4">
-        <h3 className="mt-3 landing-title">{questionData.name}</h3>
+        <div >
+        <h3 className="mt-3 me-3 landing-title">{questionData.name}</h3>
+        <OffCanvas 
+        solution={questionData.solution}
+        hint={questionData.hint}
+        theme={theme}
+        />
+        </div>
         <p >{questionData.question}</p>
       </div>
       <div className="theme-info-container">
@@ -222,11 +229,6 @@ const Landing = () => {
         <div className="mt-2 language-dd" >
           <p>Language: {language.name}</p>
         </div>
-        <OffCanvas 
-        solution={questionData.solution}
-        hint={questionData.hint}
-        theme={theme}
-        />
       </div>
       <div className="editor-output">
         <Row>
