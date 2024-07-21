@@ -27,7 +27,7 @@ const Landing = () => {
   const [language, setLanguage] = useState();
   const [questionData, setQuestionData]=useState();
   const [answerCorrect, setAnswerCorrect] = useState()
-
+ 
   useEffect(() => {
     if(AuthService.getToken()!=null){
       let questionId= window.location.pathname.split('/')[2]
@@ -47,7 +47,9 @@ const Landing = () => {
           setLanguage(languageOptions[index]);
           if (data.userAnswerData.length>0){
             setCode(data.userAnswerData[0].user_work)
-          } 
+          } else {
+            setCode(data.questionData.comment)
+          }
         })} else {
         let questionId= window.location.pathname.split('/')[2]
         let url2 = findURL(`question/reg/${questionId}`);
@@ -60,6 +62,7 @@ const Landing = () => {
           })
           .then((data) => {
             setQuestionData(data);
+            setCode(data.comment)
             var index = languageOptions.map(function (lang) { return lang.name; }).indexOf(data?.language?.language_type);
             setLanguage(languageOptions[index]);
           })
@@ -194,7 +197,7 @@ const Landing = () => {
       setTheme({ value: "oceanic-next", label: "Oceanic Next" })
     );
   }, []);
-
+console.log("wejkl", questionData)
   if (questionData===undefined) {
     return <>Still loading...</>;
   }
@@ -218,6 +221,7 @@ const Landing = () => {
         solution={questionData.solution}
         hint={questionData.hint}
         theme={theme}
+        language={language?.value}
         />
         </div>
         <p >{questionData.question}</p>

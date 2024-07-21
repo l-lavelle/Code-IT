@@ -1,12 +1,24 @@
 [
+       {
+       "name": "Odd or Even",
+       "question": " Write code to return the string \"odd\" if number is an odd number and return the string \"even\" if number is an even number.",
+       "answer": "even",
+       "hint": "Use a conditional statement to see if the number is even or odd.",
+       "solution": "var oddOrEven = function(num) { \n    if (num%2===0){ \n        console.log(\"even\") \n    } \n    else{ \n        console.log(\"odd\") \n    } \n };\n oddOrEven(74)",
+       "comment":"//new comment",
+       "difficulty_id": 1,
+       "language_id": 2
+  },
+
     {
-         "name": "Odd or Even",
-         "question": "Write code to return the string odd if number is an odd number and return the string even if number is an even number. Check your answer using the number 74.",
-         "answer": "even",
-         "hint": "Use a conditional statement to see if the number is even or odd",
-         "solution": "Easy",
-         "difficulty_id": 1,
-         "language_id": 2
-    }
+        "name": "sss",
+        "question": "Write code to return the string odd if number is an odd number and return the string even if number is an even number. Check your answer using the number 74.",
+        "answer": "even",
+        "hint": "Use a conditional statement to see if the number is even or odd",
+        "solution": "Easy '\\n' asdfjkla \n asjfk",
+        "difficulty_id": 1,
+        "language_id": 2
+   }
+
  
 ] 

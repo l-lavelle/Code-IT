@@ -55,6 +55,9 @@
   box-shadow: 0 0 5px #cc0000;
 }
 
+.ls-logo {
+  max-height: 250px;
+}
 @media screen and (min-width: 767px) {
   .signup-login-container {
     display: flex;

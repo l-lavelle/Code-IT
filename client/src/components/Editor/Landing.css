@@ -28,6 +28,16 @@ div.editor-window {
 .offcanvas-styles {
   font-family: var(--outfit);
 }
+div.oc-editor-styles.accordion-body {
+  margin: 0px;
+  padding: 0px;
+}
+.oc-logo {
+  height: 250px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* Landing Styles */
 .landing-title {

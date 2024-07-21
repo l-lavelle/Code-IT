@@ -2,6 +2,9 @@ import './Homepage.css';
 import '../../Variables.css';
 import React from "react";
 import homePic from '../../assets/homePic.jpg';
+import hpLang from '../../assets/hp-lanugages.jpg';
+import hpSkills from '../../assets/hp-skills.png';
+import hpBlocks from '../../assets/hp-blocks.png';
 import Java from '../../assets/e-java.png';
 import JavaScript from '../../assets/e-JS.png';
 import Python from '../../assets/e-python.png';
@@ -69,17 +72,14 @@ ArrayPlusDelay(['Gain Confidence','Expand Your Skills'], function(obj) {document
         <div className="mt-3 mx-3 p-2 home-language-container">
             <Row className="language-reverse">
                <Col xs={12} md={6}>
-                  <h2>Picture</h2>
+               <img className="hp-pic" src={hpLang} />
                </Col>
                <Col xs={12} md={6}>
                <Row>
                <h2 className="text-center">Learn New Languages</h2>
                </Row>
                <Row className="language-list-container">
-                <ul className="language-list">
-                    <li>sdf</li>
-                    <li>asdf</li>
-                </ul>
+               <p>Want to expand your knowledge and try coding in a new language? Work though the code challenges or just open the editor in order to practice. The free code editor allows you to choose from over 40 languages.  </p>
                </Row>
                </Col>
             </Row>
@@ -90,13 +90,28 @@ ArrayPlusDelay(['Gain Confidence','Expand Your Skills'], function(obj) {document
                <Row className="skills-list-container">
                <h2 className="text-center">Challenge Skills</h2>
                </Row>
-               <Row ><ul className="language-list"><li>sdf</li><li>asdf</li></ul></Row>
+               <Row ><p>Try our code challenges to practice and learn new skills. Ranging from simple to spicy, CodeIt has challenge levels for programmers of all skill levels to help you reach your next level. If you need help with a problem, check out the hints or possible solutions for assistance.</p></Row>
                </Col>
                <Col xs={12} md={6}>
-                 <h2>Picture</h2>
+               <img className="hp-pic" src={hpSkills} />
                </Col>
             </Row>
          </div>
+         <div className="mt-3 mx-3 p-2 home-language-container">
+            <Row className="language-reverse">
+               <Col xs={12} md={6}>
+               <img className="hp-pic" src={hpBlocks} />
+               </Col>
+               <Col xs={12} md={6}>
+               <Row>
+               <h2 className="text-center">Create Code Blocks</h2>
+               </Row>
+               <Row className="language-list-container">
+               <p>Have an idea or need to try out a quick piece of code to implement into a project later? Choose from over 40 languages and create your own code snippets to run and compile in the code editor. Signup for an account and you can save your code snippets to your dashboard to access later. </p>
+               </Row>
+               </Col>
+            </Row>
+        </div>
       </div>
     </div>
   );

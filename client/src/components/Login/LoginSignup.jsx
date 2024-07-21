@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import '../../Variables.css';
 import './Login.css';
-import CodeCat from '../CodeCat/CodeCat';
+import Logo from '../../assets/logo.png';
 import Signup from '../Signup/Signup';
 import Login from './Login';
 
@@ -16,7 +16,7 @@ const LoginSignup = () => {
       </div>
       <div className={switched===true? "hidden":"visible signup-switch-container"}>
         <p>Don't have an account yet? <span className="SL-switch-text" onClick={()=>setSwitched(true)}>Signup</span></p>
-        <CodeCat />
+        <img className="ls-logo" src={Logo} />
       </div>
 
 
@@ -25,7 +25,7 @@ const LoginSignup = () => {
       </div>
       <div className={switched===true? "visible login-switch-container":"hidden"}>
         <p> Already have an account? <span className="SL-switch-text" onClick={()=>setSwitched(false)}>Login</span></p>
-        <CodeCat /> 
+        <img className="ls-logo" src={Logo} />
       </div>
     </div>
   </main>

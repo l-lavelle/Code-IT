@@ -24,7 +24,9 @@
   content: "\a";
   white-space: pre;
 }
-
+.about-logo {
+  max-height: 250px;
+}
 @media screen and (min-width: 767px) {
   .lo-info-container {
     display: flex;

@@ -4,12 +4,21 @@ import './Landing.css';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Accordion from 'react-bootstrap/Accordion';
 import Editor from "@monaco-editor/react";
-import info from "../../assets/info.svg"
-const OffCanvas = ({solution, hint, theme }) => {
+import info from "../../assets/info.svg";
+import Logo from '../../assets/logo.png';
+
+const OffCanvas = ({solution, hint, theme, language }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const options = {
+    readOnly: true,
+    lineNumbers:false,
+    minimap:{
+      enabled: false,
+    },
+    folding:false,
+  };
   
   return (
     <>
@@ -34,18 +43,19 @@ const OffCanvas = ({solution, hint, theme }) => {
         </Accordion.Item>
         <Accordion.Item eventKey="3">
             <Accordion.Header>Possible Solution</Accordion.Header>
-            <Accordion.Body>
+            <Accordion.Body className="oc-editor-styles">
             <Editor 
                 width={`100%`}
-                height="125px"
+                height='350px'
                 value={solution}
-                theme={theme.value}
-                readOnly={true}
-                
+                options={options}
+                theme={theme.value}  
+                language={language}
             />
             </Accordion.Body>
         </Accordion.Item>
         </Accordion>
+        <img className="oc-logo" src={Logo}/>
         </Offcanvas.Body>
       </Offcanvas>
     </>

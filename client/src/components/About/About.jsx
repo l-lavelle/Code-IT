@@ -2,7 +2,7 @@ import React from "react";
 import '../../Variables.css';
 import './About.css';
 import laurenPic from '../../assets/lauren.JPG';
-import CodeCat from '../CodeCat/CodeCat';
+import Logo from '../../assets/logo.png';
 import {Row, Col} from 'react-bootstrap';
 
 const About = () => {
@@ -12,11 +12,12 @@ const About = () => {
         <div className="about-info mx-3 px-2 pb-2 pt-2 mb-3">
             <div className="about-title">
             <h2 md={6} lg={4}><span id="spaceBreak">About </span><span >CodeIT</span></h2>
-            <CodeCat/>
+           <img className="about-logo" src={Logo}/>
             </div>
             <div md={6} lg={7} className="text-left">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p>Welcome to CodeIT, the ultimate platform for honing your coding skills and preparing for real-world programming challenges. Whether you’re a beginner looking to learn the basics or an experienced developer aiming to sharpen your skills, our website offers a wide range of coding problems and languages to suit all levels.</p>
+                <p>At CodeIT, our mission is to empower developers by providing a comprehensive and engaging platform for coding practice. We believe that solving coding challenges is one of the best ways to improve problem-solving skills, enhance coding proficiency, and prepare for technical interviews.</p>
+                <p>Join CodeIT today and take the next step in your coding journey. Whether you’re preparing for a job interview, looking to improve your coding skills, or simply love solving problems, we have something for everyone.</p>
             </div>
         </div>
     </div>
@@ -27,7 +28,7 @@ const About = () => {
         </Col>
         <Col md={12} lg={7} className="lo-info pt-2 pb-2">
             <h4>Meet the Dev</h4>
-            <p>Hi, Nice to Meet You! orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+            <p>Hello! I’m Lauren, a passionate and dedicated software developer. My journey in coding began with a fascination for problem-solving and a desire to create innovative solutions that make a difference. I continue to hone my skills in various programming languages, and have developed a deep understanding of software development principles.</p>
         </Col>
     </Row>
     </div>

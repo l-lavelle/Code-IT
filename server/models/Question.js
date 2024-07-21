@@ -28,6 +28,9 @@ Question.init(
     solution: {
       type: DataTypes.STRING,
     },
+    comment: {
+      type: DataTypes.STRING,
+    },
     difficulty_id: {
       type: DataTypes.INTEGER,
       references: {
