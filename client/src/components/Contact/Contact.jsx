@@ -5,7 +5,7 @@ import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import  { useState } from 'react';
 import {showErrorToast,showSuccessToast} from '../../utils/general';
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Contact = () => {

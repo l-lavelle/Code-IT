@@ -8,13 +8,13 @@ import {Row, Col} from 'react-bootstrap';
 const About = () => {
   return (
     <div className="about-container ps-3 pe-3 pt-3">
-    <div className="d-flex justify-content-center  about-wrapper">
+    <div className="d-flex justify-content-center about-wrapper">
         <div className="about-info mx-3 px-2 pb-2 pt-2 mb-3">
-            <div className="about-title">
-            <h2 md={6} lg={4}><span id="spaceBreak">About </span><span >CodeIT</span></h2>
-           <img className="about-logo" src={Logo}/>
+            <div className="about-title pt-2">
+                <h2 md={6} lg={4}>About CodeIT</h2>
+                <img className="mb-2 about-logo" src={Logo} alt="CodeIt logo"/>
             </div>
-            <div md={6} lg={7} className="text-left">
+            <div md={6} lg={7} >
                 <p>Welcome to CodeIT, the ultimate platform for honing your coding skills and preparing for real-world programming challenges. Whether you’re a beginner looking to learn the basics or an experienced developer aiming to sharpen your skills, our website offers a wide range of coding problems and languages to suit all levels.</p>
                 <p>At CodeIT, our mission is to empower developers by providing a comprehensive and engaging platform for coding practice. We believe that solving coding challenges is one of the best ways to improve problem-solving skills, enhance coding proficiency, and prepare for technical interviews.</p>
                 <p>Join CodeIT today and take the next step in your coding journey. Whether you’re preparing for a job interview, looking to improve your coding skills, or simply love solving problems, we have something for everyone.</p>
