@@ -83,7 +83,7 @@ useEffect(() => {
          </div>
         </Col>
         )):null}
-        <Col md={12} lg={5} xl={4}>
+        <Col className='code-editor-block' md={12} lg={5} xl={4}>
             <div className="cd-add" onClick={createCodeblock}>
             <img className="cd-plus-img" src={Plus}/>
             </div>

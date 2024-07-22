@@ -27,7 +27,7 @@ export const showErrorToast = (msg) => {
 };
 
 export const showSuccessToast = (msg) => {
-  toast.success(msg || `Compiled Successfully!`, {
+  toast.success(msg, {
     position: "top-right",
     autoClose: 1000,
     hideProgressBar: false,

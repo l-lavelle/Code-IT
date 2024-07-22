@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { classnames } from "../../utils/general";
 import { languageOptions } from "../../constants/languageOptions";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AuthService from '../../utils/auth';
 import { defineTheme } from "../../lib/defineTheme";
