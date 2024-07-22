@@ -31,11 +31,9 @@ p {
   left: 50%;
   width: 75%;
 }
-
 .home-info-container {
   background-color: var(--medium-blue);
 }
-
 .tech-border {
   --s: 100px; /* the size on the corner */
   --t: 5px; /* the thickness of the border */
@@ -140,7 +138,7 @@ p {
     height: 450px;
   }
 }
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 992px) {
   #above-img {
     width: 737px;
   }
@@ -153,6 +151,34 @@ p {
   }
   #tsparticles {
     height: 470px;
+  }
+  .home-language-container,
+  .home-skills-container {
+    width: 33%;
+  }
+  .language-reverse {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 570px;
+    justify-content: center;
+    align-items: center;
+  }
+  .skills-row {
+    display: flex;
+    flex-direction: column;
+    height: 570px;
+    justify-content: center;
+    align-items: center;
+  }
+  .home-info-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .hp-pic {
+    max-width: 100%;
+    height: auto;
   }
 }
 @media screen and (min-width: 1396px) {
