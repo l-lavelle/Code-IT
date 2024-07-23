@@ -153,7 +153,7 @@ const FreeCode = () => {
         <div className="theme-dd">
           <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
         </div>
-        <div className="px-4 ">
+        <div>
           <LanguagesDropdown onSelectChange={onSelectChange} />
         </div>
         {AuthService.loggedIn()?(<SaveModal language={language} code={code}/>):null}

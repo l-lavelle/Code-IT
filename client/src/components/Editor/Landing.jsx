@@ -233,7 +233,7 @@ const Landing = () => {
         <div className="theme-dd">
           <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
         </div>
-        <div className="ms-4 language-dd" >
+        <div className="language-dd" >
           <p className="l-language">{language.name}</p>
         </div>
       </div>

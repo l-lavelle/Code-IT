@@ -1,24 +1,35 @@
 [
-       {
-       "name": "Odd or Even",
-       "question": " Write code to return the string \"odd\" if number is an odd number and return the string \"even\" if number is an even number.",
-       "answer": "even",
-       "hint": "Use a conditional statement to see if the number is even or odd.",
-       "solution": "var oddOrEven = function(num) { \n    if (num%2===0){ \n        console.log(\"even\") \n    } \n    else{ \n        console.log(\"odd\") \n    } \n };\n oddOrEven(74)",
-       "comment":"//new comment",
-       "difficulty_id": 1,
-       "language_id": 2
+  {
+    "name": "Odd or Even",
+    "question": "Write code to return the string \"odd\" if number is an odd number and return the string \"even\" if number is an even number.",
+    "answer": "even",
+    "hint": "Use a conditional statement to see if the number is even or odd.",
+    "solution": "var oddOrEven = function(num) { \n    if (num%2===0){ \n        console.log(\"even\") \n    } \n    else{ \n        console.log(\"odd\") \n    } \n };\n oddOrEven(74)",
+    "comment":"var oddOrEven = function(num) { \n };\n oddOrEven(74)",
+    "difficulty_id": 1,
+    "language_id": 2
   },
-
-    {
-        "name": "sss",
-        "question": "Write code to return the string odd if number is an odd number and return the string even if number is an even number. Check your answer using the number 74.",
-        "answer": "even",
-        "hint": "Use a conditional statement to see if the number is even or odd",
-        "solution": "Easy '\\n' asdfjkla \n asjfk",
-        "difficulty_id": 1,
-        "language_id": 2
-   }
+  {
+    "name": "Palindrome",
+    "question": "Write code that returns true if string is a palindrome, and false if string is not a palindrome.",
+    "answer": "false",
+    "hint": "Can create an array to reverse all of the letters in the world and then join them together to create string.",
+    "solution": "var isPalindrome = function(str) { \n const str1= str.toLowerCase() \n const newArray= Array.from(str1).reverse().join(\"\")\n  return (str1===newArray)\n };\n console.log(isPalindrome('Palindrome'))",
+    "comment":"var isPalindrome = function(str) { \n };\n console.log(isPalindrome('Palindrome'))",
+    "difficulty_id": 1,
+    "language_id": 2
+  },
+  {
+    "name": "CountDown",
+    "question": "Write code to print all numbers from the number down to zero and save in an array",
+    "answer": "[6,5,4,3,2,1,0]",
+    "hint": "Use a for loop with decrement to reverse through the numbers.",
+    "solution": "let count =[]\nvar countdown = function(num) {\nfor(let i=num; i>=0; i--){\ncount.push(i)\n}\nreturn count\n};\n console.log(countdown(6))",
+    "comment":"var countdown = function(num) {};\n console.log(countdown(6))",
+    "difficulty_id": 1,
+    "language_id": 2
+  }
+    
 
  
 ] 

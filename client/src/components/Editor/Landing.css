@@ -51,9 +51,10 @@ div.oc-editor-styles.accordion-body {
 }
 .theme-info-container {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  column-gap: 10px;
 }
 .l-language,
 .save-btn {
@@ -67,10 +68,10 @@ div.oc-editor-styles.accordion-body {
 }
 
 /* Lanuages and Theme DropDown */
-.drop-styles {
+/* .drop-styles {
   display: flex;
   flex-direction: row;
-}
+} */
 .css-b62m3t-container {
   min-width: 250px;
 }
@@ -106,7 +107,9 @@ div.oc-editor-styles.accordion-body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: start;
-    width: 66.2%;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    column-gap: 10px;
   }
 }
 @media screen and (min-width: 992px) {
