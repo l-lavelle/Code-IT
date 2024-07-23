@@ -116,10 +116,12 @@ const Landing = () => {
   const checkAnswer = async (data) => {
     let trialAnswer = (atob(data.stdout)).trim()
     if (trialAnswer===questionData.answer){
-      setAnswerCorrect("Correct Answer");
+      setAnswerCorrect("Correct");
+      showSuccessToast("Correct Answer!");
       updateUserAnswer(1)
     }else{
-      setAnswerCorrect("Incorrect Answer. Try Again");
+      setAnswerCorrect("Incorrect. Try Again");
+      showErrorToast("Incorrect Answer")
       updateUserAnswer(0)
     }
   };
@@ -173,7 +175,7 @@ const Landing = () => {
         } else {
           setProcessing(false);
           setOutputDetails(response.data);
-          showSuccessToast(`Compiled Successfully!`);
+          // showSuccessToast(`Compiled Successfully!`);
           checkAnswer(response.data);
           return;
         }
@@ -197,10 +199,11 @@ const Landing = () => {
       setTheme({ value: "oceanic-next", label: "Oceanic Next" })
     );
   }, []);
-console.log("wejkl", questionData)
+
   if (questionData===undefined) {
     return <>Still loading...</>;
   }
+
   return (
     <div className="m-2">
       <ToastContainer
@@ -230,8 +233,8 @@ console.log("wejkl", questionData)
         <div className="theme-dd">
           <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
         </div>
-        <div className="mt-2 language-dd" >
-          <p>Language: {language.name}</p>
+        <div className="ms-4 language-dd" >
+          <p className="l-language">{language.name}</p>
         </div>
       </div>
       <div className="editor-output">
@@ -260,7 +263,7 @@ console.log("wejkl", questionData)
               </button>
               </div>
           {outputDetails && <OutputDetails outputDetails={outputDetails} questionData={questionData}/>}
-          {answerCorrect===undefined?null:<p>{answerCorrect}</p>}
+          {answerCorrect===undefined?null:<p className="l-answer">Answer: <span className="font-semibold px-2 py-1 rounded-md bg-gray-100">{answerCorrect}</span></p>}
             </div>
             </Col>
         </Row>

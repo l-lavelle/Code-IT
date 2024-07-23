@@ -55,7 +55,7 @@ const OffCanvas = ({solution, hint, theme, language }) => {
             </Accordion.Body>
         </Accordion.Item>
         </Accordion>
-        <img className="oc-logo" src={Logo}/>
+        <img className="mt-3 oc-logo" src={Logo}/>
         </Offcanvas.Body>
       </Offcanvas>
     </>

@@ -19,12 +19,6 @@ div.editor-window {
 .icon-image {
   width: 35px;
 }
-.theme-info-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
 .offcanvas-styles {
   font-family: var(--outfit);
 }
@@ -55,16 +49,64 @@ div.oc-editor-styles.accordion-body {
   align-items: center;
   justify-content: center;
 }
+.theme-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.l-language,
+.save-btn {
+  box-shadow: 5px 5px 0px 0px rgba(0, 0, 0);
+  padding: 6px 9px;
+  border-radius: 5px;
+  border: 1px solid rgb(147, 144, 144);
+}
+.save-btn:hover {
+  background-color: var(--gold);
+}
 
-/* Lanuages DropDown */
+/* Lanuages and Theme DropDown */
 .drop-styles {
   display: flex;
   flex-direction: row;
+}
+.css-b62m3t-container {
+  min-width: 250px;
+}
+.css-1h06qz8-control {
+  box-shadow: 5px 5px 0px 0px rgba(0, 0, 0);
+}
+.css-lm8j94-menu,
+.css-1ovlgij-control {
+  font-family: var(--roboto);
+}
+
+/* Output Details */
+.metrics-container p:not(span),
+.l-answer {
+  font-family: var(--roboto);
+  font-weight: bold;
+}
+.metrics-container p span,
+.l-answer span {
+  background-color: var(--light-blue);
+  border-radius: 5px;
+  font-weight: normal;
 }
 
 @media screen and (max-width: 528px) {
   .theme-dd {
     display: none;
+  }
+}
+@media screen and (min-width: 528px) {
+  .theme-info-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: start;
+    width: 66.2%;
   }
 }
 @media screen and (min-width: 992px) {
@@ -73,13 +115,6 @@ div.oc-editor-styles.accordion-body {
   }
   .output-box {
     min-height: 300px;
-  }
-  .theme-info-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    width: 66.2%;
   }
   .landing-question {
     width: 60%;

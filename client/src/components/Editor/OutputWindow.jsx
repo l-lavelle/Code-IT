@@ -36,9 +36,9 @@ const OutputWindow = ({ outputDetails }) => {
   };
   return (
     <>
-      <h1 className="mt-2">
+      <h3>
         Output
-      </h1>
+      </h3>
       <div className="output-box">
         {outputDetails ? <>{getOutput()}</> : null}
       </div>

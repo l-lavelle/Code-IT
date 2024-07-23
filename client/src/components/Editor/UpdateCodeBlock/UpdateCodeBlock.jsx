@@ -189,12 +189,12 @@ const updateCodeBlock = ()=>{
         <div className="theme-dd">
           <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
         </div>
-        <div className="px-4 py-2">
-            <div className="mt-2 language-dd" >
-            <p>Language: {language.name}</p>
+        <div className="px-4">
+            <div className="language-dd" >
+            <p className="l-language">{language.name}</p>
             </div>
         </div>
-        <button className="button-ct" variant="primary" type="submit" onClick={updateCodeBlock}> Update CodeBlock</button> 
+        <button className="save-btn" variant="primary" type="submit" onClick={updateCodeBlock}> Save</button> 
       </div>
       <div className="editor-output">
         <Row>

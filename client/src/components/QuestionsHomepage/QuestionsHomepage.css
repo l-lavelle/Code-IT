@@ -3,7 +3,6 @@
 }
 .qh-summary {
   text-align: center;
-  /* display: inline; */
   padding-left: 15%;
   padding-right: 15%;
 }
@@ -67,6 +66,12 @@ button#input-group-dropdown-1:hover {
 button#input-group-dropdown-1 {
   background-color: white;
 }
+.qh-dd {
+  max-width: 70%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 @media screen and (max-width: 767px) {
   .qh-btnGroup button {
     display: none;
@@ -75,5 +80,11 @@ button#input-group-dropdown-1 {
 @media screen and (min-width: 767px) {
   .qh-difficulty-dd {
     display: none;
+  }
+  .qh-dd {
+    max-width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

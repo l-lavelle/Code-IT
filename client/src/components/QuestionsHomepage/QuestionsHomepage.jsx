@@ -93,7 +93,7 @@ const QuestionsHomepage = () => {
     <h2 className="pt-3">Coding Challenges</h2>
     <p className="m-2 qh-summary">Ready to test your skills? Choose the lanuage you want to use and the difficulty level for the challenge questions. Click on the question in order to start the challenge.</p>
     <div className=" ms-3 me-3 ">
-    <InputGroup className="mb-3">
+    <InputGroup className="mb-3 qh-dd">
        <QHDropdown 
        title={"Language"}
        value={languageInfo.languageType}
@@ -114,7 +114,7 @@ const QuestionsHomepage = () => {
     </div>
 
     <div className=" ms-3 me-3 qh-difficulty-dd">
-      <InputGroup className="mb-3">
+      <InputGroup className="mb-3 qh-dd">
        <QHDropdown 
        title={"Difficulty"}
        value={difficultyInfo.difficultyType}

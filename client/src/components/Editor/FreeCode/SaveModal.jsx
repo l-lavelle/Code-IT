@@ -47,7 +47,7 @@ function SaveModal({language, code}) {
 
   return (
     <>
-      <button className="button-ct" variant="primary" type="submit" onClick={handleShow}> Save Code Block</button>
+      <button className="save-btn" variant="primary" type="submit" onClick={handleShow}> Save </button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Save Code Block</Modal.Title>
