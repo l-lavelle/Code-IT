@@ -20,6 +20,7 @@ const CodeEditorWindow = ({ onChange, language, code, theme }) => {
         theme={theme}
          defaultValue={code}
         onChange={handleEditorChange}
+        options={{wordWrap:"on"}}
       />
     </div>
   );

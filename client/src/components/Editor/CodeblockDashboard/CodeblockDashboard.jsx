@@ -72,21 +72,25 @@ useEffect(() => {
         value={codeblock.code}
         theme="vs-dark"
         />
-        <div className='overlay-edit-code'>
+        <div className='overlay-edit-code overlay-codeblock'>
          <h3>{codeblock.title}</h3>
          <p>{truncate(codeblock.description)}</p>
          <div>
-          <button className="me-3 button-ct" variant="primary" type="submit" onClick={()=>updateCodeBlock(codeblock.id)}> Edit</button> 
-          <button className="button-ct" variant="primary" type="submit" onClick={()=>deleteCodeBlock(codeblock.id)}> Delete</button> 
+          <button className="me-3 cd-btn-edit" variant="primary" type="submit" onClick={()=>updateCodeBlock(codeblock.id)}> Edit</button> 
+          <button className="cd-btn-delete" variant="primary" type="submit" onClick={()=>deleteCodeBlock(codeblock.id)}> Delete</button> 
          </div> 
          </div>
          </div>
         </Col>
         )):null}
+        
         <Col className='code-editor-block' md={12} lg={5} xl={4}>
-            <div className="cd-add" onClick={createCodeblock}>
-            <img className="cd-plus-img" src={Plus}/>
+            <div className="cd-add" onClick={createCodeblock}></div>
+            <div className='overlay-edit-code overlay-link' onClick={createCodeblock}>
+              <h2 className='cd-link'>Create New CodeBlock</h2>
+              <img src={Plus} className='cd-plus-img'/>
             </div>
+       
         </Col>
         <SaveDashModal show={show} setShow={setShow}/>
         </Row>

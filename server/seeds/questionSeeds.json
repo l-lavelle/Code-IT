@@ -28,7 +28,42 @@
     "comment":"var countdown = function(num) {};\n console.log(countdown(6))",
     "difficulty_id": 1,
     "language_id": 2
-  }
+  },
+  { 
+    "name": "Array Addition",
+    "question": "Write code to add all the numbers in the array and return the total",
+    "answer": "25",
+    "hint": "Can use a loop to add all of the numbers in an array. Another was is to use the reducer function",
+    "comment": "//Use the array given to solve the problem \n const array=[1,2,3,4,5,5,5] ",
+    "solution": "const array =[1,2,3,4,5,5,5] \n var sumArray = function(total, currentValue) { \n return total + currentValue \n}; \n console.log(array.reduce(sumArray))",
+    "difficulty_id": 1,
+    "language_id": 2
+   },
+   {
+    "name": "Factorial",
+    "question": "Write code to create a function that returns the factorial of the number. Use the number 5 to answer the question.",
+    "answer": "120",
+    "hint": "Factorial: product of all positive integers less than or equal to a given positive integer.",
+    "solution": "var factorial = function(num) { \n   var count=1 \n   for (let i=1; i<num+1; i++){ \n    count = count * i \n  } \n   return count \n }; \n \n console.log(factorial(5));",
+    "difficulty_id": 1,
+    "language_id": 2
+   },
+   {  
+    "name": "TitleCase",
+    "question": "Write code to create a function takes a string and returns a new string with the first letters of each word capitalized. Use the phrase \"how is your day going\" to solve the problem.",
+    "answer": "How Is Your Day Going",
+    "hint": "Loop through string and capitalize the first letter of each word. Methods that can use to complete the challenge. The substr() method extracts part of a string. The join() method returns and array as a string.",
+    "solution": "var titleCase = function(str) { \n   const trial=str.split(' ') \n   const loopT = trial.map(s=> s[0].toUpperCase()+ s.substr(1)).join(\" \") \n return loopT \n }; console.log(titleCase(\"how is your day going\"))",
+    "difficulty_id": 2,
+    "language_id": 2
+   }
+
+
+
+  
+   
+  
+
     
 
  

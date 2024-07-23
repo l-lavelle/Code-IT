@@ -18,6 +18,7 @@ const OffCanvas = ({solution, hint, theme, language }) => {
       enabled: false,
     },
     folding:false,
+    wordWrap:"on"
   };
   
   return (

@@ -18,21 +18,29 @@
   width: 100%;
   opacity: 0;
   transition: 0.5s ease;
-  background-color: var(--light-blue);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.overlay-edit-code:hover {
+.overlay-codeblock {
+  background-color: var(--light-blue);
+}
+.overlay-link {
+  background-color: var(--dark-blue);
   opacity: 1;
-  transform: scale(1.3);
+}
+.overlay-edit-code:hover {
+  transform: scale(1.1);
+  opacity: 1;
+  border-radius: 5px;
   z-index: 5;
+  cursor: pointer;
 }
 .cd-add {
   width: 100%;
   height: 200px;
-  background-color: black;
+  background-color: var(--dark-blue);
   border-radius: 25px;
   cursor: pointer;
   display: flex;
@@ -40,5 +48,54 @@
   align-items: center;
 }
 .cd-plus-img {
-  width: 150px;
+  width: 50px;
+  margin-top: 5px;
+}
+
+.cd-btn-edit,
+.cd-btn-delete {
+  box-shadow: 5px 5px 0px 0px rgba(0, 0, 0);
+  padding: 6px 9px;
+  border-radius: 5px;
+  border: 1px solid rgb(147, 144, 144);
+}
+.cd-btn-delete:hover {
+  background-color: red;
+}
+.cd-btn-edit:hover {
+  background-color: var(--gold);
+}
+
+.cd-link {
+  background-image: linear-gradient(
+    to right,
+    var(--gold),
+    var(--gold) 50%,
+    white 50%
+  );
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  padding: 5px 0;
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+.cd-link:before {
+  content: "";
+  background: var(--gold);
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+}
+.cd-link:hover {
+  background-position: 0;
+}
+.cd-link:hover::before {
+  width: 100%;
 }

@@ -28,6 +28,7 @@ const Landing = () => {
   const [questionData, setQuestionData]=useState();
   const [answerCorrect, setAnswerCorrect] = useState()
  
+
   useEffect(() => {
     if(AuthService.getToken()!=null){
       let questionId= window.location.pathname.split('/')[2]
@@ -115,6 +116,8 @@ const Landing = () => {
 
   const checkAnswer = async (data) => {
     let trialAnswer = (atob(data.stdout)).trim()
+    console.log("trialAnswer",trialAnswer);
+    console.log("questiondata",questionData.answer)
     if (trialAnswer===questionData.answer){
       setAnswerCorrect("Correct");
       showSuccessToast("Correct Answer!");
