@@ -1,7 +1,7 @@
 [
   {
     "name": "Odd or Even",
-    "question": "Write code to return the string \"odd\" if number is an odd number and return the string \"even\" if number is an even number.",
+    "question": "Write code to return the string \"odd\" if number is an odd number and return the string \"even\" if number is an even number. Use the number 74 to solve the problem.",
     "answer": "even",
     "hint": "Use a conditional statement to see if the number is even or odd.",
     "solution": "var oddOrEven = function(num) { \n    if (num%2===0){ \n        console.log(\"even\") \n    } \n    else{ \n        console.log(\"odd\") \n    } \n };\n oddOrEven(74)",
@@ -11,7 +11,7 @@
   },
   {
     "name": "Palindrome",
-    "question": "Write code that returns true if string is a palindrome, and false if string is not a palindrome.",
+    "question": "Write code that returns true if string is a palindrome, and false if string is not a palindrome. Use the word \"Palindrome\" to test.",
     "answer": "false",
     "hint": "Can create an array to reverse all of the letters in the world and then join them together to create string.",
     "solution": "var isPalindrome = function(str) { \n const str1= str.toLowerCase() \n const newArray= Array.from(str1).reverse().join(\"\")\n  return (str1===newArray)\n };\n console.log(isPalindrome('Palindrome'))",
@@ -21,7 +21,7 @@
   },
   {
     "name": "CountDown",
-    "question": "Write code to print all numbers from the number down to zero and save in an array",
+    "question": "Write code to print all numbers from the number down to zero and save in an array.",
     "answer": "[6,5,4,3,2,1,0]",
     "hint": "Use a for loop with decrement to reverse through the numbers.",
     "solution": "let count =[]\nvar countdown = function(num) {\nfor(let i=num; i>=0; i--){\ncount.push(i)\n}\nreturn count\n};\n console.log(countdown(6))",
@@ -31,7 +31,7 @@
   },
   { 
     "name": "Array Addition",
-    "question": "Write code to add all the numbers in the array and return the total",
+    "question": "Write code to add all the numbers in the array below and return the total.",
     "answer": "25",
     "hint": "Can use a loop to add all of the numbers in an array. Another was is to use the reducer function",
     "comment": "//Use the array given to solve the problem \n const array=[1,2,3,4,5,5,5] ",

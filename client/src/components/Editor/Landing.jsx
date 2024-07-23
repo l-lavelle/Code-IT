@@ -115,10 +115,12 @@ const Landing = () => {
   };
 
   const checkAnswer = async (data) => {
-    let trialAnswer = (atob(data.stdout)).trim()
+    // let trialAnswer = (atob(data.stdout)).trim()
+    let trialAnswer = (atob(data.stdout)).replace(/\s/g, '');
+    let answer= questionData.answer.replace(/\s/g, '');
     console.log("trialAnswer",trialAnswer);
-    console.log("questiondata",questionData.answer)
-    if (trialAnswer===questionData.answer){
+    console.log("questiondata",answer)
+    if (trialAnswer===answer){
       setAnswerCorrect("Correct");
       showSuccessToast("Correct Answer!");
       updateUserAnswer(1)
