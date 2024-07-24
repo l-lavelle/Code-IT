@@ -56,7 +56,19 @@
     "solution": "var titleCase = function(str) { \n   const trial=str.split(' ') \n   const loopT = trial.map(s=> s[0].toUpperCase()+ s.substr(1)).join(\" \") \n return loopT \n }; console.log(titleCase(\"how is your day going\"))",
     "difficulty_id": 2,
     "language_id": 2
+   },
+   { 
+    "name": "Product of 2 Largest",
+    "question": "Write code to create a function that accepts an array of numbers, finds the largest two numbers, and returns the product of the two.",
+    "answer": "60",
+    "hint": "Find the largest number in an array. Then remove the largest number and grab the next highest number. ",
+    "comment": "//Use the array given to solve the problem \n const array = [2,6,5, 40,8,3,4,2, 20]",
+    "solution": "const array = [2,6,5, 40,8,3,4,2, 20] \n var productOfLargestTwo = function(arr) { \n   const largest = Math.max(...arr) \n   arr.splice(arr.indexOf(largest),1) \n   const second = Math.max(...arr) \n return largest + second \n }; \n \n console.log(productOfLargestTwo(array))",
+    "difficulty_id": 2,
+    "language_id": 2
    }
+
+
 
 
 

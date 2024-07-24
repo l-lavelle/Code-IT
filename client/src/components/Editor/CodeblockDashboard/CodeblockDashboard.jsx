@@ -51,7 +51,7 @@ useEffect(() => {
       });
   }, []);
 
-  const truncate = (input) => input.length > 25 ? `${input.substring(0, 25)}...` : input;
+  const truncate = (input,num) => input.length > num ? `${input.substring(0, num)}...` : input;
   
     if (codeData ===undefined) {
         return <>Still loading...</>;
@@ -69,12 +69,13 @@ useEffect(() => {
         <Editor 
         width={`100%`}
         height="200px"
-        value={codeblock.code}
+        value={truncate(codeblock.code,200)}
         theme="vs-dark"
+        options={{wordWrap:"on"}}
         />
         <div className='overlay-edit-code overlay-codeblock'>
          <h3>{codeblock.title}</h3>
-         <p>{truncate(codeblock.description)}</p>
+         <p>{truncate(codeblock.description,25)}</p>
          <div>
           <button className="me-3 cd-btn-edit" variant="primary" type="submit" onClick={()=>updateCodeBlock(codeblock.id)}> Edit</button> 
           <button className="cd-btn-delete" variant="primary" type="submit" onClick={()=>deleteCodeBlock(codeblock.id)}> Delete</button> 

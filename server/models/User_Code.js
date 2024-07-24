@@ -17,7 +17,7 @@ User_Code.init(
       type: DataTypes.STRING,
     },
     code: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     language: {
       type: DataTypes.STRING,

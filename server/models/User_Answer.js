@@ -9,7 +9,7 @@ User_Answer.init(
       type: DataTypes.BOOLEAN,
     },
     user_work: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     user_id: {
       type: DataTypes.INTEGER,

@@ -26,7 +26,7 @@ Question.init(
       type: DataTypes.STRING,
     },
     solution: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     comment: {
       type: DataTypes.STRING,
