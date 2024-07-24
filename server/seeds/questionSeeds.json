@@ -66,7 +66,92 @@
     "solution": "const array = [2,6,5, 40,8,3,4,2, 20] \n var productOfLargestTwo = function(arr) { \n   const largest = Math.max(...arr) \n   arr.splice(arr.indexOf(largest),1) \n   const second = Math.max(...arr) \n return largest + second \n }; \n \n console.log(productOfLargestTwo(array))",
     "difficulty_id": 2,
     "language_id": 2
+   },
+   { 
+    "name": "Anagram",
+    "question": "Write code to create a function that accepts two strings. Return true if the strings are anagrams of each other, otherwise return false. Use the words battle and tablet to test the function.",
+    "answer": "true",
+    "hint": "An anagram is a word or phrase by rearranging the letters of another word. Create arrays of the characters and sort to determine if the all of the characters are the same.",
+    "comment": " const strA=\"battle\" \n  const strB=\"tablet\" ",
+    "solution": "var isAnagram = function(strA, strB) { \n    const loweredA= strA.toLowerCase() \n    const loweredB= strB.toLowerCase() \n   const arrayA= Array.from(loweredA).sort() \n    const arrayB= Array.from(loweredB).sort() \n    const newA = arrayA.join() \n    const newB= arrayB.join() \n   return newA===newB \n }; \n \n const strA=\"battle\" \n const strB=\"tablet\" \n console.log(isAnagram(strA, strB))",
+    "difficulty_id": 2,
+    "language_id": 2
+   },
+   { 
+    "name": "Create a Person",
+    "question": "Write a JavaScript program to create a class called Person with properties for name, age, and country. Include a method to display the persons details. Use the following criteria and return in this format- Name: Trevor, Age: 25, and Country: France.",
+    "answer": " Name: Trevor Age: 25 Country: France",
+    "hint": "First create a constructor for a Person object. Then create a method to log the name, age, and properties for the person. Lastly create an instance of a Person with the given criteria.",
+    "solution": "class Person { \n   constructor(name, age, country) { \n     this.name = name; \n     this.age = age; \n     this.country = country; \n   } \n \n   displayDetails() { \n     console.log(`Name: ${this.name}`); \n     console.log(`Age: ${this.age}`); \n     console.log(`Country: ${this.country}`); \n   } \n } \n  const person1 = new Person('Trevor', 25, 'France'); \n person1.displayDetails();",
+    "difficulty_id": 2,
+    "language_id": 2
+   },
+   {
+    "name": "Percentile",
+    "question": " Write a JavaScript program to calculate how many numbers in the given array are less than or equal to the value 3 in the given array below.",
+    "answer": "50",
+    "hint": "Use the filter for arrays in order to see if the numbers in the array are less than or greater than the given value.",
+    "comment": "//Use the array given to find the percentile of number 3 \n const array = [1, 2, 3, 4, 5, 6]",
+    "solution": "const percentile = (arr, num) => ( \n arr.filter((item) => item <= num).length / arr.length) * 100; \nconsole.log(percentile([1, 2, 3, 4, 5, 6],3))",
+    "difficulty_id": 2,
+    "language_id": 2
+   },
+   { 
+    "name": "Division",
+    "question": "Write a Java program to take 2 numbers, divide them, and return the answer rounded to the hundredths position. Use 1025 as the numerator and 6 as the denominator.",
+    "answer": "170.83",
+    "hint": "Divide the two inputs and save in a new variable. Then format the answer to the hundredths position.",
+    "comment":"//Numerator: 1025 & Denominator:6",
+    "solution": "public class Main { \n public static void main(String[] args) { \n float result = (float)1025 / 6; \n System.out.format(\"%.2f\", result); \n }\n } ",
+    "difficulty_id": 1,
+    "language_id": 1
+   },
+   {
+    "name": "Calculate Interest",
+    "question": "Find the simple interest for a $10,000 amount at the rate of 5% for 5 years.",
+    "answer": "2500",
+    "hint": "Simple Interest is calculated: (Amount x Time x Rate)/100",
+    "solution": "class Main { \n public static void main(String args[]) \n { \n int P = 10000, R = 5, T = 5; \n \n int SI = (P * T * R) / 100; \n System.out.println(SI); \n }\n }",
+    "difficulty_id": 1,
+    "language_id": 1
+   },
+   { 
+    "name": "Vowel Search",
+    "question": "Create a Java program to see if the string \"Hello\" contains vowels.",
+    "answer": "true",
+    "hint": "Use regular expression: https://www.w3schools.com/java/java_regex.asp",
+    "solution": "public class Main { \n public static void main(String[] args) { \n System.out.println(stringContainsVowels(\"Hello\")); \n } \n \n public static boolean stringContainsVowels(String input) { \n return input.toLowerCase().matches(\".*[aeiou].*\"); \n } \n }",
+    "difficulty_id": 1,
+    "language_id": 1
+   },
+   {
+    "name": "Prime Number",
+    "question": "Write a Java program to determine if the number is prime. Return true if it is and false if it is not. Use number 49 to test the program.",
+    "answer": "false",
+    "hint": "A prime number are numbers greater than 1 with exactly two factors, 1 and the number itself",
+    "solution": "public class Main { \n public static void main(String[] args) { \n System.out.println(isPrime(49)); \n } \n \n public static boolean isPrime(int n) { \n if (n == 0 || n == 1) { \n return false; \n } \n if (n == 2) { \n return true; \n } \n for (int i = 2; i <= n / 2; i++) { \n if (n % i == 0) { \n return false; \n } \n } \n return true; \n } \n }",
+    "difficulty_id": 1,
+    "language_id": 1
+   },
+   { 
+    "name": "Array Sum",
+    "question": "Add all of the numbers in the array below and return them in a variable.",
+    "answer": "46",
+    "hint": "Create a loop in order to add all of the integers.",
+    "comment": " int[] array = { 7, 2, 24, 4, 9 }; ",
+    "solution": "public class Main { \n  public static void main(String[] args) { \n  int[] array = { 7, 2, 24, 4, 9 }; \n \n int sum = 0; \n \n for (int i : array) \n   sum += i; \n \n System.out.println(sum); \n   }\n }",
+    "difficulty_id": 1,
+    "language_id": 1
    }
+
+
+
+
+
+
+
+
+
 
 
 
