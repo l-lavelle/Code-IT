@@ -11,7 +11,7 @@ import Plus from '../../../assets/plus.png';
 function CodeBlockDashboard() {
     const [codeData, setCodeData] =useState();
     const [show, setShow] = useState(false);
-
+ console.log("codeData", codeData)
     const createCodeblock = async () => {
         setShow(true)
     };
@@ -51,7 +51,7 @@ useEffect(() => {
       });
   }, []);
 
-  const truncate = (input,num) => input.length > num ? `${input.substring(0, num)}...` : input;
+  const truncate = (input,num) => input?.length > num ? `${input.substring(0, num)}...` : input;
   
     if (codeData ===undefined) {
         return <>Still loading...</>;
@@ -85,13 +85,11 @@ useEffect(() => {
         </Col>
         )):null}
         
-        <Col className='code-editor-block' md={12} lg={5} xl={4}>
-            <div className="cd-add" onClick={createCodeblock}></div>
-            <div className='overlay-edit-code overlay-link' onClick={createCodeblock}>
+        <Col  md={12} lg={5} xl={4}>
+            <div className='d-flex flex-column cd-new' onClick={createCodeblock}>
               <h2 className='cd-link'>Create New CodeBlock</h2>
-              <img src={Plus} className='cd-plus-img'/>
+              <img src={Plus} className='cd-plus-img' alt="plus-icon"/>
             </div>
-       
         </Col>
         <SaveDashModal show={show} setShow={setShow}/>
         </Row>

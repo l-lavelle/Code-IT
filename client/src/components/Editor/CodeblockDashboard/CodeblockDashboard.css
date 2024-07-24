@@ -26,10 +26,6 @@
 .overlay-codeblock {
   background-color: var(--light-blue);
 }
-.overlay-link {
-  background-color: var(--dark-blue);
-  opacity: 1;
-}
 .overlay-edit-code:hover {
   transform: scale(1.1);
   opacity: 1;
@@ -37,7 +33,8 @@
   z-index: 5;
   cursor: pointer;
 }
-.cd-add {
+.cd-add,
+.cd-new {
   width: 100%;
   height: 200px;
   background-color: var(--dark-blue);
@@ -46,6 +43,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.cd-new {
+  margin-bottom: 25px;
 }
 .cd-plus-img {
   width: 50px;
