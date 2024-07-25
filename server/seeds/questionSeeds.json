@@ -142,7 +142,101 @@
     "solution": "public class Main { \n  public static void main(String[] args) { \n  int[] array = { 7, 2, 24, 4, 9 }; \n \n int sum = 0; \n \n for (int i : array) \n   sum += i; \n \n System.out.println(sum); \n   }\n }",
     "difficulty_id": 1,
     "language_id": 1
-   }
+   },
+   {
+    "name": "Negative List",
+    "question": "Given a list of numbers, write a Python program to print all negative numbers in the given list.",
+    "answer": "-21 -93 ",
+    "hint": "Loop through the array checking to see if each number meets the condition of being less than zero.",
+     "comment": "numList=[11, -21, 0, 45, 66, -93]",
+    "solution": "list1 = [11, -21, 0, 45, 66, -93]\nfor num in list1:\n    if num < 0:\n      print(num)",
+    "difficulty_id": 1,
+    "language_id": 3
+},
+{
+    "name": "Swap Commas",
+    "question": "Replace all the commas with periods and all the periods with commas for the string below.",
+    "answer": " 14.625.498, 002",
+    "hint": "On possible solution is to use maketrans and translate methods. Another method is to use the replace to change characters in the string.",
+    "comment": "string = \"14, 625, 498.002\"",
+    "solution": "def Replace(str1):\n    maketrans = str1.maketrans\n    final = str1.translate(maketrans(',.', '.,', ' '))\n    return final.replace(',', \", \")\n\nstring = \"14, 625, 498.002\"\nprint(Replace(string))",
+    "difficulty_id": 1,
+    "language_id": 3
+},
+{
+    "name": "Sorting Dictionary",
+    "question": "Write a program that takes the provided dictionary and sorts it according to the keys.",
+    "answer": "{'Bob': 2, 'Collin': 9, 'Kyle': 32, 'Sarah': 15, 'Zoey': 10}",
+    "hint": "Create a list of all the keys and then sort the list. Create a new dictionary by iterating over an iterable and specifying how to map keys to values",
+    "comment": "myDict = {'Zoey': 10, 'Collin': 9,'Sarah': 15, 'Bob': 2, 'Kyle': 32}",
+    "solution": "myDict = {'Zoey': 10, 'Collin': 9,'Sarah': 15, 'Bob': 2, 'Kyle': 32}\n\nmyKeys = list(myDict.keys())\nmyKeys.sort()\nsorted_dict = {i: myDict[i] for i in myKeys}\n\nprint(sorted_dict)",
+    "difficulty_id": 1,
+    "language_id": 3
+},
+{
+    "name": "Dictionary Sum",
+    "question": "Write a program that takes the provided dictionary returns the sum of all the values to help the \"Normal Store\" figure out how much inventory they have.",
+    "answer": "600",
+    "hint": "Loop through the dictionary and append all of the values to a list. Return the sum of the list to find the inventory for the store. ",
+    "comment": "myDict = {'Shirts': 100, 'Socks': 200, 'Hats': 300}",
+    "solution": "def returnSum(myDict):\n  list = []\n  for i in myDict:\n      list.append(myDict[i])\n  final = sum(list)\n\n  return final\n\nmyDict = {'Shirts': 100, 'Socks': 200, 'Hats': 300}\nprint(returnSum(myDict))",
+    "difficulty_id": 1,
+    "language_id": 3
+},
+{
+    "name": "Extract Strings",
+    "question": "Given the string and with HTML tags, extract all of the strings in the specific tag.",
+    "answer": "['Python', 'great']",
+    "hint": "Use the re module (RegeEx) in order to extract the strings between all the p tags.",
+    "comment": "# importing re module\n import re\ntest_str = '<p>Python</p><span>is</span><p>great</p>'\ntag = \"p\"",
+    "solution": "import re\ntest_str = '<p>Python</p><span>is</span><p>great</p>'\ntag = \"p\"\nreg_str = \"<\" + tag + \">(.*?)</\" + tag + \">\"\nres = re.findall(reg_str, test_str)\n\nprint(str(res))",
+    "difficulty_id": 1,
+    "language_id": 3
+},
+{
+  "name": "Conditional Calculation ",
+  "question": "Given two integer numbers, return their product only if the product is equal to or lower than 1000. Otherwise, return their sum. Call the function twice: once using 20 & 30, the second time using 40 & 30",
+  "answer": "600 70",
+  "hint": "Use a conditional statement to see if the product is over 1000. If under return the product if greater than 1000 return the sum",
+  "comment": "# Set 1: 20 & 30 \n# Set 2: 40 &30",
+  "solution": "def multiplication_or_sum(num1, num2):\n  product = num1 * num2\n  if product <= 1000:\n     return product\n  else:\n    return num1 + num2\n\nresult = multiplication_or_sum(20, 30)\nprint(result)\n\nresult = multiplication_or_sum(40, 30)\nprint(result)",
+  "difficulty_id": 2,
+  "language_id": 3
+},
+{
+  "name": "Number Palindrome ",
+  "question": "Write a program to check if the given number is a palindrome number. A palindrome number is a number that is the same after reversing the order. If it is a palindrome return True and if not return False. Check the numbers 121 and 125.",
+  "answer": "True False",
+  "Comment": "#Check number 121 \n #Check number 125",
+  "hint": "Reverse the given string and save it in a different variable to compare with the original.",
+  "solution": "def palindrome(number):\n  original_num = number\n\n  reverse_num = 0\n  while number > 0:\n    reminder = number % 10\n    reverse_num = (reverse_num * 10) + reminder\n    number = number // 10\n\n  if original_num == reverse_num:\n    print(True)\n  else:\n    print(False)\n\npalindrome(121)\npalindrome(125)",
+  "difficulty_id": 2,
+  "language_id": 3
+},
+{
+  "name": "Merge List",
+  "question": "Create a list from 2 given lists using the following condition: the new list should contain odd numbers from the first list and even numbers from the second list.",
+  "answer": " [25, 35, 40, 60, 90]",
+  "comment": "#Use the following lists to solve the question \n # list1 = [10, 20, 25, 30, 35] \n # list2 = [40, 45, 60, 75, 90]",
+  "hint": " Loop through the list to check for the given condition. If meets the condition add to the return array.",
+  "solution": "def merge_list(list1, list2):\n    result_list = []\n\n    for num in list1:\n      if num % 2 != 0:\n        result_list.append(num)\n\n    for num in list2:\n      if num % 2 == 0:\n        result_list.append(num)\n    return result_list\n\nlist1 = [10, 20, 25, 30, 35]\nlist2 = [40, 45, 60, 75, 90]\nprint(merge_list(list1, list2))",
+  "difficulty_id": 2,
+  "language_id": 3
+},
+{
+  "name": "Permutations",
+  "question": "Write a python program that generates all possible strings from a given set of letters.",
+  "answer": "['abc', 'acb', 'bac', 'bca', 'cab', 'cba']",
+  "comment": "letters = \"abc\"",
+  "hint": "Determine the length of the string and then create a loop in order to find all the permutations of the given letters.",
+  "solution": "def generate_permutations_naive(data):\n  if len(data) == 0:\n    return ['']\n  permutations = []\n  for i in range(len(data)):\n    remaining = data[:i] + data[i+1:]\n    for perm in generate_permutations_naive(remaining):\n        permutations.append(data[i] + perm)\n  return permutations\n\nletters = \"abc\"\nall_permutations = generate_permutations_naive(letters)\nprint(all_permutations)",
+  "difficulty_id": 2,
+  "language_id": 3
+}
+
+
+
+
 
 
 

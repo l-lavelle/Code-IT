@@ -114,7 +114,10 @@ div.oc-editor-styles.accordion-body {
   }
   .output-box {
     min-height: 300px;
+    width: 100%;
+    overflow-wrap: break-word;
   }
+
   .landing-question {
     width: 60%;
   }

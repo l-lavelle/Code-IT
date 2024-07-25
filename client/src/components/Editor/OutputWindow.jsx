@@ -40,7 +40,7 @@ const OutputWindow = ({ outputDetails }) => {
         Output
       </h3>
       <div className="output-box">
-        {outputDetails ? <>{getOutput()}</> : null}
+        {outputDetails ? <p>{getOutput()}</p> : null}
       </div>
     </>
   );
