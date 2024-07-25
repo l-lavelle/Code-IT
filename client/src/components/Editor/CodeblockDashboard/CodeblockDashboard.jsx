@@ -7,11 +7,11 @@ import AuthService from '../../../utils/auth';
 import Editor from "@monaco-editor/react";
 import SaveDashModal from './SaveDashModal';
 import Plus from '../../../assets/plus.png';
+import CodeBlockDashboardLoader from './CodeblockDasboardLoader';
 
 function CodeBlockDashboard() {
     const [codeData, setCodeData] =useState();
     const [show, setShow] = useState(false);
- console.log("codeData", codeData)
     const createCodeblock = async () => {
         setShow(true)
     };
@@ -53,9 +53,7 @@ useEffect(() => {
 
   const truncate = (input,num) => input?.length > num ? `${input.substring(0, num)}...` : input;
   
-    if (codeData ===undefined) {
-        return <>Still loading...</>;
-        };
+  if (codeData ===undefined) {return <CodeBlockDashboardLoader/>};
 
   return (
     <div className='codeblock-dash'>
@@ -71,6 +69,7 @@ useEffect(() => {
         height="200px"
         value={truncate(codeblock.code,200)}
         theme="vs-dark"
+        loading={null}
         options={{wordWrap:"on"}}
         />
         <div className='overlay-edit-code overlay-codeblock'>
@@ -85,11 +84,11 @@ useEffect(() => {
         </Col>
         )):null}
         
-        <Col  md={12} lg={5} xl={4}>
-            <div className='d-flex flex-column cd-new' onClick={createCodeblock}>
-              <h2 className='cd-link'>Create New CodeBlock</h2>
-              <img src={Plus} className='cd-plus-img' alt="plus-icon"/>
-            </div>
+        <Col md={12} lg={5} xl={4}>
+          <div className='d-flex flex-column cd-new' onClick={createCodeblock}>
+            <h2 className='cd-link'>Create New CodeBlock</h2>
+            <img src={Plus} className='cd-plus-img' alt="plus-icon"/>
+          </div>
         </Col>
         <SaveDashModal show={show} setShow={setShow}/>
         </Row>

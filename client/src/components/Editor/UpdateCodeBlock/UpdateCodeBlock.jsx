@@ -12,6 +12,7 @@ import { defineTheme } from "../../../lib/defineTheme";
 import OutputWindow from "../OutputWindow";
 import OutputDetails from "../OutputDetails";
 import ThemeDropdown from "../ThemeDropdown";
+import EditorLoader from "../EditorLoader";
 import {Row, Col} from 'react-bootstrap';
 import AuthService from '../../../utils/auth';
 import {showErrorToast,showSuccessToast} from '../../../utils/general';
@@ -164,7 +165,7 @@ const updateCodeBlock = ()=>{
 
 
   if (codeData===undefined) {
-    return <>Still loading...</>;
+    return <EditorLoader/>;
   }
  
   return (
@@ -219,7 +220,7 @@ const updateCodeBlock = ()=>{
               {processing ? "Processing..." : "Compile and Execute"}
               </button>
               </div>
-          {outputDetails && <OutputDetails outputDetails={outputDetails} />}
+              {outputDetails && <OutputDetails outputDetails={outputDetails} />}
             </div>
             </Col>
         </Row>

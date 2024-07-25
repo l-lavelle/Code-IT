@@ -14,7 +14,6 @@ const NavigationBar = () => {
               <img
                 alt=""
                 src={navLogo}
-                // width="75px"
                 height="75px"
                 className="d-inline-block align-top"
               />{' '}

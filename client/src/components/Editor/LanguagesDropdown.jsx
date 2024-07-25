@@ -6,7 +6,6 @@ const LanguagesDropdown = ({ onSelectChange }) => {
 
   return (
     <div className="drop-styles">
-      {/* <p className="me-3 mt-2">Language:</p> */}
       <Select
       placeholder={`Filter By Category`}
       options={languageOptions}

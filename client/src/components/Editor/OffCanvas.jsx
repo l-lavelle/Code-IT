@@ -1,4 +1,3 @@
-// Add Code cat here for assistance if needed
 import React, { useState } from "react";
 import './Landing.css';
 import Offcanvas from 'react-bootstrap/Offcanvas';
@@ -56,7 +55,7 @@ const OffCanvas = ({solution, hint, theme, language }) => {
             </Accordion.Body>
         </Accordion.Item>
         </Accordion>
-        <img className="mt-3 oc-logo" src={Logo}/>
+        <img className="mt-3 oc-logo" src={Logo} alt="Logo icon"/>
         </Offcanvas.Body>
       </Offcanvas>
     </>

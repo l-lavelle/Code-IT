@@ -1,4 +1,3 @@
-// TODO: Do we want response codes 
 // If correct do we want to show on the page as well?
 import "./Landing.css";
 import '../../Variables.css';
@@ -14,6 +13,7 @@ import CodeEditorWindow from "./CodeEditorWindow";
 import OutputWindow from "./OutputWindow";
 import OutputDetails from "./OutputDetails";
 import ThemeDropdown from "./ThemeDropdown";
+import EditorLoader from './EditorLoader';
 import OffCanvas from "./OffCanvas";
 import {Row, Col} from 'react-bootstrap';
 import {findURL,showErrorToast,showSuccessToast} from '../../utils/general';
@@ -206,7 +206,7 @@ const Landing = () => {
   }, []);
 
   if (questionData===undefined) {
-    return <>Still loading...</>;
+    return <EditorLoader/>;
   }
 
   return (
