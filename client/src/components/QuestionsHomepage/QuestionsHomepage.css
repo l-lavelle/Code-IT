@@ -72,6 +72,7 @@ button#input-group-dropdown-1 {
   margin-left: auto;
   margin-right: auto;
 }
+
 @media screen and (max-width: 767px) {
   .qh-btnGroup button {
     display: none;

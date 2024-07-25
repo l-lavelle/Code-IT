@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import {InputGroup, Dropdown} from 'react-bootstrap';
 import {findURL} from '../../utils/general';
 import AuthService from '../../utils/auth';
+import QuestionDropdownLoader from './QuestionsHomePageLoader';
 
 const QuestionsHomepage = () => {
   const [questions, setQuestions] = useState();
@@ -85,7 +86,7 @@ const QuestionsHomepage = () => {
 
 
     if (languages===undefined || difficulty=== undefined || questions === undefined) {
-      return <>Still loading...</>;
+      return <QuestionDropdownLoader/>;
     };
 
   return (
