@@ -232,30 +232,119 @@
   "solution": "def generate_permutations_naive(data):\n  if len(data) == 0:\n    return ['']\n  permutations = []\n  for i in range(len(data)):\n    remaining = data[:i] + data[i+1:]\n    for perm in generate_permutations_naive(remaining):\n        permutations.append(data[i] + perm)\n  return permutations\n\nletters = \"abc\"\nall_permutations = generate_permutations_naive(letters)\nprint(all_permutations)",
   "difficulty_id": 2,
   "language_id": 3
-}
+},
+{
+  "name": "Dictionary Iteration",
+  "question": "From a dictionary, print only the items with an odd value of less than 45. Return the key and value of the pairs that match.",
+  "answer": "Amy 31 Penny 5",
+  "comment": "dic={'Sheldon': 45, 'Amy': 31, 'Raj':312, 'Leonard': 400, 'Penny':5, 'Howard':47}",
+  "hint": "Run a loop over all the key-value pairs of the dictonary. Then check if the value is odd and less than 45.",
+  "solution": "dic={'Sheldon': 45, 'Amy': 31, 'Raj':312, 'Leonard': 400, 'Penny':5, 'Howard':47}\nfor i,j in dic.items():\n  if (j%2!=0) and (j<45):\n    print(i, j)",
+  "difficulty_id": 2,
+  "language_id": 3
+},
+{
+  "name": "2nd Largest Number",
+  "question": "For the given array below find the second largest number.",
+  "answer": "77",
+  "hint": "You can use the Arrays.sort() method to sort the array and then return the second-to-last element. To use the Arrays.sort() method make sure to import java.util.Arrays .",
+  "comment": "//int[] second = {44, 66, 99, 77, 33, 22, 55};",
+  "solution": "import java.util.Arrays;\n\npublic class Main {\n    public static int getSecondLargest(int[] a, int total) {\n        Arrays.sort(a);\n        return a[total - 2];\n    }\n\n    public static void main(String[] args) {\n        int[] second = {44, 66, 99, 77, 33, 22, 55};\n        System.out.println(getSecondLargest(second, 7));\n    }\n}",
+  "difficulty_id": 2,
+  "language_id": 1
+},
+{
+  "name": "Counting Characters",
+  "question": "Extract and count the amount of each character in a string and return it as an HashMap.",
+  "answer": "{a=2, A=1, b=2, B=1, c=2, C=1, d=2, D=1}",
+  "hint": "Create a HashMap to store the data. Loop thorough the characters in the string. If the character exists add 1 to the existing number, if the character doesn’t exist add it with count of 1.",
+ "comment": "//Check the following string \n String str = \"abcdABCDabcd\";",
+  "solution": "import java.util.*;\nclass Main {\n  static void getOccurringChar(String str){\n    char[] chars = str.toCharArray();\n    Map<Character, Integer> charsCount = new HashMap<>();\n  for (char c : chars) {\n    if (charsCount.containsKey(c)) {\n      charsCount.put(c, charsCount.get(c) + 1);\n    } else\n      charsCount.put(c, 1);\n  }\n  System.out.println(charsCount); \n  } \n\n  public static void main(String[] args){\n    String str = \"abcdABCDabcd\";\n    getOccurringChar(str);\n  }\n}",
+  "difficulty_id": 2,
+  "language_id": 1
+},
+{
+  "name": "Remove Word",
+  "question": "Given the string below write a program in order to remove the given word.",
+  "answer": "CodeIT is the best website",
+  "hint": "You can use the replaceAll method in order to remove the given word.",
+  "comment": "String str = \"CodeIT is the best worst website\";\nString word = \"worst\";",
+  "solution": "import java.io.*;\n\nclass Main {\n    public static void main(String[] args){\n      String str = \"CodeIT is the best worst website\";\n      String word = \"worst\";\n      str = str.replaceAll(\"worst \", \"\");\n      str = str.trim();\n      System.out.print(str);\n    }\n}",
+  "difficulty_id": 2,
+  "language_id": 1
+},
+{
+  "name": "Nth Fibonacci",
+  "question": "Write a program to find the nth Fibonacci number.",
+  "answer": "55",
+  "hint": "The Fibonacci sequence is a sequence in which each number is the sum of the two preceding ones. Create an array of size n+1 to store Fibonacci numbers. Initialize the first 2 Fibonacci numbers 0 and 1. Then create a loop that sums the two preceding numbers and stores it in the array.",
+  "comment": "//Use the below int as the nth Fibonacci number\nint n = 10;",
+  "solution": "public class Main {\n  public static void main(String[] args) {\n      int n = 10;\n      int[] dp = new int[n + 1];\n      dp[0] = 0;\n      dp[1] = 1;\n      for (int i = 2; i <= n; i++) {\n          dp[i] = dp[i - 1] + dp[i - 2];\n      }\n      System.out.println(dp[n]);\n  }\n}",
+  "difficulty_id": 2,
+  "language_id": 1
+},
+{
+  "name": "Recursive Linear Search",
+  "question": "Given an array of elements white a function to recursively search a given element in the array. Return the number being searched and the index. ",
+  "answer": "1",
+  "hint": " Linear search algorithm is defined as a sequential search algorithm that starts at one end and goes through each element of a list until the desired element is found; otherwise, the search continues till the end of the dataset.",
+  "comment": "int x = 60;\n int arr[] = new int[] { 25, 60, 18, 3, 10 };",
+  "solution": "public class Main {\n\n    static int recursiveSearch(int arr[], int l, int r, int x){\n        if (r < l)\n            return -1;\n        if (arr[l] == x)\n            return l;\n        if (arr[r] == x)\n            return r;\n        return recursiveSearch(arr, l + 1, r - 1, x);\n    }\n\n    public static void main(String[] args){\n        int x = 60;\n        int arr[] = new int[] { 25, 60, 18, 3, 10 };\n        int index\n            = recursiveSearch(arr, 0, arr.length - 1, x);\n        if (index != -1)\n        System.out.println(index);\n\n        else\n          System.out.println(x + \"is not present\");\n    }\n}",
+  "difficulty_id": 3,
+  "language_id": 1
+},
+{
+  "name": "Make Change",
+  "question": "Write a program to find the minimum number of coins needed to make change for the given amount below.",
+  "answer": "4",
+  "hint": "Define an array with the coin denominations. Create another array of size amount + 1 to store the minmium number of coins needed. Loop through each amount from 0-76 and each coin demonination.If the current amount is greater than or equal to the coin value, update the minimum number of coins.",
+  "comment": "int amount = 76;",
+  "solution": "import java.util.Arrays;\n\npublic class Main {\n  public static void main(String[] args) {\n      int[] coins = {1, 5, 10, 25};\n      int amount = 76;\n      int[] dp = new int[amount + 1];\n      Arrays.fill(dp, Integer.MAX_VALUE);\n      dp[0] = 0;\n      for (int i = 1; i <= amount; i++) {\n          for (int j = 0; j < coins.length; j++) {\n              if (i >= coins[j]) {\n                  dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);\n              }\n          }\n      }\n      System.out.println(dp[amount]);\n  }\n}",
+  "difficulty_id": 2,
+  "language_id": 1
+},
+{
+  "name": "Resistor Color",
+  "question": "Resistors have a resistance value. To figure out the resistance value of resistor color coded bands are printed on them. Create a program that figures out what the resistance value of a band is based on the color. Then find the index of the color grey.",
+  "answer": "8",
+  "hint": "Create an array with all of the colors in order according to their encoded value. Then create a function that accepts a string and find the indexOf the color provided. ",
+  "comment": "// Encoded Colors: black:0, brown:1, red:2, orange:3, yellow:4, green:5, blue:6, violet:7, grey:8, white:9.",
+  "solution": "export const colorCode = (color: string) => {\n  return COLORS.indexOf(color)\n}\nexport const COLORS = [\n      'black',\n      'brown',\n      'red',\n      'orange',\n      'yellow',\n      'green',\n      'blue',\n      'violet',\n      'grey',\n      'white',\n]\nconsole.log(colorCode(\"grey\"));",
+  "difficulty_id": 1,
+  "language_id": 4
+},
+{
+  "name": "Leap Year",
+  "question": "A Leap year occurs when the year is evenly divisible by 4. Exception is if the year is evenly divisible by 100, then it’s only a leap year if the year is also evenly divisible by 400. Write a program that determines if the given year is a leap year and returns a Boolean. Test is with the years: 1997, 1990, 2000.",
+  "answer": "false false true",
+  "hint": "Write a function that accepts a number and returns a Boolean determined by using logical operators.",
+  "comment": "// Check the years 1997, 1990, and 2000",
+  "solution": "export function isLeap(year: number): boolean {\n    return ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0)\n}\nconsole.log(isLeap(1997))\nconsole.log(isLeap(1990))\nconsole.log(isLeap(2000))",
+  "difficulty_id": 1,
+  "language_id": 4
+},
+{
+  "name": "Target Darts",
+  "question": "Write a function that returns the earned points in a single toss of a darts game. There will be 4 different point possibilities: outside the target:0, outer circle: 1pt. r:10 units, middle circle:5pt. r: 5 units, and inner circle: 10pt. r:1 unit. Write a function that given point (x,y) on target returns the correct amount of points.",
+  "answer": "5",
+  "hint": "Calculate the Euclidean distance. Then use conditional statements to return the point total based on the which category the distance falls into.",
+  "comment": "//Find the score for coordinates x:1, y:2",
+  "solution": "export function score(x: number, y: number): number {\n  const distance = Math.sqrt(x ** 2 + y ** 2)\n  if (distance <= 1) {\n    return 10\n  } else if (distance <= 5) {\n    return 5\n  } else if (distance <= 10) {\n    return 1\n  } else {\n    return 0\n  }\n}\nconsole.log(score(1,2))",
+  "difficulty_id": 1,
+  "language_id": 4
+},
+{ 
+  "name": "Default User",
+  "question": "Using the defaultUser information below create a User interface and Post interface. Then console.log the defaultUser information.",
+  "answer": "{  id: 1,  firstName: 'Emmet',  lastName: 'Brickowski',  role: 'admin',  posts: [    { id: 1, title: 'Where are my pants?' },    { id: 2, title: 'Everything is awesome!' }  ]}",
+  "hint": "Create a User interface first with all of the variables found below. Posts should be an array of posts. Then create a Post interface with the post variables. ",
+  "comment": "export const defaultUser: User = {\n  id: 1,\n  firstName: \"Emmet\",\n  lastName: \"Brickowski\",\n  role: \"admin\",\n  posts: [\n    {\n      id: 1,\n      title: \"Where are my pants?\",\n    },\n    {\n      id: 2,\n      title: \"Everything is awesome!\",\n    },\n  ],\n};\nconsole.log(defaultUser)",
+  "solution": "interface User {\n  id: number;\n  firstName: string;\n  lastName: string;\n  role: \"admin\" | \"user\" | \"super-admin\";\n  posts: Array<Post>;\n}\ninterface Post {\n  id: number;\n  title: string;\n}\n\nexport const defaultUser: User = {\n  id: 1,\n  firstName: \"Emmet\",\n  lastName: \"Brickowski\",\n  role: \"admin\",\n  posts: [\n    {\n      id: 1,\n      title: \"Where are my pants?\",\n    },\n    {\n      id: 2,\n      title: \"Everything is awesome!\",\n    },\n  ],\n};\nconsole.log(defaultUser)",
+  "difficulty_id": 1,
+  "language_id": 4
+  }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-   
-  
-
-    
 
  
 ] 

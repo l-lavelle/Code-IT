@@ -261,7 +261,7 @@ export const languageOptions = [
   },
   {
     id: 74,
-    name: "TypeScript (3.7.4)",
+    name: "TypeScript",
     label: "TypeScript (3.7.4)",
     value: "typescript",
   },

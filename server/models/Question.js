@@ -17,19 +17,19 @@ Question.init(
       unique: true,
     },
     question: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     answer: {
       type: DataTypes.STRING,
     },
     hint: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     solution: {
       type: DataTypes.TEXT,
     },
     comment: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     difficulty_id: {
       type: DataTypes.INTEGER,

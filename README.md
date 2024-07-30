@@ -1,10 +1,10 @@
-# Code-It
+# CodeIT
 
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
 ## Description
 
-Code-It is a web development learning platform that will allow users to execute and save code blocks. They can also complete coding challenges to continue to hone their skills. By creating an account users can track which challenges have been completed and come back to there code blocks to work on later. Use a variety of languages to test your skills and learn new ones.
+CodeIT is a web development learning platform that will allow users to execute and save code blocks. They can also complete coding challenges to continue to hone their skills. By creating an account users can track which challenges have been completed and come back to there code blocks to work on later. Choose from a variety of languages to test your skills and learn new ones.
 
 ## Tech Stack
 
@@ -39,7 +39,7 @@ Use the example env.Example documents on the client and server side in order to 
 ## Usage
 
 The program is deployed in the Heroku link below. Upon entering site you will be directed to the homepage. Use the navigation bar and follow the prompts to use the code editor or try a challenge. Create an account or login in order to save your code and challenge history. <br>
-To run program from IDE create env file with variables found in env.Example. Then type node server.js into the terminal. Click into the website link in the terminal to view Code-It.
+To run program from IDE create env file with variables found in env.Example. Then type npm run develop from the root folder in order to run the program locally.
 
 <!-- Add in images
 <img src="./images/Home-page.png" width='550' height='auto'><br>
@@ -53,8 +53,11 @@ MIT License
 
 ## Contributing
 
-<!-- Link for Editor  -->
+- This project was inspired by the following code editor and expanded on to include challenges and savable code blocks:
+  [React Code Editor GitHub](https://github.com/manuarora700/react-code-editor)
+
+- CodeIT Logo Icon Attribution: <a href="https://www.freepik.com/free-vector/cute-robot-flying-cartoon-illustration-people-technology-icon-concept_10244952.htm#fromView=search&page=7&position=36&uuid=3d7673ed-9a36-49ec-8e65-fde0e36ca312">Image by catalyststuff on Freepik</a>
 
 ## Heroku Deployment
 
-<!-- [Heroku Link]() -->
+[CodeIT Website](https://lostack-code-it-eca13016c372.herokuapp.com/)
