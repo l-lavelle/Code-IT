@@ -342,7 +342,240 @@
   "solution": "interface User {\n  id: number;\n  firstName: string;\n  lastName: string;\n  role: \"admin\" | \"user\" | \"super-admin\";\n  posts: Array<Post>;\n}\ninterface Post {\n  id: number;\n  title: string;\n}\n\nexport const defaultUser: User = {\n  id: 1,\n  firstName: \"Emmet\",\n  lastName: \"Brickowski\",\n  role: \"admin\",\n  posts: [\n    {\n      id: 1,\n      title: \"Where are my pants?\",\n    },\n    {\n      id: 2,\n      title: \"Everything is awesome!\",\n    },\n  ],\n};\nconsole.log(defaultUser)",
   "difficulty_id": 1,
   "language_id": 4
-  }
+  },
+  {
+    "name": "Friday 13th Detector",
+    "question": "Using Python create a program to detect all Fridays with a day of 13 in the years 2020-2024. Return them in the format yyyy dd mm.",
+    "answer": "2020 3 13 2020 11 13 2021 8 13 2022 5 13 2023 1 13 2023 10 13 2024 9 13 2024 12 13",
+    "hint": "Create a loop that iterates through the specified years. Check if the day is a Friday and also if the date is the 13th.",
+    "comment": "#Use the following format to return all of the Friday 13th \nprint(f\"{d.month} {d.day} {y}\")",
+    "solution": "from datetime import date, timedelta\n\ndef friday_13_in_year(y):\n    day = date(y, 1, 1)\n    end = date(y, 12, 31)\n    one_day = timedelta(days=1)\n    while day <= end:\n        if day.weekday() == 4 and day.day == 13:\n            yield day\n        day += one_day\n\nfor y in range(2020, 2025):\n    for d in friday_13_in_year(y):\n        print(f\"{y} {d.month} {d.day}\")",
+    "difficulty_id": 3,
+    "language_id": 3
+},
+{
+  "name": "Binary Search",
+  "question": "Binary search is a more efficient searching algorithm suitable for sorted lists. It repeatedly divides the search interval in half until the target value is found. Use the array found below and find the index of the integer 40.",
+  "answer": "4",
+  "hint": "Start with the list sorted. Find the middle element of the list. If the middle element is equal to the target value, return its index. If the middle element is less than the target value, search in the right half of the list. If less than the middle element, search the left half of the list. Repeat steps 2-5 until the target value is found or the search interval is empty.",
+  "comment": "arr = [2, 3, 4, 10, 40, 46, 53, 54, 67, 83, 101]\ntarget = 40",
+  "solution": "def binary_search(arr, target, low, high):\n    if low <= high:\n        mid = (low + high)\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            return binary_search(arr, target, mid + 1, high)\n        else:\n            return binary_search(arr, target, low, mid - 1)\n    else:\n        return -1\narr = [2, 3, 4, 10, 40, 46, 53, 54, 67, 83, 101]\ntarget = 40\nresult = binary_search(sorted(arr), target, 0, len(arr) - 1)\nif result != -1:\n    print(result)\nelse:\n    print(\"Element not found\")",
+  "difficulty_id": 3,
+  "language_id": 3
+},
+{ 
+  "name": "Nested Levels",
+  "question": "Create a function that takes in a nested list and an element and returns the frequency of that element by nested level.",
+  "answer": "{0: 1, 1: 2, 2: 2}",
+  "hint": "Create a dictionary and iterate over each sublist in the nested list. For each sublist use the collections.Counter to count the occurrences of each element. Store the count of the element in the dictionary using the level as the key.",
+  "comment": "my_nested_list = [\n    [1, 2, 3],\n    [2, 3, 4, 2],\n    [1, 2, 1, 3, 2, 1]\n]\nelement_to_count = 2",
+  "solution": "from collections import Counter\n\ndef element_frequency_by_level(nested_list, element):\n    result = {}\n    for level, sublist in enumerate(nested_list):\n        count = Counter(sublist)\n        result[level] = count[element]\n    return result\nmy_nested_list = [\n    [1, 2, 3],\n    [2, 3, 4, 2],\n    [1, 2, 1, 3, 2, 1]\n]\n\nelement_to_count = 2\nfrequency_by_level = element_frequency_by_level(my_nested_list, element_to_count)\nprint(frequency_by_level)",
+  "difficulty_id": 3,
+  "language_id": 3
+},
+{
+  "name": "Cocktail Sort",
+  "question": "Cocktail sort is a variation of bubble sort that traverses through a given array in both directions alternatively. Each iteration of the algorithm is broken into 2 stages. The first loops through the array from left to right.  During the loop, adjacent items are compared and if value on the left is greater than the value on the right, then values are swapped. At the end of first iteration, largest number will reside at the end of the array. The second stage loops through the array in opposite direction.",
+  "answer": "0 1 2 2 4 5 8",
+  "hint": "Loop through the array comparing adjacent elements. If the left is greater than the right swap the elements. Continue this process until no swaps occur during a full traversal of the array. Then loop through the array backwards completing the same compare process. If an element is smaller move it to the right.",
+  "comment": "#Create a cocktail sort to sort the following array:\na = [5, 1, 4, 2, 8, 0, 2]",
+  "solution": "def cocktailSort(a):\n    n = len(a)\n    swapped = True\n    start = 0\n    end = n-1\n    while (swapped==True):\n        swapped = False\n        for i in range (start, end):\n            if (a[i] > a[i+1]) :\n                a[i], a[i+1]= a[i+1], a[i]\n                swapped=True\n        if (swapped==False):\n            break\n        swapped = False\n        end = end-1\n        for i in range(end-1, start-1,-1):\n            if (a[i] > a[i+1]):\n                a[i], a[i+1] = a[i+1], a[i]\n                swapped = True\n        start = start+1\n\na = [5, 1, 4, 2, 8, 0, 2]\ncocktailSort(a)\nfor i in range(len(a)):\n    print (\"%d\" %a[i])",
+  "difficulty_id": 3,
+  "language_id": 3
+},
+{ 
+  "name": "Bishop Moves",
+  "question": "Check is a bishop can reach a certain spot on the board in the given amount of moves. Given a starting square start, ending square end and the maximum number of moves allowed n. Return True if the ending square can be reached from the starting square within the given amount of moves. Keep in mind the chessboard goes from a1 to h8 (8x8).",
+  "answer": "True False False",
+  "hint": "Write a function to calculate the absolute different in the horizontal and vertical coordinates between the two chess board spaces. Then use conditional statements to determine if the bishop can reach the spot in the amount of moves given.",
+  "comment": "print(can_bishop_reach(\"a1\", \"b4\",2))  \nprint(can_bishop_reach(\"a1\", \"b5\",5))  \nprint(can_bishop_reach(\"d1\", \"a7\",1))",
+  "solution": "def can_bishop_reach(a, b, n):\n    if n==0:\n      return a==b\n    x,y = abs(ord(a[0])-ord(b[0])), abs(int(a[1])-int(b[1]))\n    if n==1:\n        return x==y \n    return x%2==y%2\n\nprint(can_bishop_reach(\"a1\", \"b4\",2))  \nprint(can_bishop_reach(\"a1\", \"b5\",5)) \nprint(can_bishop_reach(\"d1\", \"a7\",1))",
+  "difficulty_id": 3,
+  "language_id": 3
+},
+{
+  "name": "Stalactites or Stalagmites",
+  "question": "Stalactites hang from the ceiling of a cave while stalagmites grow from the floor. Create a function that determines whether the input represents \"stalactites\" or \"stalagmites\". If it represents both, return \"both\". Input will be a 2D array, with 1 representing a piece of rock, and 0 representing air space.",
+  "answer": "stalactites stalagmites both",
+  "hint": "You can iterate through a 2D array with nested loop. Check for the presence of formations (stalactites and stalagmites) based on the value in the array using conditional statements.",
+  "comment": "public class Main {\n  public static void main(String[] args) {\n      int[][] cave1 = {\n          {1, 1, 1},\n          {0, 0, 0}\n      };\n      System.out.println(identifyFormation(cave1)); \n\n      int[][] cave2 = {\n          {0, 0, 0},\n          {1, 1, 1}\n      };\n      System.out.println(identifyFormation(cave2));\n\n      int[][] cave3 = {\n          {1, 0, 1},\n          {0, 1, 0}\n      };\n      System.out.println(identifyFormation(cave3)); \n  }\n}",
+  "solution": "public class Main {\n  public static String identifyFormation(int[][] cave) {\n    boolean hasStalactites = false;\n    boolean hasStalagmites = false;\n\n    for (int i = 0; i < cave.length; i++) {\n    for (int j = 0; j < cave[i].length; j++) {\n     if (cave[i][j] == 1) {\n      if (i == 0) {\n        hasStalactites = true;\n } else if (i == cave.length - 1) {\n        hasStalagmites = true;\n       } else {\n        return \"both\";\n       }\n      }\n     }\n    }\n\n    if (hasStalactites && hasStalagmites) {\n        return \"both\";\n    } else if (hasStalactites) {\n        return \"stalactites\";\n    } else if (hasStalagmites) {\n        return \"stalagmites\";\n    } else {\n        return \"neither stalactites nor stalagmites\";\n    }\n  }\n\n  public static void main(String[] args) {\n      int[][] cave1 = {\n          {1, 1, 1},\n          {0, 0, 0}\n      };\n  \nSystem.out.println(identifyFormation(cave1)); \n\n      int[][] cave2 = {\n          {0, 0, 0},\n          {1, 1, 1}\n      };\n      System.out.println(identifyFormation(cave2));\n\n      int[][] cave3 = {\n          {1, 0, 1},\n          {0, 1, 0}\n      };\n      System.out.println(identifyFormation(cave3)); \n  }\n}",
+  "difficulty_id": 3,
+  "language_id": 1
+},
+{
+  "name": "Consecutive List",
+  "question": " Create a function that determines whether elements in an array can be re-arranged to form a consecutive list of numbers where each number appears exactly once. If the array is consecutive print true if not print false.",
+  "answer": "true",
+  "hint": "Sort the array first. Iterate through the array using a loop and compare to see if it equal to the previous element plus one.",
+  "comment": "// Use this array to test the solution \n int[] arr = {5, 4, 2, 3, 1, 6};",
+  "solution": "import java.util.Arrays;\n\npublic class Main {\n  public static boolean areConsecutive(int[] arr) {\n  Arrays.sort(arr);\n  for (int i = 1; i < arr.length; i++) {\n      if (arr[i] != arr[i - 1] + 1) {\n          return false;\n      }\n  }\n  return true;\n  }\n\n  public static void main(String[] args) {\n    int[] arr = {5, 4, 2, 3, 1, 6};\n    if (areConsecutive(arr)) {\n        System.out.println(true);\n    } else {\n        System.out.println(false);\n    }\n  }\n}",
+  "difficulty_id": 3,
+  "language_id": 1
+},
+{
+  "name": "Can Complete Word",
+  "question": "Determine whether an input string can be transformed into a specific word by adding additional letters without changing the order of the existing letters.",
+  "answer": "true",
+  "hint": "Create a while loop with conditional statements to determine if the target word can be created by adding and not removing any letters or changing the order of the input word.",
+  "comment": "public class Main {\n  public static void main(String[] args) {\n    String input = \"technology\"; \n    String targetWord = \"technlgy\"; \n\n    boolean result = canTransformToWord(input, targetWord);\n    System.out.println(result);\n  }\n}",
+  "solution": "public class Main {\n  public static boolean canTransformToWord(String input, String targetWord) {\n    int inputIndex = 0;\n    int targetIndex = 0;\n\n    while (inputIndex < input.length() && targetIndex < targetWord.length()) {\n        if (input.charAt(inputIndex) == targetWord.charAt(targetIndex)) {\n            inputIndex++;\n            targetIndex++;\n        } else {\n            inputIndex++;\n        }\n    }\n    return targetIndex == targetWord.length();\n  }\n\n  public static void main(String[] args) {\n    String input = \"technology\"; \n    String targetWord = \"technlgy\"; \n\n    boolean result = canTransformToWord(input, targetWord);\n    System.out.println(result);\n  }\n}",
+  "difficulty_id": 3,
+  "language_id": 1
+},
+{
+  "name": "Spartan Cipher",
+  "question": "A Spartan cipher is transposition cipher where a string is encoded by sliding the characters down a certain number of positions. Create a function that takes two arguments, a number of slides and a string message, and returns the encoded message. The cipher should function as follows: The first letter starts at index[0] and then proceeds to skip to the character of the slideN index. Continue until run out of characters. Then start again from index[1] until looped through the whole list.",
+  "answer": "Lipethteesarwcri",
+  "hint": "Remove any whitespace from the input message. Create a new string by taking character and sliding them by nSlide positions using a loop.",
+  "comment": "public class Main {\n  public static void main(String[] args) {\n    String message = \"Lets write a cipher\";\n    int nSlide = 6;\n\n    String encodedMessage = cipher(message, nSlide);\n    System.out.println(encodedMessage);\n  }\n}",
+  "solution": "public class Main {\n  public static String cipher(String message, int nSlide) {\n    String cleanedMessage = message.replaceAll(\"\\\\s\", \"\");\n    StringBuilder result = new StringBuilder();\nfor (int i = 0; i < nSlide; i++) {\n        for (int j = i; j < cleanedMessage.length(); j += nSlide) {\n            result.append(cleanedMessage.charAt(j));\n        }\n    }\n\n    return result.toString();\n  }\npublic static void main(String[] args) {\n    String message = \"Lets write a cipher\";\n    int nSlide = 6;\nString encodedMessage = cipher(message, nSlide);\n    System.out.println(encodedMessage);\n  }\n}",
+  "difficulty_id": 3,
+  "language_id": 1
+},
+{ 
+  "name": "Universal Age",
+  "question": "Given an age in seconds, calculate how old someone would be on a different planet.For Example if you are 1,000,000,000 seconds old, you should be able to say that you are 31.69 Earth-years old. Return the age as a rounded whole number and try the function with the age 34 for planet Jupiter.",
+  "answer": "3",
+  "hint": "Create an object with all of the ratios for the orbital periods. Then create a function that intakes the current age and the planet and divides the age by the planet ratio. ",
+  "comment": "const orbit_ratio = {\n    earth: 1.0,\n    mercury: 0.2408467,\n    venus: 0.61519726,\n    mars: 1.8808158,\n    jupiter: 11.862615,\n    saturn: 29.447498,\n    uranus: 84.016846,\n    neptune: 164.79132};\n  let currentAge= 34\nconsole.log(age(\"jupiter\",currentAge))",
+  "solution": "const orbit_ratio = {\n    earth: 1.0,\n    mercury: 0.2408467,\n    venus: 0.61519726,\n    mars: 1.8808158,\n    jupiter: 11.862615,\n    saturn: 29.447498,\n    uranus: 84.016846,\n    neptune: 164.79132};\nexport type Planet = keyof typeof orbit_ratio;\nexport function findAge(forPlanet: Planet, age: number): number {\n  return Math.round(age / orbit_ratio[forPlanet]);\n}\nlet currentAge= 34\nconsole.log(findAge (\"jupiter\",currentAge))",
+  "difficulty_id": 1,
+  "language_id": 4
+},
+{
+  "name": "Triangle Fit",
+  "question": "Create a function that takes the dimensions of two triangles (as arrays) and checks if the first triangle fits into the second one. If it does return true otherwise return false.",
+  "answer": "false true false false",
+  "hint": "First sort both of the arrays given to the function. Then create a loop to determine if the first triangle is larger than the second.",
+  "comment": "console.log(triangleFit([1, 1, 1], [1, 1, 1])); \nconsole.log(triangleFit([1, 1, 1], [2, 2, 2])); \nconsole.log(triangleFit([1, 2, 3], [1, 2, 2])); \nconsole.log(triangleFit([2, 4, 5], [1, 2, 6]));",
+  "solution": "function triangleFit(triangle1, triangle2) {\n  const sortedTriangle1 = triangle1.sort((a, b) => a - b);\n  const sortedTriangle2 = triangle2.sort((a, b) => a - b);\n\n  for (let i = 0; i < 3; i++) {\nif (sortedTriangle1[i] >= sortedTriangle2[i]) {\n          return false; \n      }\n  }\n  return true; \n}\nconsole.log(triangleFit([1, 1, 1], [1, 1, 1])); \nconsole.log(triangleFit([1, 1, 1], [2, 2, 2])); \nconsole.log(triangleFit([1, 2, 3], [1, 2, 2])); \nconsole.log(triangleFit([2, 4, 5], [1, 2, 6]));",
+  "difficulty_id": 3,
+  "language_id": 2
+},
+{
+  "name": "Meal Time",
+  "question": "Simon eats his meals at the same time every day. Breakfast at 7am lunch at noon and Dinner at 7pm. Create a function that determine how long from the current time to the next meal and return it in the following format: x hours xx minutes.",
+  "answer": "1 hours 30 minutes",
+  "hint": "Create an array with objects for the designated meal times. Create a date object using the current time. Iterate through the meal times array. For each meal create a date object using the actual date and the meal time. If meal time is greater than current time break out of the loop and calculate the difference between the two.",
+  "comment": "const currentTime = '10:30';",
+  "solution": "function timeUntilNextMeal(currentTime) {\n    const mealTimes = [\n        { name: 'Breakfast', time: '07:00' },\n        { name: 'Lunch', time: '12:00' },\n        { name: 'Dinner', time: '19:00' }\n    ];\n\n    const currentTimeObj = new Date(`2000-01-01T${currentTime}`);\n\n    let nextMealTime;\n    for (const meal of mealTimes) {\n        const mealTimeObj = new Date(`2000-01-01T${meal.time}`);\n        if (mealTimeObj > currentTimeObj) {\n            nextMealTime = mealTimeObj;\n            break;\n        }\n    }\n\n    const timeDifference = nextMealTime - currentTimeObj;\n    const hours = Math.floor(timeDifference / 3600000);\n    const minutes = Math.floor((timeDifference % 3600000) / 60000);\n\n    return [hours, minutes];\n}\n\nconst currentTime = '10:30';\nconst timeUntilNext = timeUntilNextMeal(currentTime);\nconsole.log(`${timeUntilNext[0]} hours ${timeUntilNext[1]} minutes`);",
+  "difficulty_id": 3,
+  "language_id": 2
+},
+{
+  "name": "Knight Moves",
+  "question": "Create a function that takes a square where a knight jumps from as a string and returns all the possible squares the knight can land on as a string. Ignore capturing and further Chess rules. Be aware of the sides of the board. Test the function to find all of  the spaces a knight can move from h5.",
+  "answer": "g3, g7, f4, f6",
+  "hint": "Calculate row and column indices for the given start space. Define an array that specifies moves as pairs of column and row offsets. Use a function to filter out column and row indices that are outside the chessboard. Map the values to return them in the correct chess space notation.",
+  "comment": "const knightPosition = 'h5';",
+  "solution": "function getKnightMoves(startSquare) {\n    const columns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];\n    const rows = [8, 7, 6, 5, 4, 3, 2, 1];\n\n    const [startColumn, startRow] = [columns.indexOf(startSquare[0]), Number(startSquare[1])];\n    const possibleMoves = [\n        [startColumn - 1, startRow - 2],\n        [startColumn - 1, startRow + 2],\n        [startColumn - 2, startRow - 1],\n        [startColumn - 2, startRow + 1],\n        [startColumn + 1, startRow - 2],\n        [startColumn + 1, startRow + 2],\n        [startColumn + 2, startRow - 1],\n        [startColumn + 2, startRow + 1]\n    ];\n\n    const validMoves = possibleMoves.filter(([col, row]) => {\n        return col >= 0 && col < 8 && row >= 1 && row <= 8;\n    });\n\n    const result = validMoves.map(([col, row]) => columns[col] + rows[8 - row]);\n    return result.join(', ');\n}\n\nconst knightPosition = 'h5';\nconst possibleMoves = getKnightMoves(knightPosition);\nconsole.log(`${possibleMoves}`);",
+  "difficulty_id": 3,
+  "language_id": 2
+},
+{
+  "name": "Sudoku",
+  "question": "Write a sudoku validator. This function should return true if the 2-D array represents a valid sudoku and false otherwise. Rules for Sudoku: Each row must have the digits from 1 to 9 exactly once, each column must have the digits from 1 to 9 exactly once, and each 3x3 box must have the digits from 1 to 9 exactly once.",
+  "answer": "true",
+  "hint": "Row & Column Validation: The function checks each row for uniqueness. It filters out empty cells, creates an array of non-empty digits, and verifies that the number of unique digits equals the total number of digits in the row. Box Validation: The function validates 3x3 boxes within the grid. It calculates the starting row and column for each box based on the index (0 to 8). Within each box, it checks for unique digits. If any box fails, the function returns false.",
+  "comment": "//Validate the following Sudoku board\nconst sudokuBoard = [\n    [\"5\", \"3\", \".\", \".\", \"7\", \".\", \".\", \".\", \".\"],\n    [\"6\", \".\", \".\", \"1\", \"9\", \"5\", \".\", \".\", \".\"],\n    [\".\", \"9\", \"8\", \".\", \".\", \".\", \".\", \"6\", \".\"],\n    [\"8\", \".\", \".\", \".\", \"6\", \".\", \".\", \".\", \"3\"],\n    [\"4\", \".\", \".\", \"8\", \".\", \"3\", \".\", \".\", \"1\"],\n    [\"7\", \".\", \".\", \".\", \"2\", \".\", \".\", \".\", \"6\"],\n    [\".\", \"6\", \".\", \".\", \".\", \".\", \"2\", \"8\", \".\"],\n    [\".\", \".\", \".\", \"4\", \"1\", \"9\", \".\", \".\", \"5\"],\n    [\".\", \".\", \".\", \".\", \"8\", \".\", \".\", \"7\", \"9\"]\n];",
+  "solution": "function isValidSudoku(board) {\n    for (const row of board) {\n        const digits = row.filter((character) => character !== '.');\n        const isValid = digits.length === new Set(digits).size;\n        if (!isValid) return false;\n    }\n\n    for (let col = 0; col < 9; col++) {\n        const digits = [];\n        for (let row = 0; row < 9; row++) {\n            const character = board[row][col];\n            if (character !== '.') digits.push(character);\n        }\n        const isValid = digits.length === new Set(digits).size;\n        if (!isValid) return false;\n    }\n\n    for (let box = 0; box < 9; box++) {\n        const digits = [];\n        const startRow = Math.floor(box / 3) * 3;\n        const startCol = (box % 3) * 3;\n        for (let row = startRow; row < startRow + 3; row++) {\n            for (let col = startCol; col < startCol + 3; col++) {\n                const character = board[row][col];\n                if (character !== '.') digits.push(character);\n            }\n        }\n        const isValid = digits.length === new Set(digits).size;\n        if (!isValid) return false;\n    }\n\n    return true; \n}\n\nconst sudokuBoard = [\n    [\"5\", \"3\", \".\", \".\", \"7\", \".\", \".\", \".\", \".\"],\n    [\"6\", \".\", \".\", \"1\", \"9\", \"5\", \".\", \".\", \".\"],\n    [\".\", \"9\", \"8\", \".\", \".\", \".\", \".\", \"6\", \".\"],\n    [\"8\", \".\", \".\", \".\", \"6\", \".\", \".\", \".\", \"3\"],\n    [\"4\", \".\", \".\", \"8\", \".\", \"3\", \".\", \".\", \"1\"],\n    [\"7\", \".\", \".\", \".\", \"2\", \".\", \".\", \".\", \"6\"],\n    [\".\", \"6\", \".\", \".\", \".\", \".\", \"2\", \"8\", \".\"],\n    [\".\", \".\", \".\", \"4\", \"1\", \"9\", \".\", \".\", \"5\"],\n    [\".\", \".\", \".\", \".\", \"8\", \".\", \".\", \"7\", \"9\"]\n];\n\nconsole.log(isValidSudoku(sudokuBoard));",
+  "difficulty_id": 3,
+  "language_id": 2
+},
+{
+  "name": "Jump Search",
+  "question": "Write a JavaScript program to find an element in a given sorted array of elements using Jump Search.",
+  "answer": "3",
+  "hint": " Jump search is a searching algorithm for sorted arrays. Determine the step size m by taking the square root of the length of the array n.  Start at the first element of the array and jump m steps until the value at that position is greater than the target value. Once a value greater than the target is found, perform a linear search starting from the previous step until the target is found or it is clear that the target is not in the array. ",
+  "comment": "//Find the index of the target in the array \nconst sortedArray = [1, 3, 5, 7, 9, 11, 13, 15];\nconst target = 7;",
+  "solution": "function jumpSearch(arr, x, n) {\n    let step = Math.sqrt(n);\n\n    let prev = 0;\n    while (arr[Math.min(step, n) - 1] < x) {\n        prev = step;\n        step += Math.sqrt(n);\n        if (prev >= n) return -1;\n    }\n    while (arr[prev] < x) {\n        prev++;\n        if (prev === Math.min(step, n)) return -1; \n    }\n    if (arr[prev] === x) return prev;\n    return -1; \n}\n\nconst sortedArray = [1, 3, 5, 7, 9, 11, 13, 15];\nconst target = 7;\nconst result = jumpSearch(sortedArray, target, sortedArray.length);\n\nif (result !== -1) {\n    console.log(result);\n} else {\n    console.log(`Element ${target} not found in the array.`);\n}",
+  "difficulty_id": 3,
+  "language_id": 2
+},
+{
+  "name": "Find Primes",
+  "question": " Your task is to create two different functions. One that checks if a number is prime or not. The second functions finds all prime numbers less than or equal to a given number. A prime number is a number larger than 1 that is only divisible by 1 and itself. Use the number 7 to test the functions.",
+  "answer": "true[ 2, 3, 5, 7 ]",
+  "hint": "Use conditional statements in order to determine if the given number is prime or not. To find all prime numbers less than or equal to the given number, create a loop and check if the number is a prime with the former function. Return all the prime numbers in an array.",
+  "solution": "function isPrime(n: number): boolean {\n  if (n < 2) {\n      return false\n  } else if (n === 2) {\n      return true\n  } else if (n % 2 === 0) {\n      return false\n  }\n  for (let i = 3; i <= Math.sqrt(n); i += 2) {\n      if (n % i === 0) { return false }\n  }\n  return true\n}\nexport function primes(limit: number, start: number = 2): number[] {\n  const possiblePrimes: number[] = []\n  for (let i = start; i <= limit; i++) {\n      possiblePrimes.push(i)\n  }\n  return possiblePrimes.filter(isPrime);\n}\n\nconsole.log(isPrime(7))\nconsole.log(primes(7))",
+  "difficulty_id": 2,
+  "language_id": 4
+},
+{
+  "name": "List Comparison",
+  "question": "Given any two lists A and B, determine if: List A is equal to list B; or List A contains list B (A is a superlist of B); or List A is contained by list B (A is a sublist of B); or None of the above is true, thus lists A and B are unequal. Use the below lists to test your function.",
+  "answer": "superlist",
+  "hint": "Can check the equality with JSON.stringify. For sublist and superlist, use every to iterate through each element in the list. Check if the index of the item is greater or equal to 1.  Compare to see if it hold true for all elements or not. Use conditional statements to return the list comparison.",
+  "comment": "const listA = [1, 2, 3, 4];\nconst listB = [2, 3];",
+  "solution": "function compareLists<T>(listA: T[], listB: T[]): 'equal' | 'superlist' | 'sublist' | 'unequal' {\n    const isEqual = JSON.stringify(listA) === JSON.stringify(listB);\n    const isSuperlist = listB.every(itemB => listA.indexOf(itemB) >= 0);\n    const isSublist = listA.every(itemA => listB.indexOf(itemA) >= 0);\n    if (isEqual) {\n        return 'equal';\n    } else if (isSuperlist) {\n        return 'superlist';\n    } else if (isSublist) {\n        return 'sublist';\n    } else {\n        return 'unequal';\n    }\n}\nconst listA = [1, 2, 3, 4];\nconst listB = [2, 3];\nconsole.log(compareLists(listA, listB));",
+  "difficulty_id": 2,
+  "language_id": 4
+},
+{
+  "name": "Collatz Conjecture",
+  "question": "Write a function that performs the Collatz Conjecture and return the number of steps it takes to reach 1.",
+  "answer": "10",
+  "hint": "The Collatz Conjecture or 3x+1 problem takes any positive integer n. If n is even, divide n by 2 to get n / 2. If n is odd, multiply n by 3 and add 1 to get 3n + 1. Repeat the process indefinitely. The conjecture states that no matter which number you start with, you will always reach 1 eventually.",
+  "comment": " const arr = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610];\nconst x = 55; ",
+  "solution": "function jumpSearch(arr: number[], x: number): number {\n    const n = arr.length;\n    let step = Math.floor(Math.sqrt(n));\n    let prev = 0;\n\n    while (arr[Math.min(step, n) - 1] < x) {\n        prev = step;\n        step += Math.floor(Math.sqrt(n));\n        if (prev >= n) return -1; \n    }\n\n    while (arr[prev] < x) {\n        prev++;\n        if (prev === Math.min(step, n)) return -1; \n    }\n\n    return arr[prev] === x ? prev : -1; \n}\n\nconst arr = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610];\nconst x = 55;\nconst result = jumpSearch(arr, x);\n\nif (result !== -1) {\n    console.log(`${result}`);\n} else {\n    console.log(`Element ${x} not found in the array.`);\n}",
+  "difficulty_id": 2,
+  "language_id": 4
+},
+{
+  "name": "Nucleotide Counter",
+  "question": "Given a string representing a DNA sequence, count how many of each nucleotide is present. If the string contains characters that aren't A, C, G, or T then it is invalid and you should signal an error.",
+  "answer": "{ A: 3, C: 1, G: 1, T: 2 }",
+  "hint": "Use looping and conditional statements in order to determine the count for each type of nucleotide.",
+  "comment": "//Use the following DNA sequence to test the function \nconst sequence = \"GATTACA\";",
+  "solution": "function countNucleotides(dnaSequence: string): Record<string, number> {\n    const nucleotideCounts: Record<string, number> = { 'A': 0, 'C': 0, 'G': 0, 'T': 0 };\n\n    for (let i = 0; i < dnaSequence.length; i++) {\n        const nucleotide = dnaSequence[i];\n        if (nucleotide === 'A') {\n            nucleotideCounts['A']++;\n        } else if (nucleotide === 'C') {\n            nucleotideCounts['C']++;\n        } else if (nucleotide === 'G') {\n            nucleotideCounts['G']++;\n        } else if (nucleotide === 'T') {\n            nucleotideCounts['T']++;\n        } else {\n            throw new Error('Invalid DNA sequence');\n        }\n    }\nreturn nucleotideCounts;\n}\n\ntry {\n    const sequence = \"GATTACA\";\n    const result = countNucleotides(sequence);\n    console.log(result); \n} catch (error) {\n  console.error(error.message); \n}",
+  "difficulty_id": 2,
+  "language_id": 4
+},
+{
+  "name": "Determine Allergies",
+  "question": "Given a person's allergy score, determine whether or not they're allergic to a given item, and their full list of allergies.",
+  "answer": "peanuts, chocolate",
+  "hint": "Defines an object called allergens with various allergens as keys and their corresponding scores as values. Create an array to store the names of allergens for the person. Iterate through the allergens to determine what combination of values each the persons allergen score.",
+   "comment": "//Use the following score to determine which allergens the person has \nconst score = 34;\nconst allergens = {\n        eggs: 1,\n        peanuts: 2,\n        shellfish: 4,\n        strawberries: 8,\n        tomatoes: 16,\n        chocolate: 32,\n        pollen: 64,\n        cats: 128,\n    };",
+  "solution": "function determineAllergies(score: number): string[] {\n    const allergens = {\n        eggs: 1,\n        peanuts: 2,\n        shellfish: 4,\n        strawberries: 8,\n        tomatoes: 16,\n        chocolate: 32,\n        pollen: 64,\n        cats: 128,\n    };\n\n    const allergicTo: string[] = [];\n\n    for (const allergen in allergens) {\n        if (score & allergens[allergen]) {\n            allergicTo.push(allergen);\n        }\n    }\n\n    return allergicTo;\n}\n\nconst score = 34;\nconst allergies = determineAllergies(score);\nconsole.log(`${allergies.join(', ')}`);",
+  "difficulty_id": 2,
+  "language_id": 4
+},
+{
+  "name": "Atbash Cipher",
+  "question": "Create an implementation of the Atbash cipher using the word below to test. See hints for explanation of the cipher is you are unfamiliar.",
+  "answer": "cipher xrksvi",
+  "hint": " The Atbash cipher is a simple substitution cipher that relies on transposing all the letters in the alphabet such that the resulting alphabet is backwards. The first letter is replaced with the last letter, the second with the second-last, and so on. Ciphertext is written out in groups of fixed length, the traditional group size being 5 letters, leaving numbers unchanged, and punctuation is excluded. ",
+  "comment": "const plaintext = 'cipher';",
+  "solution": "function atbashCipher(input: string): string {\n    const plainAlphabet = 'abcdefghijklmnopqrstuvwxyz';\n    const cipherAlphabet = 'zyxwvutsrqponmlkjihgfedcba';\nreturn input\n        .toLowerCase()\n        .replace(/[a-z]/g, (char) => {\n            const index = plainAlphabet.indexOf(char);\n            return index !== -1 ? cipherAlphabet[index] : char;\n        });\n}\n\nconst plaintext = 'cipher';\nconst ciphertext = atbashCipher(plaintext);\nconsole.log(`${plaintext} ${ciphertext}`);",
+  "difficulty_id": 3,
+  "language_id": 4
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
