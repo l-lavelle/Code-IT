@@ -8,7 +8,7 @@ import hpBlocks from '../../assets/hp-blocks.png';
 import Java from '../../assets/e-java.png';
 import JavaScript from '../../assets/e-JS.png';
 import Python from '../../assets/e-python.png';
-import SQL from '../../assets/e-SQL.png';
+import Typescript from '../../assets/typescript.png';
 import {Row, Col, Container} from 'react-bootstrap';
 import { ArrayPlusDelay } from './HomeFunction.js';
 import ParticleBackground from './ParticleBackground.jsx';
@@ -31,33 +31,33 @@ ArrayPlusDelay(['Gain Confidence','Expand Your Skills'], function(obj) {document
         <Container>
           <Row> <h2 className="mt-2 mb-2">Tech Stack</h2> </Row>
           <Row className="mx-1">
-            <Col xs={6} md={3} className="mb-3 tech-name">
+            <Col s={12} sm ={6} md={3} className="mb-3 tech-name">
               <img className="tech-img" src={Java} alt="Java Logo"/>
               <div className="overlay-tech-lang px-1">
                   <p>Object-Oriented Programming Language</p>
               </div>
               Java
             </Col>
-            <Col xs={6} md={3} className="mb-3 tech-name">
+            <Col s={12} sm ={6} md={3} className="mb-3 tech-name">
               <img className="tech-img" src={JavaScript} alt="JavaScript Logo"/>
               <div className="overlay-tech-lang px-1">
                   <p>Scripting Language for Creating Dynamic Web Page Content</p>
               </div>
               JavaScript
             </Col>
-            <Col xs={6} md={3} className="mb-3 tech-name">
+            <Col s={12} sm ={6} md={3} className="mb-3 tech-name">
               <img className="tech-img" src={Python} alt="Python Logo"/>
               <div className="overlay-tech-lang px-1">
                 <p>General Purpose Language for Web Applications and Software</p>
               </div>
               Python
             </Col>
-            <Col xs={6} md={3} className="mb-3 tech-name">
-              <img className="tech-img" src={SQL} alt="SQL Logo"/>
+            <Col xs={12} sm ={6} md={3} className="mb-3 tech-name">
+              <img className="tech-img" src={Typescript} alt="SQL Logo"/>
               <div className="overlay-tech-lang px-1">
-                  <p>Standard Language for Database Creation and Manipulation</p>
+                  <p>Adds Additional Syntax to JavaScript</p>
               </div>
-              SQL
+              Typescript
             </Col>
           </Row>
         </Container>

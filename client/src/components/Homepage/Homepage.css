@@ -124,6 +124,10 @@ p {
   #tsparticles {
     height: 200px;
   }
+  .hp-pic {
+    max-width: 100%;
+    max-height: auto;
+  }
 }
 @media screen and (min-width: 576px) and (max-width: 745px) {
   .overlay-tech-lang p {

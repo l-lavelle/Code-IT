@@ -551,33 +551,47 @@
   "solution": "function atbashCipher(input: string): string {\n    const plainAlphabet = 'abcdefghijklmnopqrstuvwxyz';\n    const cipherAlphabet = 'zyxwvutsrqponmlkjihgfedcba';\nreturn input\n        .toLowerCase()\n        .replace(/[a-z]/g, (char) => {\n            const index = plainAlphabet.indexOf(char);\n            return index !== -1 ? cipherAlphabet[index] : char;\n        });\n}\n\nconst plaintext = 'cipher';\nconst ciphertext = atbashCipher(plaintext);\nconsole.log(`${plaintext} ${ciphertext}`);",
   "difficulty_id": 3,
   "language_id": 4
+},
+{
+  "name": "Tic Tac Toe",
+  "question": "Create a function that takes a Tic-tac-toe board and returns if the winner is X,O, or no winner yet depending on if there is 3 of the same characters in a row.",
+  "answer": "X",
+  "hint": "Iterate through each row to see if there are 3 of the same characters in a row. Then check the columns and diagonals. Use loops and conditional statements to return the winner if there is one.",
+   "comment": "const board: number[] = [\n  PLAYER_X, PLAYER_O, PLAYER_X,\n  PLAYER_O, PLAYER_X, PLAYER_O,\n  PLAYER_X, PLAYER_X, PLAYER_O,\n];",
+  "solution": "const DIMENSIONS = 3;\nconst DRAW = 0;\nconst PLAYER_X = 1;\nconst PLAYER_O = 2;\n\nconst board: number[] = [\n  PLAYER_X, PLAYER_O, PLAYER_X,\n  PLAYER_O, PLAYER_X, PLAYER_O,\n  PLAYER_X, PLAYER_X, PLAYER_O,\n];\n\nfunction checkWinner(board: number[]): string | null {\n  for (let row = 0; row < DIMENSIONS; row++) {\n    const rowValues = board.slice(row * DIMENSIONS, (row + 1) * DIMENSIONS);\n    if (rowValues.every((value) => value === PLAYER_X)) {\n      return 'X';\n    } else if (rowValues.every((value) => value === PLAYER_O)) {\n      return 'O';\n    }\n  }\n\n  for (let col = 0; col < DIMENSIONS; col++) {\n    const colValues = [];\n    for (let row = 0; row < DIMENSIONS; row++) {\n      colValues.push(board[row * DIMENSIONS + col]);\n    }\n    if (colValues.every((value) => value === PLAYER_X)) {\n      return 'X';\n    } else if (colValues.every((value) => value === PLAYER_O)) {\n      return 'O';\n    }\n  }\n\n  const diag1Values = [board[0], board[4], board[8]];\n  const diag2Values = [board[2], board[4], board[6]];\n  if (diag1Values.every((value) => value === PLAYER_X) || diag2Values.every((value) => value === PLAYER_X)) {\n    return 'X';\n  } else if (diag1Values.every((value) => value === PLAYER_O) || diag2Values.every((value) => value === PLAYER_O)) {\n    return 'O';\n  }\n\n  return null;\n}\nconst winner = checkWinner(board);\nif (winner) {\n  console.log(`${winner}`);\n} else {\n  console.log('No winner yet.');\n}",
+  "difficulty_id": 3,
+  "language_id": 4
+},
+{
+  "name": "Bowling Scorer",
+  "question": "Bowling is a game where players roll a heavy ball to knock down pins arranged in a triangle. Write code to keep track of the score of a game of bowling.",
+  "answer": "174",
+  "hint": "The game consists of 10 frames. A frame is composed of one or two ball throws with 10 pins standing at frame initialization. A spare is where all ten pins are knocked down by the second throw. The total value of a spare is 10 plus the number of pins knocked down in their next throw. A strike is where all ten pins are knocked down by the first throw. The total value of a strike is 10 plus the number of pins knocked down in the next two throws.",
+  "comment": "const game = new BowlingGame(); \ngame.roll(5);\ngame.roll(4);\ngame.roll(5);\ngame.roll(4);\ngame.roll(5);\ngame.roll(4);\ngame.roll(5);\ngame.roll(4);\ngame.roll(5);\ngame.roll(4);\ngame.roll(5);\ngame.roll(4);\ngame.roll(10);\ngame.roll(10);\ngame.roll(10);\ngame.roll(10);\ngame.roll(10);\ngame.roll(10);\ngame.roll(10);\ngame.roll(10);\n\nconst finalScore = game.score();\nconsole.log(`${finalScore}`);",
+  "solution": "class BowlingGame {\n  private rolls: number[] = [];\n\n  roll(pins: number): void {\n    this.rolls.push(pins);\n  }\n\n  score(): number {\n    let totalScore = 0;\n    let rollIndex = 0;\n\n    for (let frame = 0; frame < 10; frame++) {\n      if (this.isStrike(rollIndex)) {\n        totalScore += 10 + this.strikeBonus(rollIndex);\n        rollIndex++;\n      } else if (this.isSpare(rollIndex)) {\n        totalScore += 10 + this.spareBonus(rollIndex);\n        rollIndex += 2;\n      } else {\n        totalScore += this.sumOfPinsInFrame(rollIndex);\n        rollIndex += 2;\n      }\n    }\n\n    return totalScore;\n  }\n\n  private isStrike(rollIndex: number): boolean {\n    return this.rolls[rollIndex] === 10;\n  }\n\n  private isSpare(rollIndex: number): boolean {\n    return this.rolls[rollIndex] + this.rolls[rollIndex + 1] === 10;\n  }\n\n  private strikeBonus(rollIndex: number): number {\n    return this.rolls[rollIndex + 1] + this.rolls[rollIndex + 2];\n  }\n\n  private spareBonus(rollIndex: number): number {\n    return this.rolls[rollIndex + 2];\n  }\n\n  private sumOfPinsInFrame(rollIndex: number): number {\n    return this.rolls[rollIndex] + this.rolls[rollIndex + 1];\n  }\n}\n\nconst game = new BowlingGame();\ngame.roll(5);\ngame.roll(4);\ngame.roll(5);\ngame.roll(4);\ngame.roll(5);\ngame.roll(4);\ngame.roll(5);\ngame.roll(4);\ngame.roll(5);\ngame.roll(4);\ngame.roll(5);\ngame.roll(4);\ngame.roll(10);\ngame.roll(10);\ngame.roll(10);\ngame.roll(10);\ngame.roll(10);\ngame.roll(10);\ngame.roll(10);\ngame.roll(10);\n\nconst finalScore = game.score();\nconsole.log(`${finalScore}`);",
+  "difficulty_id": 3,
+  "language_id": 4
+},
+
+{
+  "name": "Crypto Square",
+  "question": "Write a Typescript function that creates a Crypto Square Encoder. Use “Hello World” string in order to test the function.",
+  "answer": "hell owor ld",
+  "hint": "To perform a square code: spaces and punctuation are removed and the message is down-cased. Organize the normalized characters into rows. Create a rectangle with the smallest possible integer for columns and rows. For example:  text has 54 characters, resulting in a rectangle with c = 8 and r = 7.",
+  "comment": "const inputText = \"Hello, world!\";\nconst decoder = new CryptoDecode(inputText);\nconst ciphertext = decoder.getCiphertext();\nconsole.log(ciphertext);\n",
+  "solution": "class CryptoDecode {\n    private readonly _encoded: string = '';\n    private readonly _rows: number = 0;\n    private readonly _columns: number = 0;\n\n    constructor(text: string) {\n        const match = text.toLowerCase().match(/\\w+/g);\n        if (!match) {\n            return;\n        }\n        const normalized = [...match].join('');\n        let rows = 1;\n        let cols = 1;\n        while (rows * cols < normalized.length || rows * (cols + 1) < normalized.length) {\n            ++rows;\n            ++cols;\n        }\n        if (rows * cols < normalized.length) {\n            ++cols;\n        }\n        this._rows = rows;\n        this._columns = cols;\n        for (let r = 0; r < this._rows; ++r) {\n            for (let c = 0; c < this._columns; ++c) {\n                const i = r * this._columns + c;\n                if (i < normalized.length) {\n                    this._encoded += normalized.charAt(i);\n                }\n            }\n        }\n    }\n\n    getCiphertext(): string {\n        try {\n            const regex = new RegExp(`\\w{1,${this._columns}}`, 'g');\n            return this._encoded.match(regex)!\n                .map(s => (s.length < this._columns ? `${s} ` : s))\n                .join(' ');\n        } catch (_) {\n            return '';\n        }\n    }\n}\n\nconst inputText = \"Hello, world!\";\nconst decoder = new CryptoDecode(inputText);\nconst ciphertext = decoder.getCiphertext();\nconsole.log(ciphertext);",
+  "difficulty_id": 3,
+  "language_id": 4
+},
+{
+  "name": "Equality",
+  "question": " Write a TypeScript function deepEqual that compares two objects for deep equality. The function should return true if the objects are deeply equal and false otherwise. ",
+  "answer": "true false",
+  "hint": " TypeScript, like JavaScript, treats objects as reference types, which means that two objects are considered equal only if they reference the exact same memory location. ",
+  "comment": "console.log(deepEqual({ name: \"John\", age: 30 }, { name: \"John\", age: 30 })); \nconsole.log(deepEqual({ name: \"John\", age: 30 }, { name: \"John\", age: 31 }))",
+  "solution": "type Value = number | string | boolean | null | Value[] | { [key: string]: Value };\nfunction deepEqual(a: Value, b: Value): boolean {\n\n    if (a === b) {\n        return true;\n    }\n    if (typeof a === \"object\" && a !== null && typeof b === \"object\" && b !== null) {\n        if (Object.keys(a).length !== Object.keys(b).length) {\n            return false;\n        }\n        for (const key in a) {\n            if (!b.hasOwnProperty(key) || !deepEqual(a[key], b[key])) {\n                return false;\n            }\n        }\n        return true;\n    }\n    return false;\n}\n\nconsole.log(deepEqual({ name: \"John\", age: 30 }, { name: \"John\", age: 30 })); \nconsole.log(deepEqual({ name: \"John\", age: 30 }, { name: \"John\", age: 31 }));",
+  "difficulty_id": 3,
+  "language_id": 4
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
 ] 
